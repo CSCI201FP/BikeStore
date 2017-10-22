@@ -1,41 +1,41 @@
 package objects;
 
-public class Bike {
-    private String state;//not reserved, pending, reserved
-    private String name;
-    private String type;
-    private String picture;
-    private int storeID;  //which store the bike belong to
+public class Bike implements SQLRowConvertible{
+    private final int bikeID;
+    private int currentHolderID;
+    private int storeID;
+    private boolean gender;
+    private double seatHeight;
+    private char availability; //a: available , p: pending, u: unavailable
+    private String type;       //mountain, road, etc
+    private String picture;     //url to the picture
 
-    public Bike(String name, String type, String picture, int storeID, String state) {
-        this.name = name;
+    private Customer cuurentHolder;
+    private Store store;
+
+
+    public Bike() {
+        this.bikeID = -1;
+    }
+
+
+    public Bike(int bikeID, int currentHolderID, int storeID, boolean gender, double seatHeight, char availability, String type, String picture) {
+        this.bikeID = bikeID;
+        this.currentHolderID = currentHolderID;
+        this.storeID = storeID;
+        this.gender = gender;
+        this.seatHeight = seatHeight;
+        this.availability = availability;
         this.type = type;
         this.picture = picture;
-        this.storeID = storeID;
-        this.state = state;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
+    @Override
+    public String convertToSQLRow() {
+        return null;
     }
 
     public String getPicture() {
         return picture;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public int getStoreID() {
-        return storeID;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 }

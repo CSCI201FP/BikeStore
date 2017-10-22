@@ -3,23 +3,30 @@ package objects;
 import java.util.ArrayList;
 
 public class Customer extends User {
-    private ArrayList<Bike> bikes;  //also show pending bikes?
+    private int bikeID;   //the bikeID that a customer holds
+    private boolean pending;
 
-    public Customer(String name, String email, String phone, String gender, ArrayList<Bike> bikes) {
-        super(name, email, phone, gender);
-        this.bikes = bikes;
+    private Bike bike;
+
+    public Customer(int userID, String name, String email, String phone, String gender, int bikeID, boolean pending) {
+        super(userID, name, email, phone, gender);
+        this.bikeID = bikeID;
+        this.pending = pending;
     }
 
-    public ArrayList<Bike> getBikes() {
-        return bikes;
+    public void reserveBike(int bikeID){
     }
 
-    public void addBike(Bike bike) {
-        bikes.add(bike);
+    public void returnBike(){
     }
 
-    //should parameter be a Bike object or an index of the bike?
-    public void returnBike(Bike bike) {
-        bikes.remove(bike);
+    public void sendMessage(int receiverID){
     }
+
+    @Override
+    public String convertToSQLRow() {
+        return null;
+    }
+
+
 }

@@ -1,42 +1,47 @@
 package objects;
 
 import java.util.ArrayList;
-
-import com.mysql.jdbc.Connection;
+import java.util.Queue;
 
 public class Manager extends User {
-    private Connection conn = null;
-    private ArrayList<Store> storeList;
 
-    public Manager(String name, String email, String phone, String gender,
-                   ArrayList<Store> storeList) {
-        super(name, email, phone, gender);
-        this.storeList = storeList;
+    private ArrayList<Integer> storeIDs;
+    private ArrayList<Store> stores;
+    private Queue<Message> messages;
+
+    public Manager(int userID, String name, String email, String phone, String gender) {
+        super(userID, name, email, phone, gender);
     }
 
     public void addStore() {
-        //add to storeList
+        Store store = new Store();
+        //add to stores
         //add to SQL
     }
-
     public void deleteStore() {
-        //delete from storeList
+        //delete from stores
         //delete from SQL
     }
 
     public void addBike() {
+        Bike bike = new Bike();
         //add to bikeList
         //add to SQL
     }
 
-    public void deletBike() {
+    public void deletBike(int bikeID) {
         //delete bikeList
         //delete SQL
     }
 
-    public void confirmReserve() {
+    public void confirmReservation() {
         //change bikeList state
         //change SQL bike state
+    }
+
+    @Override
+    public String convertToSQLRow() {
+        return null;
     }
 
 }

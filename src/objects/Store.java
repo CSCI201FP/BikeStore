@@ -1,40 +1,29 @@
 package objects;
 
-//id, location, name
-public class Store {
-    private int id;
+//storeID, location, name
+public class Store implements SQLRowConvertible{
+    private final int storeID;
+    private int managerID;
     private String name;
     private String location;
     private String time;
 
-    public Store(int id, String name, String location, String time) {
-        this.id = id;
+    private Manager manager;
+
+    public Store() {
+        this.storeID = -1;
+    }
+
+    public Store(int storeID, String name, String location, String time) {
+        this.storeID = storeID;
         this.name = name;
         this.location = location;
         this.time = time;
     }
 
-    public int getID() {
-        return id;
+    @Override
+    public String convertToSQLRow() {
+        return null;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 }

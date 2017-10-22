@@ -33,7 +33,6 @@ public class InitServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/Bike?user=root&password=JIAruoxi1997&useSSL=false");
-            ;
             st = (Statement) conn.createStatement();
             rt = st.executeQuery("SELECT * FROM Bike.Bikes");
 
