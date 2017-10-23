@@ -1,13 +1,19 @@
 package objects;
 
+import java.util.ArrayList;
 import java.util.Queue;
 
-public abstract class User implements SQLRowConvertible{
+public abstract class User extends SQLRowConvertible{
     private final int userID;
     private String name;
     private String email;
     private String phone;
     private String gender;
+    public static ArrayList<User> onlineUsers;
+
+    public static User getUserByID(int userID){
+        return null;
+    }
 
     public User() {
         this.userID = -1;
@@ -21,4 +27,7 @@ public abstract class User implements SQLRowConvertible{
         this.gender = gender;
     }
 
+    public String getName() {
+        return name;
+    }
 }

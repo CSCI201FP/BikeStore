@@ -1,6 +1,6 @@
 package objects;
 
-public class Bike implements SQLRowConvertible{
+public class Bike extends SQLRowConvertible{
     private final int bikeID;
     private int currentHolderID;
     private int storeID;
@@ -13,6 +13,9 @@ public class Bike implements SQLRowConvertible{
     private Customer cuurentHolder;
     private Store store;
 
+    public static Bike getBikeByID(){
+        return null;
+    }
 
     public Bike() {
         this.bikeID = -1;

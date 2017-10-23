@@ -1,7 +1,5 @@
 package objects;
 
-import java.util.ArrayList;
-
 public class Customer extends User {
     private int bikeID;   //the bikeID that a customer holds
     private boolean pending;
@@ -15,13 +13,12 @@ public class Customer extends User {
     }
 
     public void reserveBike(int bikeID){
+        new Reservation();
     }
 
     public void returnBike(){
     }
 
-    public void sendMessage(int receiverID){
-    }
 
     @Override
     public String convertToSQLRow() {

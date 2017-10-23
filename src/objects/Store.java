@@ -1,7 +1,7 @@
 package objects;
 
 //storeID, location, name
-public class Store implements SQLRowConvertible{
+public class Store extends SQLRowConvertible{
     private final int storeID;
     private int managerID;
     private String name;

@@ -7,7 +7,7 @@ public class Manager extends User {
 
     private ArrayList<Integer> storeIDs;
     private ArrayList<Store> stores;
-    private Queue<Message> messages;
+    private Queue<Reservation> reservations;
 
     public Manager(int userID, String name, String email, String phone, String gender) {
         super(userID, name, email, phone, gender);
