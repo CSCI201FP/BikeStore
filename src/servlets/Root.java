@@ -1,10 +1,8 @@
 package servlets;
 
-import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+import objects.Bike;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,18 +10,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
-
-import objects.Bike;
-
-/**
- * Servlet implementation class InitServlet
- */
-@WebServlet("/InitServlet")
-public class InitServlet extends HttpServlet {
+@WebServlet(name = "Root", urlPatterns = "")
+public class Root extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static final String DB_ADDRESS = "";
+    private static final String DB_USERNAME = "";
+    private static final String DB_PASSWORD = "";
+    private static Connection db_conn;
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Bike> bikeList = new ArrayList<Bike>();
@@ -72,6 +71,4 @@ public class InitServlet extends HttpServlet {
             System.out.println(bikeList.get(i).getPicture());
         }
     }
-
-
 }
