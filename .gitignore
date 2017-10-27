@@ -127,3 +127,6 @@ local.properties
 
 # CUSTOMIZED--------------------------------------------------------------------------
 .DS_Store
+BikeStore.iml
+.idea/misc.xml
+.idea/artifacts/BikeStore_war_exploded.xml
