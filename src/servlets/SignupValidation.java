@@ -13,10 +13,20 @@ import java.io.IOException;
 public class SignupValidation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String email = request.getParameter("email");
+        HttpSession sesh = request.getSession();
+        if(doesEmailExist(email)){
+
+        }
+        else{
+
+        }
+
+
     }
 
-    private boolean isUserExist(User user) {
-
+    private boolean doesEmailExist(String email) {
+        return false;
     }
 
 }
