@@ -14,12 +14,13 @@ public class SignupValidation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String email = request.getParameter("email");
-        HttpSession sesh = request.getSession();
+        HttpSession session = request.getSession();
         if(doesEmailExist(email)){
-
+            session.setAttribute("email", email);
+            request.getRequestDispatcher("passwordEnry.jsp").forward(request, response);
         }
         else{
-
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
         }
 
 

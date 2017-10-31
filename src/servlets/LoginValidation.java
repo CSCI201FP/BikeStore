@@ -13,9 +13,14 @@ import java.io.IOException;
 public class LoginValidation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String password = request.getParameter("password");
+        HttpSession session = request.getSession();
+        if(isPasswordMatched(sessionScope.email, password)){
+
+        }
     }
 
-    private boolean isPasswordMatched(User user){
+    private boolean isPasswordMatched(String email, String password){
 
     }
 
