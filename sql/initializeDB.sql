@@ -69,3 +69,16 @@ FOREIGN KEY (managerID) REFERENCES Users (userID);
 ALTER TABLE Users
   ADD CONSTRAINT Users_Bikes_bikeID_fk
 FOREIGN KEY (currentBikeID) REFERENCES Bikes (bikeID);
+
+
+INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES
+  ("admin@admin.com", "admin", "admin", 1, NULL, "1234567890", NULL),
+  ("1@customer.com", "tom", "password", 0, NULL, "1111111111", NULL),
+  ("2@customer.com", "jack", "password",0,NULL,"2222222222",NULL );
+
+INSERT INTO Stores(name, hours, streetAddress, managerID) VALUES
+  ("Small Store", "10AM-5PM", "2333 E 80th St", 1);
+
+INSERT INTO Bikes(gender, seatHeight, type, picture, availablity, currentHolderID, storeID) VALUES
+  (1, 1.2, "road", "https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg", "a", NULL, 1);
+
