@@ -40,6 +40,7 @@ public class UserGroup extends HttpServlet {
         return true;
     }
 
+    //should this be in a user class?
     public boolean isManager(){
         String username = (String)sess.getAttribute("username");
         String password = (String)sess.getAttribute("password");

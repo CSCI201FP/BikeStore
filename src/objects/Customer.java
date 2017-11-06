@@ -1,15 +1,17 @@
 package objects;
 
 public class Customer extends User {
-    private int bikeID;   //the bikeID that a customer holds
+    private int currentBikeID;   //the bikeID that a customer holds
     private boolean pending;
 
     private Bike bike;
 
-    public Customer(int userID, String username, String email,String password, String phone, String gender, int bikeID, boolean isManager,
-                    boolean isPending) {
+
+
+    public Customer(int userID, String username, String email, String password, String phone, String gender, boolean isManager,
+                    boolean isPending, int currentBikeID) {
         super(userID, username,password, email, phone, gender,isManager, isPending);
-        this.bikeID = bikeID;
+        this.currentBikeID = currentBikeID;
         this.pending = pending;
     }
 
@@ -20,6 +22,9 @@ public class Customer extends User {
     public void returnBike(){
     }
 
+    public int getCurrentBikeID() {
+        return currentBikeID;
+    }
 
     @Override
     public String convertToSQLRow() {
