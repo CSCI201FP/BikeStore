@@ -8,7 +8,7 @@ CREATE TABLE Bikes
   gender BOOLEAN,
   seatHeight DOUBLE,
   type VARCHAR(20),
-  picture VARCHAR(50),
+  picture VARCHAR(100),
   availablity VARCHAR(1) NOT NULL,
   currentHolderID INT,
   storeID INT
