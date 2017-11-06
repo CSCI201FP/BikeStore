@@ -23,6 +23,9 @@ public class UserGroup extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         sess = request.getSession();
         //if the user is not logged in
+        if(sess.getAttribute("user") == null){
+            response.sendRedirect(request.getContextPath() + "/login");
+        }
         if(sess.getAttribute("user")!=null){
             user = (objects.User) request.getAttribute("user");
             sessionList.add(sess);
@@ -30,7 +33,6 @@ public class UserGroup extends HttpServlet {
     }
 
     public boolean isLoggedIn(){
-        //after login, a user object will be created
         //setAttribute in loginValidation session.setAttribute("user",user);
         if(sess.getAttribute("user")==null){
             return false;
