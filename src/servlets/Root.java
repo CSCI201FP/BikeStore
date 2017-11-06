@@ -31,7 +31,7 @@ public class Root extends HttpServlet {
         ResultSet rt = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/Bike?user=root&password=JIAruoxi1997&useSSL=false");
+            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/Bike?user=root&password=*&useSSL=false");
             st = (Statement) conn.createStatement();
             rt = st.executeQuery("SELECT * FROM Bike.Bikes");
 
@@ -41,7 +41,8 @@ public class Root extends HttpServlet {
                 String picture = rt.getString(3);
                 int storeID = rt.getInt(4);
                 String state = rt.getString(5);
-                Bike bike = new Bike(name, type, picture, storeID, state);
+//                public Bike(int bikeID, int currentHolderID, int storeID, boolean gender, double seatHeight, char availability, String type, String picture)
+                Bike bike = new Bike(1,2,3,true,1.2,'y', "asdf", "www.bike.com");
                 bikeList.add(bike);
             }
             request.setAttribute("bikeList", bikeList);

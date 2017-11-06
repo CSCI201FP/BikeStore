@@ -9,8 +9,9 @@ public class Manager extends User {
     private ArrayList<Store> stores;
     private Queue<Reservation> reservations;
 
-    public Manager(int userID, String name, String email, String phone, String gender) {
-        super(userID, name, email, phone, gender);
+    public Manager(int userID, String username, String email, String password, String phone, String gender,boolean isManager,
+                   boolean isPending) {
+        super(userID,username,password, email, phone, gender,isManager, isPending);
     }
 
     public void addStore() {
