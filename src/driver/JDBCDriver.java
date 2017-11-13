@@ -9,7 +9,7 @@ public class JDBCDriver {
     public static void connect(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/BikeStore?user=root&password=JIAruoxi1997&useSSL=false");
+            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/BikeStore?user=root&password=root&useSSL=false");
             if(conn==null){
                 System.out.println("connection is null");
             }
