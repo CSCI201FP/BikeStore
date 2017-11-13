@@ -76,4 +76,22 @@ public class JDBCDriver {
         }
         return false;
     }
+
+    public static boolean signupUser(String email, String pwd, String username, String phone){
+        connect();
+        try {
+            ps =(PreparedStatement) conn.prepareStatement("INSERT INTO Users(email, password, name, phone) VALUES(?,?,?,?)");
+            ps.setString(1, email);
+            ps.setString(2,pwd);
+            ps.setString(3,username);
+            ps.setString(4,phone);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("SQLException in function \"validate\"");
+            e.printStackTrace();
+        }finally{
+            close();
+        }
+        return false;
+    }
 }

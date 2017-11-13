@@ -40,7 +40,7 @@
                     if(content!="false"){
                         window.location = 'bike.jsp';
                     }else{
-                        window.location = 'login.jsp';
+                        window.location = 'signup.jsp';
                     }
                 }
             });
