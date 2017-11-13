@@ -16,7 +16,7 @@ public class Customer extends User {
     }
 
     public void reserveBike(int bikeID){
-        new Reservation();
+//        new Reservation();
     }
 
     public void returnBike(){

@@ -8,7 +8,7 @@ public class Store extends SQLRowConvertible{
     private String location;
     private String time;
 
-    private Manager manager;
+//    private Manager manager;
 
     public Store() {
         this.storeID = -1;

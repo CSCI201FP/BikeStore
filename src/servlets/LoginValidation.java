@@ -1,5 +1,6 @@
 package servlets;
 
+import driver.JDBCDriver;
 import objects.User;
 
 import javax.servlet.ServletException;
@@ -9,23 +10,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "LoginValidation", urlPatterns = "/login")
 public class LoginValidation extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String password = request.getParameter("password");
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password;
         HttpSession session = request.getSession();
-//        if(isPasswordMatched(sessionScope.email, password)){
-//
-//        }
+        boolean exist = JDBCDriver.validateEmail(email);
+        PrintWriter out = response.getWriter();
+        if(exist){
+            session.setAttribute("email", email);
+            out.print("<form name='passwordForm' onsubmit='return validateUser()'>");
+            out.print("password<input name='password' type = 'text'>");
+            out.print("<input type = 'submit' value = 'next'>");
+            out.print("</form>");
+        }else {
+            out.print("<form name='loginForm' onsubmit='return validateEmail()'>");
+            out.print("Email:<input name='email' type = 'text'>");
+            out.print("<input type = 'submit' value = 'Next'>");
+            out.print("</form>");
+        }
+        return;
     }
 
-//    private boolean isPasswordMatched(String email, String password){
-//
-//    }
-
-    //should this function and the function below in UserGroup servlet?
     public void saveUserInSession(User user){
 
     }

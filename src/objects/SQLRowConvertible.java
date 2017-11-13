@@ -1,9 +1,7 @@
 package objects;
 
-import java.util.HashMap;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.HashMap;
 
 
 public abstract class SQLRowConvertible {
@@ -14,26 +12,26 @@ public abstract class SQLRowConvertible {
     private final static String DB_PASSWORD = "";
     private final static String DB_ADDRESS = "jdbc:mysql://localhost:3306/Bike";
 
-     static {
-        classToTableName = new HashMap<>(6);
-        classToTableName.put(User.class, "User");
-        classToTableName.put(Reservation.class, "Reservation");
-        classToTableName.put(Bike.class, "Bike");
-        classToTableName.put(Store.class,"Store");
-        classToTableName.put(Manager.class, "User");
-        classToTableName.put(Customer.class, "User");
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            db_conn = DriverManager
-                    .getConnection(DB_ADDRESS+"?user="+DB_USERNAME+"&password="+DB_PASSWORD+"&useSSL=false");
-        } catch (SQLException sqle) {
-            System.out.println("sqle: " + sqle.getMessage());
-        } catch (ClassNotFoundException cnfe) {
-            System.out.println("cnfe: " + cnfe.getMessage());
-        }
-
-    }
+//     static {
+//        classToTableName = new HashMap<>(6);
+//        classToTableName.put(User.class, "User");
+//        classToTableName.put(Reservation.class, "Reservation");
+//        classToTableName.put(Bike.class, "Bike");
+//        classToTableName.put(Store.class,"Store");
+//        classToTableName.put(Manager.class, "User");
+//        classToTableName.put(Customer.class, "User");
+//
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            db_conn = DriverManager
+//                    .getConnection(DB_ADDRESS+"?user="+DB_USERNAME+"&password="+DB_PASSWORD+"&useSSL=false");
+//        } catch (SQLException sqle) {
+//            System.out.println("sqle: " + sqle.getMessage());
+//        } catch (ClassNotFoundException cnfe) {
+//            System.out.println("cnfe: " + cnfe.getMessage());
+//        }
+//
+//    }
 
     /**
      * pull a new instance of the SQLRowConvertible object from the corresponding SQL table by ID
