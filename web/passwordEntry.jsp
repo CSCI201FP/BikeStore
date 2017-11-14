@@ -8,14 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Welcome Back ${sessionScope.email}}</title>
+        <title>Welcome Back</title>
     </head>
     <body>
-        <h1> Welcome Back. Please Enter your password.</h1><br />
-        <form method = "POST" action = "LoginValidation">
+        <form method = "POST" action = "LoginValidation"></form>
         Password : <input type = "text" name = "password" /><br/>
-        <input type = "submit" value = "PasswordSubmit"><br/>
-        </form>
-        <a href = "emailEntry.jsp"> Back to Email Entry</a>
+        <input type = "submit" value = "PasswordSubmit">
     </body>
 </html>
