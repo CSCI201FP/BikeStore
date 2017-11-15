@@ -9,7 +9,7 @@ CREATE TABLE Bikes
   seatHeight DOUBLE,
   type ENUM('mountain', 'road', 'other') NOT NULL,
   picture VARCHAR(200),
-  availablity ENUM('pending', 'reserved', 'available') NOT NULL,
+  availability ENUM('pending', 'reserved', 'available') NOT NULL,
   currentHolderID INT
 );
 
@@ -65,6 +65,6 @@ INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBi
 INSERT INTO Stores(name, hours, streetAddress) VALUES
   ("Small Store", "10AM-5PM", "2333 E 80th St");
 
-INSERT INTO Bikes(gender, seatHeight, type, picture, availablity, currentHolderID) VALUES
+INSERT INTO Bikes(gender, seatHeight, type, picture, availability, currentHolderID) VALUES
   ('male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL);
 

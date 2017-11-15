@@ -19,7 +19,7 @@ public class Manager {
     }
 
     public void addBike() {
-        Bike bike = new Bike();
+//        Bike bike = new Bike();
         //add to bikeList
         //add to SQL
     }
