@@ -19,7 +19,7 @@
                 url: '/login',
                 success:function(content)
                 {
-                    if(content!="false"){
+                    if(content!=="false"){
                         $('#login').html(content);
                     }else{
                         window.location('bike.jsp');
@@ -37,7 +37,7 @@
                 url: '/password',
                 success:function(content)
                 {
-                    if(content!="false"){
+                    if(content!=="false"){
                         window.location = 'bike.jsp';
                     }else{
                         window.location = 'signup.jsp';

@@ -3,4 +3,25 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <filter-mapping>
+        <filter-name>LoggerFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/bike.jsp/*</url-pattern>
+        <url-pattern>/customerHomepage.jsp/*</url-pattern>
+        <url-pattern>/managerHomepage.jsp/*</url-pattern>
+        <url-pattern>/store.jsp/*</url-pattern>
+        <url-pattern>/userInfo.jsp/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>UserGroupFilter</filter-name>
+        <url-pattern>/managerHomepage.jsp/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
 </web-app>

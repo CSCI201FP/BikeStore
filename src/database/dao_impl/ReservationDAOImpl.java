@@ -3,7 +3,7 @@ package database.dao_impl;
 import database.dao.ReservationDAO;
 import objects.Reservation;
 
-import java.util.Set;
+import java.util.Queue;
 
 public class ReservationDAOImpl implements ReservationDAO {
 
@@ -13,7 +13,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public Set getAllReservation() {
+    public Queue<Reservation> getAllReservation() {
         return null;
     }
 

@@ -17,6 +17,4 @@ public class StoreBackend {
         System.out.println(bikeString);
 
     }
-
-
 }

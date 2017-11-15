@@ -21,6 +21,7 @@ public class PasswordValidation extends HttpServlet {
         PrintWriter out = response.getWriter();
         if(rightPassword){
             HttpSession session = request.getSession();
+            session.setAttribute("user", new UserDAOImpl().getUser(email));
             out.print("true");
         }else{
             out.print("false");

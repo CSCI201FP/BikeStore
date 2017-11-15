@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO{
         Connection connection = ConnectionFactory.getConnection();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE email=" + email);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE email= '" + email +"'");
             if (rs.next()) {
                 return extractUserFromResultSet(rs);
             }
@@ -47,7 +47,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public boolean existEmail(String  email) {
-        return getUser(email)==null;
+        return getUser(email)!=null;
     }
 
     @Override
