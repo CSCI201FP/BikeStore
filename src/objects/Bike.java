@@ -43,4 +43,5 @@ public class Bike{
     public String getPicture() {
         return picture;
     }
+
 }
