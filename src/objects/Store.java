@@ -20,5 +20,4 @@ public class Store {
         this.location = location;
         this.time = time;
     }
-
 }

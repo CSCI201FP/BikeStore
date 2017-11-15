@@ -1,24 +1,20 @@
 package driver;
 
-import java.sql.*;
+import database.util.ConnectionFactory;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class JDBCDriver {
     private static Connection conn;
     private static PreparedStatement ps;
     private static ResultSet rs;
-    public static void connect(){
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/BikeStore?user=root&password=root&useSSL=false");
-            if(conn==null){
-                System.out.println("connection is null");
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public static void connect() {
+        conn = ConnectionFactory.getConnection();
     }
+
     public static void close(){
         try{
             if (rs!=null){
