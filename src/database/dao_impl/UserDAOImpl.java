@@ -23,6 +23,27 @@ public class UserDAOImpl implements UserDAO{
         return new User(userID, name, password, email, phone, isManager, isPending, currentBikeID);
     }
 
+
+    @Override
+    public User getUser(String email) {
+        Connection connection = ConnectionFactory.getConnection();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE email=" + email);
+            if (rs.next()) {
+                return extractUserFromResultSet(rs);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean existEmail(String  email) {
+        return getUser(email)==null;
+    }
+
     @Override
     public User getUser(int id) {
         Connection connection = ConnectionFactory.getConnection();
@@ -45,7 +66,7 @@ public class UserDAOImpl implements UserDAO{
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Users");
-            Set users = new HashSet();
+            Set<User> users = new HashSet<>();
             while (rs.next()) {
                 User user = extractUserFromResultSet(rs);
                 users.add(user);
@@ -133,11 +154,13 @@ public class UserDAOImpl implements UserDAO{
 
 
 
+/*
     public static void main(String[] args) {
         User u = new User(0 , "dog", "dog123", "dog@dog", "123454321", false, false, 0);
         UserDAOImpl userDAO = new UserDAOImpl();
         userDAO.insertUser(u);
     }
+*/
 
 }
 

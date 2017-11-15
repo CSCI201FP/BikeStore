@@ -9,6 +9,8 @@ public interface BikeDAO {
 
     Set getAllBikes();
 
+    Set getAllAvailableBikes();
+
     boolean insertBike(Bike bike);
 
     boolean updateBike(Bike bike);
