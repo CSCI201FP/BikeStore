@@ -14,6 +14,8 @@
     <script src="jquery-3.2.1.min.js"></script>
 </head>
 <body>
-<%StoreBackend.convertBikeToJson();%>
+<%
+    StoreBackend.convertBikeToJson();
+%>
 </body>
 </html>

@@ -13,7 +13,9 @@ public class StoreBackend {
         BikeDAO bd = new BikeDAOImpl();
         Set<Bike> bikeSet = bd.getAllBikes();
         String bikeString = gson.toJson(bikeSet);
+
         System.out.println(bikeString);
+
     }
 
 
