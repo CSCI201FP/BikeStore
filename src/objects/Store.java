@@ -20,4 +20,18 @@ public class Store {
         this.location = location;
         this.time = time;
     }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getLocation(){
+        return location;
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+
 }
