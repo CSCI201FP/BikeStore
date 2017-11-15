@@ -1,48 +1,65 @@
 package objects;
 
-import java.util.ArrayList;
-
-public abstract class User extends SQLRowConvertible{
+public class User {
     private final int userID;
-    private String username;
+    private String name;
     private String password;
     private String email;
     private String phone;
-    private String gender;
     private boolean isManager;
     private boolean isPending;
-    public static ArrayList<User> onlineUsers;
+    private int currentBikeID;
 
-    public static User getUserByID(int userID){
+    public static User getUserByID(int userID) {
         return null;
     }
 
 
-
-    public User(int userID, String username, String password, String email, String phone, String gender, Boolean isManager,
-                Boolean isPending) {
+    public User(int userID) {
         this.userID = userID;
-        this.username = username;
+    }
+
+    public User(int userID, String name, String password, String email, String phone, boolean isManager, boolean isPending, int currentBikeID) {
+        this.userID = userID;
+        this.name = name;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.gender = gender;
         this.isManager = isManager;
         this.isPending = isPending;
+        this.currentBikeID = currentBikeID;
+
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
     public String getPassword() {
         return password;
     }
-    public boolean isManager(){
+
+    public boolean isManager() {
         return isManager;
     }
 
-    public boolean isPending(){
+    public boolean isPending() {
         return isPending;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public int getCurrentBikeID() {
+        return currentBikeID;
     }
 }

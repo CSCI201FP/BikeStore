@@ -14,7 +14,7 @@
         function signup(){
             var email = document.signupForm.email.value;
             var password = document.signupForm.password.value;
-            var username = document.signupForm.username.value;
+            var username = document.signupForm.name.value;
             var phone = document.signupForm.phone.value;
 
             if(email== null || email ==''){
@@ -23,7 +23,7 @@
             if(password == null || password ==''){
                 $('#passwordInfo').html('password cannot be empty');
             }
-            if(username == null || username ==''){
+            if(username == null || name ==''){
                 $('#usernameInfo').html('username cannot be empty');
             }
             if(phone == null || phone ==''){
@@ -32,7 +32,7 @@
 
             $.ajax({
                 type: "POST",
-                data: {email: email, password: password, username: username, phone:phone},
+                data: {email: email, password: password, username: name, phone:phone},
                 url: '/signup',
                 success:function(content)
                 {
@@ -53,7 +53,7 @@
     <form name="signupForm" onsubmit="return signup();">
         email <input type="text" name="email"><span id="emailInfo"></span><br>
         password <input type="text" name="password"><span id="passwordInfo"></span><br>
-        username <input type="text" name="username"><span id="usernameInfo"></span><br>
+        username <input type="text" name="name"><span id="usernameInfo"></span><br>
         phone <input type="text" name="phone"><span id="phoneInfo"></span><br>
         <input type="submit" value="Next">
     </form>

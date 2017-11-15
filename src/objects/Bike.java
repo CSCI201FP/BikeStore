@@ -1,9 +1,16 @@
 package objects;
 
-public class Bike extends SQLRowConvertible{
+public class Bike{
+
+    public enum Gender{
+        male, female, neutral
+    }
+    public enum type{
+        road, mountain, other
+    }
+
     private final int bikeID;
     private int currentHolderID;
-    private int storeID;
     private boolean gender;
     private double seatHeight;
     private char availability; //a: available , p: pending, u: unavailable
@@ -25,7 +32,6 @@ public class Bike extends SQLRowConvertible{
     public Bike(int bikeID, int currentHolderID, int storeID, boolean gender, double seatHeight, char availability, String type, String picture) {
         this.bikeID = bikeID;
         this.currentHolderID = currentHolderID;
-        this.storeID = storeID;
         this.gender = gender;
         this.seatHeight = seatHeight;
         this.availability = availability;
@@ -33,10 +39,6 @@ public class Bike extends SQLRowConvertible{
         this.picture = picture;
     }
 
-    @Override
-    public String convertToSQLRow() {
-        return null;
-    }
 
     public String getPicture() {
         return picture;

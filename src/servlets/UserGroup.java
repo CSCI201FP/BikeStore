@@ -41,16 +41,16 @@ public class UserGroup extends HttpServlet {
     }
 
     //should this be in a user class?
-    public boolean isManager(){
+/*    public boolean isManager(){
         String username = (String)sess.getAttribute("username");
         String password = (String)sess.getAttribute("password");
         for (Manager manager: managerList){
-            if (user.getUsername()== manager.getUsername() && user.getPassword() == manager.getPassword()){
+            if (user.getName()== manager.getName() && user.getPassword() == manager.getPassword()){
                 return true;
             }
         }
         return false;
-    }
+    }*/
 
     //do not implement until most functions are written
     public boolean isTheManagerOfStore(Store store){

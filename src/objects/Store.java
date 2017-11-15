@@ -1,7 +1,7 @@
 package objects;
 
 //storeID, location, name
-public class Store extends SQLRowConvertible{
+public class Store {
     private final int storeID;
     private int managerID;
     private String name;
@@ -19,11 +19,6 @@ public class Store extends SQLRowConvertible{
         this.name = name;
         this.location = location;
         this.time = time;
-    }
-
-    @Override
-    public String convertToSQLRow() {
-        return null;
     }
 
 }

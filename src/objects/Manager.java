@@ -2,16 +2,11 @@ package objects;
 
 import java.util.ArrayList;
 
-public class Manager extends User {
+public class Manager {
 
     private ArrayList<Integer> storeIDs;
     private ArrayList<Store> stores;
 //    private Queue<Reservation> reservations;
-
-    public Manager(int userID, String username, String email, String password, String phone, String gender,boolean isManager,
-                   boolean isPending) {
-        super(userID,username,password, email, phone, gender,isManager, isPending);
-    }
 
     public void addStore() {
         Store store = new Store();
@@ -39,9 +34,6 @@ public class Manager extends User {
         //change SQL bike state
     }
 
-    @Override
-    public String convertToSQLRow() {
-        return null;
-    }
+
 
 }
