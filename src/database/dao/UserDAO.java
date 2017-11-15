@@ -11,6 +11,8 @@ public interface UserDAO {
 
     Set getAllUsers();
 
+    boolean emailPasswordMatch(String email, String pw);
+
     boolean existEmail(String  name);
 
     boolean insertUser(User user);

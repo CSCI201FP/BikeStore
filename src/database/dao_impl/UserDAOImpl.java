@@ -25,6 +25,12 @@ public class UserDAOImpl implements UserDAO{
 
 
     @Override
+    public boolean emailPasswordMatch(String email, String pw) {
+        User user = getUser(email);
+        return user!=null && user.getPassword().equals(pw);
+    }
+
+    @Override
     public User getUser(String email) {
         Connection connection = ConnectionFactory.getConnection();
         try {

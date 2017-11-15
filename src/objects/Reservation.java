@@ -6,8 +6,6 @@ public class Reservation{
     private int receiverID;
     private int bikeID;
 
-    private Customer sender;
-    private Manager receiver;
 
 
     public String toString(){

@@ -1,6 +1,5 @@
 package servlets;
 
-import objects.Manager;
 import objects.Store;
 import objects.User;
 
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 @WebServlet(name = "UserGroup", urlPatterns = "/logged_in")
 public class UserGroup extends HttpServlet {
     //all managers in database
-    private ArrayList<Manager> managerList;
     private ArrayList<HttpSession> sessionList;
     private HttpSession sess;
     private User user;

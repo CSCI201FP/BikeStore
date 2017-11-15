@@ -1,6 +1,6 @@
 package servlets;
 
-import driver.JDBCDriver;
+import database.dao_impl.UserDAOImpl;
 import objects.User;
 
 import javax.servlet.ServletException;
@@ -16,9 +16,8 @@ import java.io.PrintWriter;
 public class LoginValidation extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
-        String password;
         HttpSession session = request.getSession();
-        boolean exist = JDBCDriver.validateEmail(email);
+        boolean exist = new UserDAOImpl().existEmail(email);
         PrintWriter out = response.getWriter();
         if(exist){
             session.setAttribute("email", email);
@@ -32,7 +31,6 @@ public class LoginValidation extends HttpServlet {
             out.print("<input type = 'submit' value = 'Next'>");
             out.print("</form>");
         }
-        return;
     }
 
     public void saveUserInSession(User user){

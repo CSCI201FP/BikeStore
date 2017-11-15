@@ -22,8 +22,6 @@ public class Bike {
     private Type type;       //mountain, road, etc
     private String picture;     //url to the picture
 
-    private Customer cuurentHolder;
-
     public static Bike getBikeByID() {
         return null;
     }
@@ -67,7 +65,4 @@ public class Bike {
         return type;
     }
 
-    public Customer getCuurentHolder() {
-        return cuurentHolder;
-    }
 }
