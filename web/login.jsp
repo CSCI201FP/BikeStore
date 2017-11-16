@@ -11,17 +11,16 @@
     <title>Login</title>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <script>
-        function validateEmail(){
+        function validateEmail() {
             var str = document.loginForm.email.value;
             $.ajax({
                 type: "GET",
                 data: {email: str},
                 url: '/login',
-                success:function(content)
-                {
-                    if(content!=="false"){
+                success: function (content) {
+                    if (content !== "false") {
                         $('#login').html(content);
-                    }else{
+                    } else {
                         window.location('bike.jsp');
                     }
                 }
@@ -35,11 +34,10 @@
                 type: "POST",
                 data: {password: pass},
                 url: '/password',
-                success:function(content)
-                {
-                    if(content!=="false"){
+                success: function (content) {
+                    if (content !== "false") {
                         window.location = 'bike.jsp';
-                    }else{
+                    } else {
                         window.location = 'signup.jsp';
                     }
                 }
@@ -49,11 +47,33 @@
     </script>
 </head>
 <body>
-    <div id="login">
-        <form name="loginForm" onsubmit="return validateEmail()">
-            Email:<input type="text" name = "email">
+<div id="main-div">
+    <div id="email-div">
+        <form name="email-check-form" onsubmit="return validateEmail()">
+            Email:<input type="email" name="email">
             <input type="submit" value="Next">
         </form>
     </div>
+
+    <div id="signup-div">
+        Sign Up
+        <form name="signupForm" onsubmit="return signup();">
+            Email: <input type="email" name="email"><span id="emailInfo"></span><br>
+            Password: <input type="password" name="password"><span id="passwordInfo"></span><br>
+            Name: <input type="text" name="name"><span id="usernameInfo"></span><br>
+            Phone: <input type="number" name="phone"><span id="phoneInfo"></span><br>
+            <input type="submit" value="Signup">
+        </form>
+    </div>
+
+    <div id="password-div">
+        Input Password
+        <form>
+            Email: <input type="text" name="email"><br>
+            Password: <input type="password" name="password"><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</div>
 </body>
 </html>

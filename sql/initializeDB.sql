@@ -39,7 +39,8 @@ CREATE TABLE Stores
   storeID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   name VARCHAR(50) NOT NULL,
   hours VARCHAR(50),
-  streetAddress VARCHAR(50)
+  streetAddress VARCHAR(50),
+  description VARCHAR(200)
 );
 CREATE UNIQUE INDEX Stores_name_uindex ON Stores (name);
 

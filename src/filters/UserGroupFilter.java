@@ -20,7 +20,6 @@ public class UserGroupFilter implements Filter {
             throws ServletException, IOException {
 
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
 
         User user = (User) session.getAttribute("user");
