@@ -17,7 +17,7 @@
     </h1>
 
     Email: <c:out value = "${sessionScope.User.getEmail()}"></c:out><br/>
-    Phone Number: <c:out value="${sessionScope.User.getPhone()}"</c:out>
+    Phone Number: <c:out value="${sessionScope.User.getPhone()}"></c:out>
 
 </body>
 </html>
