@@ -1,5 +1,5 @@
-<%@ page import="database.dao_impl.BikeDAOImpl" %>
-<%@ page import="database.dao.StoreDAO" %><%--
+<%@ page import="database.dao_impl.StoreDAOImpl" %>
+<%--
   Created by IntelliJ IDEA.
   User: johndwyer
   Date: 11/14/17
@@ -13,7 +13,7 @@
     <title>Home</title>
     <%
         StoreDAOImpl st = new StoreDAOImpl();
-        session.setAttribute("Stores", StoreDAO.getAllStores());
+        session.setAttribute("Stores", StoreDAOImpl.getAllStores());
 
     %>
 </head>
@@ -28,10 +28,11 @@
             <th align="center">Name </th><th align="center">Location</th><th align="center" width="40">Hours</th><th align = "center" width = "40">Go To Store</th>
         </tr>
     <c:forEach items = "${sessionScope.Stores}" var = "store">
-            <tr onclick="location.reload();locaiton.href = 'store.jsp/id=${store.getID()}'">
+            <tr onclick="location.reload();locaiton.href = '/store.jsp?id=${store.getID()}'">
                 <td align="center"><c:out value = "${store.getName()}"/></td>
                 <td align ="center"><c:out value = "${store.getLocation()}"/></td>
                 <td align = "center"><c:out value = "${store.getTime()}"/></td>
+                <td align = "center"><a href = "/store.jsp?id=${store.getID()}">Go</a></td>
             </tr>
     </c:forEach>
     </table>
