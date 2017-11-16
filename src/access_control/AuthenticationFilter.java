@@ -1,6 +1,4 @@
-package filters;
-
-import objects.User;
+package access_control;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
