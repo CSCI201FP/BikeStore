@@ -1,8 +1,10 @@
 package servlets;
 
+import database.dao.UserDAO;
 import database.dao_impl.UserDAOImpl;
 import objects.User;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,32 +16,18 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "LoginValidation", urlPatterns = "/login")
 public class LoginValidation extends HttpServlet {
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
-        HttpSession session = request.getSession();
-        boolean exist = new UserDAOImpl().existEmail(email);
-        PrintWriter out = response.getWriter();
-        if(exist){
-            session.setAttribute("email", email);
-            out.print("<form name='passwordForm' onsubmit='return validateUser()'>");
-            out.print("password<input name='password' type = 'text'>");
-            out.print("<input type = 'submit' value = 'next'>");
-            out.print("</form>");
+        String password = request.getParameter("password");
+        UserDAO userDAO = new UserDAOImpl();
+
+        if (userDAO.emailPasswordMatch(email,password)){
+            request.getSession().setAttribute("user", userDAO.getUser(email));
+
+            request.getRequestDispatcher("/bike.jsp").forward(request,response);
         }else {
-            out.print("<form name='loginForm' onsubmit='return validateEmail()'>");
-            out.print("Email:<input name='email' type = 'text'>");
-            out.print("<input type = 'submit' value = 'Next'>");
-            out.print("</form>");
+            request.setAttribute("warn","Login Invalid");
+            request.getRequestDispatcher("/login.jsp").forward(request,response);
         }
     }
-
-    public void saveUserInSession(User user){
-
-    }
-
-
-    public void deleteUserFromSession(){
-
-    }
-
 }
