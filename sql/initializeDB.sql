@@ -10,7 +10,8 @@ CREATE TABLE Bikes
   type ENUM('mountain', 'road', 'other') NOT NULL,
   picture VARCHAR(200),
   availability ENUM('pending', 'reserved', 'available') NOT NULL,
-  currentHolderID INT
+  currentHolderID INT,
+  model VARCHAR(20)
 );
 
 CREATE TABLE Reservations
@@ -60,13 +61,15 @@ ALTER TABLE Users
 FOREIGN KEY (currentBikeID) REFERENCES Bikes (bikeID);
 
 INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES
-  ('admin@admin.com', 'admin', 'admin', 1, NULL, '1234567890', NULL),
-  ('1@customer.com', 'tom', 'password', 0, NULL, '1111111111', NULL),
-  ('2@customer.com','jack', 'password',0,NULL,'2222222222',NULL );
+  ('admin@admin.com', 'admin', 'admin', 1, 0, '1234567890', NULL),
+  ('1@customer.com', 'tom', 'password', 0, 0, '1111111111', NULL),
+  ('2@customer.com','jack', 'password',0, 0,'2222222222',NULL);
 
 INSERT INTO Stores(name, hours, streetAddress) VALUES
   ('Small Store', '10AM-5PM', '2333 E 80th St');
 
 INSERT INTO Bikes(gender, seatHeight, type, picture, availability, currentHolderID) VALUES
-  ('male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL);
+  ('male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL),
+  ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL ),
+  ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL );
 

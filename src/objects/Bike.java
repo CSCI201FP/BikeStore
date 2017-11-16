@@ -15,6 +15,7 @@ public class Bike {
     }
 
     private final int bikeID;
+    private String model;
     private int currentHolderID;
     private Gender gender;
     private double seatHeight;
@@ -26,7 +27,8 @@ public class Bike {
         return null;
     }
 
-    public Bike(int bikeID, int currentHolderID, Gender gender, double seatHeight, Availability availability, Type type, String picture) {
+    public Bike(int bikeID, int currentHolderID, Gender gender, double seatHeight, Availability availability,
+                Type type, String picture, String model) {
         this.bikeID = bikeID;
         this.currentHolderID = currentHolderID;
         this.gender = gender;
@@ -34,8 +36,12 @@ public class Bike {
         this.availability = availability;
         this.type = type;
         this.picture = picture;
+        this.model = model;
     }
 
+    public String getModel(){
+        return model;
+    }
 
     public String getPicture() {
         return picture;

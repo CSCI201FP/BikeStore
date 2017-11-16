@@ -7,10 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+  <meta http-equiv="refresh" content="0; url=${pageContext.request.contextPath}/login.jsp"/>
+  <title>INDEX</title>
+</head>
+<body>
+</body>
 </html>
+

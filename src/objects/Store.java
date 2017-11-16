@@ -31,13 +31,7 @@ public class Store {
         return name;
     }
 
-    public String getStreetAddress() {
-        return streetAddress;
-    }
-
-    public int getID(){
-        return storeID;
-    }
+    public String getStreetAddress() { return streetAddress; }
 
     public String getHours() {
         return hours;
