@@ -28,11 +28,11 @@
             <th align="center">Name </th><th align="center">Location</th><th align="center" width="40">Hours</th><th align = "center" width = "40">Go To Store</th>
         </tr>
     <c:forEach items = "${sessionScope.Stores}" var = "store">
-            <tr onclick="location.reload();locaiton.href = '/store.jsp?id=${store.getID()}'">
+            <tr onclick="location.reload();locaiton.href = '/store.jsp?id=${store.getStoreID()}'">
                 <td align="center"><c:out value = "${store.getName()}"/></td>
                 <td align ="center"><c:out value = "${store.getLocation()}"/></td>
                 <td align = "center"><c:out value = "${store.getTime()}"/></td>
-                <td align = "center"><a href = "/store.jsp?id=${store.getID()}">Go</a></td>
+                <td align = "center"><a href = "/store.jsp?id=${store.getStoreID()}">Go</a></td>
             </tr>
     </c:forEach>
     </table>

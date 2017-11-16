@@ -8,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html>
 <head>
     <title>Store</title>
@@ -29,5 +30,30 @@
 <%
     StoreBackend.convertBikeToJson();
 %>
+    <div class = "toolbar">
+        <a href = "userInfo.jsp"> Profile </a>
+        <a href = "login.jsp"> Log Out</a>
+    </div>
+    <div id="store">
+        <c:out value = "${sessionScope.Store.getName()}"></c:out><br/>
+        <c:out value = "${sessionScope.Store.getStreetAddress()}"></c:out><br/>
+        Hours: <c:out value = "${sessionScope.Store.getHours()}"></c:out>
+    </div>
+    <div id ="bikesTable">
+        <table>
+        <tr>
+            <th align="center">Picture</th><th align="center">Type</th><th align="center" width="40">Seat Height</th><th align = "center" width = "40">Go To Bike</th>
+        </tr>
+        <c:forEach items = "${sessionScope.Bikes}" var = "bike">
+            <tr onclick="location.reload();locaiton.href = '/bike.jsp?id=${bike.getBikeID()}'">
+                <td align="center"><img src = "${bike.getPicture()}"></td>
+                <td align="center"><c:out value = "${bike.getType()}"></c:out></td>
+                <td align = "center"><c:out value = "${bike.getSeatHeight()}"></c:out></td>
+                <td align = "center"><a href = "/bike.jsp?id=${bike.getBikeID()}">Go</a></td>
+            </tr>
+        </c:forEach>
+        </table>
+    </div>
+
 </body>
 </html>
