@@ -18,7 +18,7 @@ public class AddBikeServlet extends HttpServlet {
         String seatHeight = request.getParameter("seatHeight");
         String type = request.getParameter("type");
         String picture = request.getParameter("picture");
-
+        String model = request.getParameter("model");
         try{
             Double shDouble = Double.parseDouble(seatHeight);
         }catch(NumberFormatException nfe){
@@ -27,7 +27,7 @@ public class AddBikeServlet extends HttpServlet {
         }
 
         try{
-            Bike.Gender.valueOf("female");
+            Bike.Gender.valueOf(gender);
         }catch(IllegalArgumentException iae){
             response.getWriter().print("gender");
             return;
@@ -41,7 +41,7 @@ public class AddBikeServlet extends HttpServlet {
         }
 
         Bike b = new Bike(0,0,Bike.Gender.valueOf(gender), Double.parseDouble(seatHeight), Bike.Availability.valueOf("available"),
-                Bike.Type.valueOf(type),picture);
+                Bike.Type.valueOf(type),picture,model);
         BikeDAO bikeDAO = new BikeDAOImpl();
         bikeDAO.insertBike(b);
         response.getWriter().print("success");

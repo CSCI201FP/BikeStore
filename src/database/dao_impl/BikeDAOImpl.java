@@ -28,7 +28,7 @@ public class BikeDAOImpl implements BikeDAO{
         Connection connection = ConnectionFactory.getConnection();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Bikes WHERE availablity = 'available'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Bikes WHERE availability = 'available'");
             Set<Bike> bikes = new HashSet<>();
 
             while (rs.next()) {
@@ -85,7 +85,7 @@ public class BikeDAOImpl implements BikeDAO{
         try {
             PreparedStatement ps = connection
                     .prepareStatement("INSERT INTO Bikes " +
-                            "(gender, seatHeight, type, picture, availablity, currentHolderID) " +
+                            "(gender, seatHeight, type, picture, availability, currentHolderID) " +
                             "VALUES (?, ?, ?, ?, ?, ?)");
 
             ps.setString(1, bike.getGender().toString());
@@ -117,7 +117,7 @@ public class BikeDAOImpl implements BikeDAO{
         try {
             PreparedStatement ps = connection
                     .prepareStatement("UPDATE Bikes " +
-                            "SET gender=?, seatHeight=?, type=?, picture=?, availablity=?, currentHolderID=?" +
+                            "SET gender=?, seatHeight=?, type=?, picture=?, availability=?, currentHolderID=?" +
                             "WHERE bikeID=?");
             ps.setString(1, bike.getGender().toString());
             ps.setDouble(2, bike.getSeatHeight());
