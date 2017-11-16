@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    String warn = (String) request.getAttribute("warn");
+    String warnMessage = (String) request.getAttribute("warn");
 %>
 
 <html>
@@ -17,6 +17,15 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/common.css" >
     <script>
+        var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
+
+        $(function () {
+            if (warn!==''){
+                $('#warn-message-span').text(warn);
+                $('.alert').removeClass("hidden");
+            }
+        });
+
         $(function() {
             //check email exist
             $("#email-form").submit(function(e) {
@@ -38,44 +47,68 @@
                 });
             });
 
-            //signup, need to recheck if the email exist or not
+            //todo signup, need to recheck if the email exist or not
+            $("#signup-form").submit(function (e) {
+                e.preventDefault();
 
+                var passwordRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.{8,})/;
+                var phoneRegex = /^\(?([0-9]{3})\)?[-.●]?([0-9]{3})[-.●]?([0-9]{4})$/;
+
+                var email = $('#signup-form input[name|=email]').val();
+                var name = $('#signup-form input[name|=name]').val();
+                var password = $('#signup-form input[name|=password]').val();
+                var phone = $('#signup-form input[name|=phone]').val();
+
+                if (phoneRegex.test(phone)){
+                    phone = phone.replace(phoneRegex, "($1) $2-$3");
+                } else {
+                    showWarn("The Phone Number Format is Incorrect");
+                    return;
+                }
+
+                if (!passwordRegex.test(password)){
+                    showWarn("Password should be at least 8 number and contain both number and at least 1 uppercase alphabetical character");
+                    return;
+                }
+
+                if (name===''||name===null){
+                    return;
+                }
+
+                $.ajax({
+                    url: 'signup',
+                    type: 'post',
+                    dataType: 'text',
+                    data: {
+                        email: email,
+                        name: name,
+                        password: password,
+                        phone: phone
+                    },
+                    success: function (response) {
+                        if (response==='signup-success'){
+                            window.location.href = "/bike.jsp";
+                        } else {
+                            showWarn("Email Exist");
+                        }
+                    }
+                });
+            })
         });
 
-
-
-        function validateUser() {
-            var pass = document.passwordForm.password.value;
-            $.ajax({
-                type: "POST",
-                data: {password: pass},
-                url: '/password',
-                success: function (content) {
-                    if (content !== "false") {
-                        window.location = 'bike.jsp';
-                    } else {
-                        window.location = 'signup.jsp';
-                    }
-                }
-            });
-            return false;
+        function showWarn(warnMessage) {
+            warn = warnMessage;
+            $('#warn-message-span').text(warn);
+            $('.alert').removeClass("hidden");
         }
-
-        function login(event) {
-            event.preventDefault();
-
-        }
-
     </script>
 </head>
 <body>
 
-<% if (warn!=null) { %>
-<div class="alert">
-    <span class="cross_button" onclick="this.parentElement.style.display='none';">x</span>
-    <%= warn %>
+<div class="alert hidden">
+    <span class="cross_button" onclick="$('.alert').addClass('hidden');">x</span>
+    <span id="warn-message-span"></span>
 </div>
-<% } %>
 
 <div id="main-div">
     <div id="email-div">

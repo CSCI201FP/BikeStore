@@ -20,34 +20,18 @@ public class SignupValidation extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String username = request.getParameter("username");
+        String name = request.getParameter("name");
         String phone = request.getParameter("phone");
-        boolean emailExist = userDAO.existEmail(email);
+
         PrintWriter out = response.getWriter();
-        if (emailExist){
-            out.print("email exist");
-            return;
-        }else{
-            out.print("true");
+
+        if (userDAO.existEmail(email)){
+            out.print("signup-fail");
+        }else {
+            out.print("signup-success");
+            userDAO.insertUser(new User(0,name, password, email, phone, false,false,0));
+            request.getSession().setAttribute("user", userDAO.getUser(email));
         }
-
-        userDAO.insertUser(new User(0,username, password, email, phone, false,false,0));
-
-        User newUser = userDAO.getUser(email);
-        HttpSession session = request.getSession();
-        session.setAttribute("SignedIn", true);
-        session.setAttribute("User", newUser);
-        request.getRequestDispatcher("customerHomepage.jsp").forward(request, response);
-//        String email = request.getParameter("email");
-//        HttpSession session = request.getSession();
-//        if(doesEmailExist(email)){
-//            session.setAttribute("email", email);
-//            request.getRequestDispatcher("passwordEnry.jsp").forward(request, response);
-//        }
-//        else{
-//            request.getRequestDispatcher("signup.jsp").forward(request, response);
-//        }
-
     }
 
     private boolean doesEmailExist(String email) {
