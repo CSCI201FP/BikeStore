@@ -42,11 +42,12 @@
     <div id ="bikesTable">
         <table>
         <tr>
-            <th align="center">Picture</th><th align="center">Type</th><th align="center" width="40">Seat Height</th><th align = "center" width = "40">Go To Bike</th>
+            <th align="center">Picture</th><th align="center">Model</th><th align="center">Type</th><th align="center" width="40">Seat Height</th><th align = "center" width = "40">Go To Bike</th>
         </tr>
         <c:forEach items = "${sessionScope.Bikes}" var = "bike">
             <tr onclick="location.reload();locaiton.href = '/bike.jsp?id=${bike.getBikeID()}'">
                 <td align="center"><img src = "${bike.getPicture()}"></td>
+                <td align = "center"><c:out value = "${bike.getModel()}"></c:out></td>
                 <td align="center"><c:out value = "${bike.getType()}"></c:out></td>
                 <td align = "center"><c:out value = "${bike.getSeatHeight()}"></c:out></td>
                 <td align = "center"><a href = "/bike.jsp?id=${bike.getBikeID()}">Go</a></td>

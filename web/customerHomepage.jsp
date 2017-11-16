@@ -13,7 +13,7 @@
     <title>Home</title>
     <%
         StoreDAOImpl st = new StoreDAOImpl();
-        session.setAttribute("Stores", StoreDAOImpl.getAllStores());
+        session.setAttribute("Stores", st.getAllStores());
 
     %>
 </head>
