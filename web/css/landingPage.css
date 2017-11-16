@@ -1,0 +1,102 @@
+body{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.wrapper
+{
+    display: inline-block; width: 100%;
+}
+.topBar
+{
+    height: 3em; width : 100%; background: #8e88b6;
+}
+.topBody
+{
+    height : 18em; width : 100%; background: white;
+    display: flex;
+    justify-content: center;
+
+}
+.topBodyContent
+{
+    font-family: 'Dosis', sans-serif;
+    padding-top:2em;
+    background: #8e88b6;
+    /*width: 70%;*/
+    width:100%;
+    color:white;
+    font-size: 3em;
+    font-weight: 100;
+
+}
+.bottomBody
+{
+    height : 28.8em; width : 100%; background: white;
+    display: flex;
+    justify-content: center;
+
+}
+.bottomBodyContent
+{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    width:96%;
+    color:#141823;
+    font-size: 1em;
+    font-weight: 700;
+    text-align: left;
+    padding-top: 3em;
+
+}
+
+.filterBar
+{
+    height : 3em; width : 100%; background: #80D0DD;
+}
+.loginButton
+{
+    float: right; height: 2em; width: auto;     margin: 0.68em;
+    border-radius: 0.5em;
+    border: solid 1px white;
+    padding: 0.5em;
+    color: white;
+    font-size: 0.75em;
+    margin-right:1em;
+    padding-bottom: 0;
+
+}
+#userName
+{
+    float: right;
+}
+#navLogo
+{
+    float :right;
+    height: 3em;
+    width: 3em;
+    float: left;
+    border-radius: 0.5em;
+    background-image: url("bikeUp.ico");
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    overflow:hidden;
+    margin-left:1em;
+}
+
+
+
+/*CAROUSEL SHIT*/
+.slick-slide {
+    text-align: center;
+    color: #419be0;
+    background: white;
+    height: 28em;
+}
+#newestBikesCarousel
+{
+    text-align: center;
+    /*margin: 0 auto;*/
+    /*padding: 40px;*/
+    padding-top: 1em;
+    width: 100%;
+}
+
