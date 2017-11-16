@@ -33,5 +33,10 @@ public class Store {
         return time;
     }
 
+    public int getID(){
+        return storeID;
+    }
+
+
 
 }
