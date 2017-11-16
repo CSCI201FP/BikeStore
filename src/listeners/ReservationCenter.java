@@ -1,5 +1,4 @@
-/*
-package reservation;
+package listeners;
 
 import database.dao.ReservationDAO;
 import database.dao_impl.ReservationDAOImpl;
@@ -35,21 +34,18 @@ public class ReservationCenter implements ServletContextListener,
     // ServletContextListener implementation
     // -------------------------------------------------------
     public void contextInitialized(ServletContextEvent sce) {
-      */
-/* This method is called when the servlet context is
-         initialized(when the Web application is deployed). 
-         You can initialize servlet context related data here.
-      *//*
+        //This method is called when the servlet context is
+        //initialized(when the Web application is deployed).
+        //You can initialize servlet context related data here.
 
 
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
-      */
-/* This method is invoked when the Servlet Context
-         (the Web application) is undeployed or 
-         Application Server shuts down.
-      *//*
+        //This method is invoked when the Servlet Context
+        //(the Web application)is undeployed or
+        //Application Server shuts down.
+
 
     }
 
@@ -57,23 +53,21 @@ public class ReservationCenter implements ServletContextListener,
     // HttpSessionListener implementation
     // -------------------------------------------------------
     public void sessionCreated(HttpSessionEvent se) {
-      */
-/* Session is created. *//*
+        //Session is created.
 
-        User user = (User) se.getSession().getAttribute("user");
+                User user = (User) se.getSession().getAttribute("user");
 
-        if (user.isManager()){
+        if (user.isManager()) {
 
         }
     }
 
     public void sessionDestroyed(HttpSessionEvent se) {
-      */
-/* Session is destroyed. *//*
+        //Session is destroyed.
 
-        User user = (User) se.getSession().getAttribute("user");
+                User user = (User) se.getSession().getAttribute("user");
 
-        if (user.isManager()){
+        if (user.isManager()) {
 
         }
     }
@@ -83,27 +77,23 @@ public class ReservationCenter implements ServletContextListener,
     // -------------------------------------------------------
 
     public void attributeAdded(HttpSessionBindingEvent sbe) {
-      */
-/* This method is called when an attribute
-         is added to a session.
-      *//*
+        //This method is called when an attribute
+        //is added to a session.
+
 
     }
 
     public void attributeRemoved(HttpSessionBindingEvent sbe) {
-      */
-/* This method is called when an attribute
-         is removed from a session.
-      *//*
+        //This method is called when an attribute
+        //is removed from a session.
+
 
     }
 
     public void attributeReplaced(HttpSessionBindingEvent sbe) {
-      */
-/* This method is invoked when an attibute
-         is replaced in a session.
-      *//*
+        //This method is invoked when an attibute
+        //is replaced in a session.
+
 
     }
 }
-*/

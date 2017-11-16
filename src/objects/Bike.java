@@ -27,7 +27,8 @@ public class Bike {
         return null;
     }
 
-    public Bike(String model,int bikeID, int currentHolderID, Gender gender, double seatHeight, Availability availability, Type type, String picture) {
+    public Bike(int bikeID, int currentHolderID, Gender gender, double seatHeight, Availability availability,
+                Type type, String picture, String model) {
         this.bikeID = bikeID;
         this.currentHolderID = currentHolderID;
         this.gender = gender;

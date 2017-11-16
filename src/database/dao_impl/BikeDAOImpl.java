@@ -18,8 +18,9 @@ public class BikeDAOImpl implements BikeDAO{
         Bike.Availability availability = Bike.Availability.valueOf(rs.getString("availability")); //a: available , p: pending, u: unavailable
         Bike.Type type = Bike.Type.valueOf(rs.getString("type"));       //mountain, road, etc
         String picture = rs.getString("picture");     //url to the picture
+        String model = rs.getString("model");
 
-        return new Bike(bikeID, currentHolderID, gender, seatHeight, availability, type, picture);
+        return new Bike(bikeID, currentHolderID, gender, seatHeight, availability, type, picture, model);
     }
 
     @Override
