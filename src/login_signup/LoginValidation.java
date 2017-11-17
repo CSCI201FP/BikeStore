@@ -1,4 +1,4 @@
-package servlets;
+package login_signup;
 
 import database.dao.UserDAO;
 import database.dao_impl.UserDAOImpl;
@@ -17,6 +17,7 @@ public class LoginValidation extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         UserDAO userDAO = new UserDAOImpl();
+        byte[] hashedPassword = PasswordHasher.hash(password);
 
         if (userDAO.emailPasswordMatch(email,password)){
             User user = userDAO.getUser(email);

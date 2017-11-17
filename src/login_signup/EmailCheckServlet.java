@@ -1,4 +1,4 @@
-package servlets;
+package login_signup;
 
 import database.dao.UserDAO;
 import database.dao_impl.UserDAOImpl;

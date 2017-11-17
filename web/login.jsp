@@ -29,6 +29,14 @@
             //check email exist
             $("#email-form").submit(function(e) {
                 e.preventDefault();
+
+                var email = $('#email-form input[name|=email]').val();
+
+                if (email===null||email===""){
+                    showWarn("Email Cannot Be Empty");
+                    return;
+                }
+
                 $.ajax({
                     url: '/email-check',
                     type: 'post',
@@ -71,6 +79,7 @@
                 }
 
                 if (name===''||name===null){
+                    showWarn("Name Cannot Be Empty");
                     return;
                 }
 

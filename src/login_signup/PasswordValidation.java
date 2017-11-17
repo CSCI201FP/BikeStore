@@ -1,4 +1,5 @@
-package servlets;
+/*
+package login_signup;
 
 import database.dao_impl.UserDAOImpl;
 
@@ -14,7 +15,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "PasswordValidation" , urlPatterns = "/password")
 public class PasswordValidation extends HttpServlet {
 
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = (String )request.getSession().getAttribute("email");
         String password = request.getParameter("password");
         boolean rightPassword = new UserDAOImpl().emailPasswordMatch(email,password);
@@ -28,3 +29,4 @@ public class PasswordValidation extends HttpServlet {
         }
     }
 }
+*/
