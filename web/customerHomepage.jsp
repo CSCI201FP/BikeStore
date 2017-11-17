@@ -29,9 +29,9 @@
     <c:forEach items = "${stores}" var = "store">
             <tr onclick="location.reload();locaiton.href = '/store.jsp?id=${store.getStoreID()}'">
                 <td align="center"><c:out value = "${store.getName()}"/></td>
-                <td align ="center"><c:out value = "${store.getLocation()}"/></td>
-                <td align = "center"><c:out value = "${store.getTime()}"/></td>
-                <td align = "center"><a href = "/store.jsp?id=${store.getStoreID()}">Go</a></td>
+                <td align ="center"><c:out value = "${store.getStreetAddress()}"/></td>
+                <td align = "center"><c:out value = "${store.getHours()}"/></td>
+                <td align = "center"><a href = "store.jsp?id=${store.getStoreID()}">Go</a></td>
             </tr>
     </c:forEach>
     </table>
