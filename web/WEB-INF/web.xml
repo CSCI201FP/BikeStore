@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <listener>
+        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+    </listener>
+
     <filter-mapping>
         <filter-name>LoggerFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -16,11 +20,23 @@
         <url-pattern>/managerHomepage.jsp/*</url-pattern>
         <url-pattern>/store.jsp/*</url-pattern>
         <url-pattern>/userInfo.jsp/*</url-pattern>
+        <url-pattern>/addBike/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <filter-mapping>
-        <filter-name>UserGroupFilter</filter-name>
+        <filter-name>CustomerWithBikeFilter</filter-name>
+        <url-pattern>/bike.jsp/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerNoBikeFilter</filter-name>
+        <url-pattern>/customerHomepage.jsp/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>ManagerGroupFilter</filter-name>
         <url-pattern>/managerHomepage.jsp/*</url-pattern>
+        <url-pattern>/addBike/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 

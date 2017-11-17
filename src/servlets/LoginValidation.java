@@ -2,6 +2,7 @@ package servlets;
 
 import database.dao.UserDAO;
 import database.dao_impl.UserDAOImpl;
+import objects.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +19,20 @@ public class LoginValidation extends HttpServlet {
         UserDAO userDAO = new UserDAOImpl();
 
         if (userDAO.emailPasswordMatch(email,password)){
-            request.getSession().setAttribute("user", userDAO.getUser(email));
-            request.getRequestDispatcher("/bike.jsp").forward(request,response);
+            User user = userDAO.getUser(email);
+            request.getSession().setAttribute("user", user);
+
+            if (user.isManager()){
+                response.sendRedirect("/managerHomepage.jsp");
+            }else {
+                if (user.getCurrentBikeID()!=0){
+                    response.sendRedirect("/bike.jsp");
+                }else {
+                    response.sendRedirect("/userHomepage.jsp");
+                }
+            }
+
+
         }else {
             request.setAttribute("warn","Login Invalid");
             request.getRequestDispatcher("/login.jsp").forward(request,response);

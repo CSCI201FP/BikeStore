@@ -23,7 +23,7 @@ public class AuthenticationFilter implements Filter {
         if (session!=null && session.getAttribute("user")!=null  ){
             chain.doFilter(request, response);
         }else {
-            request.setAttribute("Message", "Must login to visit this page");
+            request.setAttribute("warn", "Must login to visit this page");
             RequestDispatcher dispatcher = context.getRequestDispatcher("/login.jsp");
             dispatcher.forward(request,response);
         }

@@ -17,9 +17,9 @@ CREATE TABLE Bikes
 CREATE TABLE Reservations
 (
   reservationID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  receiverID INT NOT NULL,
+  senderID INT NOT NULL,
   bikeID INT NOT NULL,
-  reservationTime TIMESTAMP NOT NULL
+  reservationTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Users
@@ -51,7 +51,7 @@ FOREIGN KEY (currentHolderID) REFERENCES Users (userID);
 
 ALTER TABLE Reservations
   ADD CONSTRAINT Reservations_Users_userID_fk
-FOREIGN KEY (receiverID) REFERENCES Users (userID);
+FOREIGN KEY (senderID) REFERENCES Users (userID);
 ALTER TABLE Reservations
   ADD CONSTRAINT Reservations_Bikes_bikeID_fk
 FOREIGN KEY (bikeID) REFERENCES Bikes (bikeID);
@@ -72,4 +72,7 @@ INSERT INTO Bikes(gender, seatHeight, type, picture, availability, currentHolder
   ('male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL),
   ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL ),
   ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL );
+
+INSERT INTO Reservations(senderID, bikeID) VALUES
+  (1, 1);
 

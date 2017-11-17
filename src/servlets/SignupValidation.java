@@ -34,8 +34,4 @@ public class SignupValidation extends HttpServlet {
         }
     }
 
-    private boolean doesEmailExist(String email) {
-        return false;
-    }
-
 }

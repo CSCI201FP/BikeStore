@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "UserGroupFilter")
-public class UserGroupFilter implements Filter {
+@WebFilter(filterName = "ManagerGroupFilter")
+public class ManagerGroupFilter implements Filter {
     private ServletContext context;
 
     public void destroy() {
@@ -23,10 +23,12 @@ public class UserGroupFilter implements Filter {
 
         User user = (User) session.getAttribute("user");
 
+        System.out.println(req.getRequestURI());
+
         if (user.isManager()){
             chain.doFilter(request, response);
         } else {
-            req.setAttribute("Message", "Do not have the privilege to visit the page");
+            req.setAttribute("warn", "Do not have the privilege to visit the page");
             RequestDispatcher dispatcher = context.getRequestDispatcher(req.getHeader("refer"));
             dispatcher.forward(request,response);
         }

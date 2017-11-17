@@ -106,9 +106,7 @@ public class UserDAOImpl implements UserDAO{
                 ps.setInt(7, user.getCurrentBikeID());
             }
 
-
-            int i = ps.executeUpdate();
-            if (i == 1) {
+            if (ps.executeUpdate() == 1) {
                 return true;
             }
         } catch (SQLException ex) {

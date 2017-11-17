@@ -10,15 +10,6 @@ public class User {
     private boolean isPending;
     private int currentBikeID;
 
-    public static User getUserByID(int userID) {
-        return null;
-    }
-
-
-    public User(int userID) {
-        this.userID = userID;
-    }
-
     public User(int userID, String name, String password, String email, String phone, boolean isManager, boolean isPending, int currentBikeID) {
         this.userID = userID;
         this.name = name;
