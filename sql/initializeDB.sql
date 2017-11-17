@@ -17,10 +17,12 @@ CREATE TABLE Bikes
 CREATE TABLE Reservations
 (
   reservationID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  senderID INT NOT NULL,
+  customerID INT NOT NULL,
   bikeID INT NOT NULL,
   reservationTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX Reservations_customerID_uindex ON Reservations (customerID);
+CREATE UNIQUE INDEX Reservations_bikeID_uindex ON Reservations (bikeID);
 
 CREATE TABLE Users
 (
@@ -34,6 +36,7 @@ CREATE TABLE Users
   currentBikeID INT
 );
 CREATE UNIQUE INDEX Users_email_uindex ON Users (email);
+CREATE UNIQUE INDEX Users_currentBikeID_uindex ON Users (currentBikeID);
 
 CREATE TABLE Stores
 (
@@ -51,7 +54,7 @@ FOREIGN KEY (currentHolderID) REFERENCES Users (userID);
 
 ALTER TABLE Reservations
   ADD CONSTRAINT Reservations_Users_userID_fk
-FOREIGN KEY (senderID) REFERENCES Users (userID);
+FOREIGN KEY (customerID) REFERENCES Users (userID);
 ALTER TABLE Reservations
   ADD CONSTRAINT Reservations_Bikes_bikeID_fk
 FOREIGN KEY (bikeID) REFERENCES Bikes (bikeID);
@@ -59,11 +62,6 @@ FOREIGN KEY (bikeID) REFERENCES Bikes (bikeID);
 ALTER TABLE Users
   ADD CONSTRAINT Users_Bikes_bikeID_fk
 FOREIGN KEY (currentBikeID) REFERENCES Bikes (bikeID);
-
-INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES
-  ('admin@admin.com', 'admin', 'admin', 1, 0, '1234567890', NULL),
-  ('1@customer.com', 'tom', 'password', 0, 0, '1111111111', NULL),
-  ('2@customer.com','jack', 'password',0, 0,'2222222222',NULL);
 
 INSERT INTO Stores(name, hours, streetAddress) VALUES
   ('Small Store', '10AM-5PM', '2333 E 80th St');
@@ -73,6 +71,13 @@ INSERT INTO Bikes(gender, seatHeight, type, picture, availability, currentHolder
   ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL ),
   ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL );
 
-INSERT INTO Reservations(senderID, bikeID) VALUES
-  (1, 1);
+INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES
+  ('admin@admin.com', 'admin', 'admin', 1, 0, '1234567890', NULL),
+  ('1@customer.com', 'tom', 'password', 0, 0, '1111111111', NULL),
+  ('2@customer.com','jack', 'password',0, 0,'2222222222',NULL),
+  ('4@4', '4', '4', '0', '0', '123456', '1'),
+  ('5@5', '5', '5', '0', '1', '123456', '2');
+
+INSERT INTO Reservations(customerID, bikeID) VALUES
+  (2, 3);
 

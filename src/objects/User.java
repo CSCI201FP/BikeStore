@@ -22,6 +22,14 @@ public class User {
 
     }
 
+    public void setPending(boolean pending) {
+        isPending = pending;
+    }
+
+    public void setCurrentBikeID(int currentBikeID) {
+        this.currentBikeID = currentBikeID;
+    }
+
     public String getName() {
         return name;
     }

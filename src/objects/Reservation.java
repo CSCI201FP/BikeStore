@@ -7,35 +7,35 @@ import java.sql.Timestamp;
 
 public class Reservation{
     private int reservationID;
-    private int senderID;
+    private int customerID;
     private int bikeID;
     private Timestamp reservationTime;
 
-    public Reservation(int reservationID, int senderID, int bikeID, Timestamp reservationTime) {
+    public Reservation(int reservationID, int customerID, int bikeID, Timestamp reservationTime) {
         this.reservationID = reservationID;
-        this.senderID = senderID;
+        this.customerID = customerID;
         this.bikeID = bikeID;
         this.reservationTime = reservationTime;
     }
 
-    public Reservation(int senderID, int bikeID) {
+    public Reservation(int customerID, int bikeID) {
         this.reservationID = 0;
-        this.senderID = senderID;
+        this.customerID = customerID;
         this.bikeID = bikeID;
         this.reservationTime = null;
     }
 
     public String toString(){
         UserDAO userDAO = new UserDAOImpl();
-        return userDAO.getUser(senderID).getName() + " has reserved a bike";
+        return userDAO.getUser(customerID).getName() + " has reserved a bike";
     }
 
     public int getReservationID() {
         return reservationID;
     }
 
-    public int getSenderID() {
-        return senderID;
+    public int getCustomerID() {
+        return customerID;
     }
 
     public int getBikeID() {

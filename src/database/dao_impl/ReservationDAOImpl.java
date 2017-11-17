@@ -11,11 +11,11 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     private Reservation extractReservationFromResultSet(ResultSet rs) throws SQLException{
         int reservationID = rs.getInt("reservationID");
-        int senderID = rs.getInt("senderID");
+        int customerID = rs.getInt("customerID");
         int bikeID = rs.getInt("bikeID");
         Timestamp reservationTime = rs.getTimestamp("reservationTime");
 
-        return new Reservation(reservationID, senderID, bikeID, reservationTime);
+        return new Reservation(reservationID, customerID, bikeID, reservationTime);
     }
 
     @Override
@@ -45,10 +45,10 @@ public class ReservationDAOImpl implements ReservationDAO {
         try {
             PreparedStatement ps = connection
                     .prepareStatement("INSERT INTO Reservations " +
-                            "(senderID, bikeID) " +
+                            "(customerID, bikeID) " +
                             "VALUES (?, ?)");
 
-            ps.setInt(1, r.getSenderID());
+            ps.setInt(1, r.getCustomerID());
             ps.setInt(2, r.getBikeID());
 
             if (ps.executeUpdate() == 1) {
