@@ -28,7 +28,7 @@ public class LoginValidation extends HttpServlet {
                 if (user.getCurrentBikeID()!=0){
                     response.sendRedirect("/bike.jsp");
                 }else {
-                    response.sendRedirect("/userHomepage.jsp");
+                    response.sendRedirect("/customerHomepage.jsp");
                 }
             }
 

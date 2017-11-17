@@ -13,8 +13,7 @@
     <title>Home</title>
     <%
         StoreDAOImpl st = new StoreDAOImpl();
-        session.setAttribute("Stores", st.getAllStores());
-
+        pageContext.setAttribute("stores", st.getAllStores());
     %>
 </head>
 <body>
@@ -27,7 +26,7 @@
         <tr>
             <th align="center">Name </th><th align="center">Location</th><th align="center" width="40">Hours</th><th align = "center" width = "40">Go To Store</th>
         </tr>
-    <c:forEach items = "${sessionScope.Stores}" var = "store">
+    <c:forEach items = "${stores}" var = "store">
             <tr onclick="location.reload();locaiton.href = '/store.jsp?id=${store.getStoreID()}'">
                 <td align="center"><c:out value = "${store.getName()}"/></td>
                 <td align ="center"><c:out value = "${store.getLocation()}"/></td>

@@ -20,9 +20,9 @@
         String idstring = request.getParameter("id");
         int id = Integer.valueOf(idstring);
         StoreDAOImpl stdb = new StoreDAOImpl();
-        session.setAttribute("Store", stdb.getStore(id));
+        pageContext.setAttribute("store", stdb.getStore(id));
         BikeDAOImpl bdb = new BikeDAOImpl();
-        session.setAttribute("Bikes",bdb.getAllBikes());
+        pageContext.setAttribute("bikes",bdb.getAllBikes());
     %>
 
 </head>
@@ -35,21 +35,21 @@
         <a href = "login.jsp"> Log Out</a>
     </div>
     <div id="store">
-        <c:out value = "${sessionScope.Store.getName()}"></c:out><br/>
-        <c:out value = "${sessionScope.Store.getStreetAddress()}"></c:out><br/>
-        Hours: <c:out value = "${sessionScope.Store.getHours()}"></c:out>
+        <c:out value = "${store.name}"/><br/>
+        <c:out value = "${store.streetAddress}"/><br/>
+        Hours: <c:out value = "${store.hours}"/>
     </div>
     <div id ="bikesTable">
         <table>
         <tr>
             <th align="center">Picture</th><th align="center">Model</th><th align="center">Type</th><th align="center" width="40">Seat Height</th><th align = "center" width = "40">Go To Bike</th>
         </tr>
-        <c:forEach items = "${sessionScope.Bikes}" var = "bike">
+        <c:forEach items = "${bikes}" var = "bike">
             <tr onclick="location.reload();locaiton.href = '/bike.jsp?id=${bike.getBikeID()}'">
                 <td align="center"><img src = "${bike.getPicture()}"></td>
-                <td align = "center"><c:out value = "${bike.getModel()}"></c:out></td>
-                <td align="center"><c:out value = "${bike.getType()}"></c:out></td>
-                <td align = "center"><c:out value = "${bike.getSeatHeight()}"></c:out></td>
+                <td align = "center"><c:out value = "${bike.getModel()}"/></td>
+                <td align="center"><c:out value = "${bike.getType()}"/></td>
+                <td align = "center"><c:out value = "${bike.getSeatHeight()}"/></td>
                 <td align = "center"><a href = "/bike.jsp?id=${bike.getBikeID()}">Go</a></td>
             </tr>
         </c:forEach>

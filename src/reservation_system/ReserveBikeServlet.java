@@ -10,6 +10,8 @@ import objects.Bike;
 import objects.Reservation;
 import objects.User;
 
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,9 @@ import java.io.IOException;
 
 @WebServlet(name = "ReserveBikeServlet", urlPatterns = "/reserve")
 public class ReserveBikeServlet extends HttpServlet {
+    @Inject
+    private Event<Reservation> newReservationEvent;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BikeDAO bikeDAO = new BikeDAOImpl();
         UserDAO userDAO = new UserDAOImpl();
@@ -30,17 +35,21 @@ public class ReserveBikeServlet extends HttpServlet {
         Bike bike = bikeDAO.getBike(bikeID);
         User customer = userDAO.getUser(customerID);
 
+        //set the data correspond to reservation
         customer.setPending(true);
         customer.setCurrentBikeID(bikeID);
-
         bike.setCurrentHolderID(customerID);
 
+        //update the bike and user to db
         bikeDAO.updateBike(bike);
         userDAO.updateUser(customer);
 
+        //insert the reservation to db
         Reservation reservation = new Reservation(customerID, bikeID);
         reservationDAO.insertReservation(reservation);
 
+        //fire the event
+        newReservationEvent.fire(reservation);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
