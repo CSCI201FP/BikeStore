@@ -17,26 +17,25 @@ public class LoginValidation extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         UserDAO userDAO = new UserDAOImpl();
-        byte[] hashedPassword = PasswordHasher.hash(password);
 
-        if (userDAO.emailPasswordMatch(email,password)){
+        if (userDAO.emailPasswordMatch(email, PasswordHasher.hash(password))) {
             User user = userDAO.getUser(email);
             request.getSession().setAttribute("user", user);
 
-            if (user.isManager()){
+            if (user.isManager()) {
                 response.sendRedirect("/managerHomepage.jsp");
-            }else {
-                if (user.getCurrentBikeID()!=0){
+            } else {
+                if (user.getCurrentBikeID() != 0) {
                     response.sendRedirect("/bike.jsp");
-                }else {
+                } else {
                     response.sendRedirect("/customerHomepage.jsp");
                 }
             }
 
 
-        }else {
-            request.setAttribute("warn","Login Invalid");
-            request.getRequestDispatcher("/login.jsp").forward(request,response);
+        } else {
+            request.setAttribute("warn", "Login Invalid");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 }
