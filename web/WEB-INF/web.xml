@@ -31,6 +31,7 @@
     <filter-mapping>
         <filter-name>CustomerNoBikeFilter</filter-name>
         <url-pattern>/customerHomepage.jsp/*</url-pattern>
+        <url-pattern>/reserve/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <filter-mapping>

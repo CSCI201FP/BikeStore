@@ -44,7 +44,8 @@ public class ReservationCenter implements ServletContextListener,
         //You can initialize servlet context related data here.
 
         //debug test CDI
-/*        new Thread(()->{
+/*
+        new Thread(()->{
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
@@ -61,7 +62,8 @@ public class ReservationCenter implements ServletContextListener,
                 Reservation r = new Reservation(1,1);
                 newReservationEvent.fire(r);
             }
-        }).start();*/
+        }).start();
+*/
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
@@ -78,21 +80,23 @@ public class ReservationCenter implements ServletContextListener,
     public void sessionCreated(HttpSessionEvent se) {
         //Session is created.
 
-                User user = (User) se.getSession().getAttribute("user");
-
+/*
+        User user = (User) se.getSession().getAttribute("user");
         if (user.isManager()) {
 
         }
+*/
     }
 
     public void sessionDestroyed(HttpSessionEvent se) {
         //Session is destroyed.
 
-                User user = (User) se.getSession().getAttribute("user");
-
+/*
+        User user = (User) se.getSession().getAttribute("user");
         if (user.isManager()) {
 
         }
+*/
     }
 
     // -------------------------------------------------------

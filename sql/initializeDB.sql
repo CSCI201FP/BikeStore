@@ -93,7 +93,7 @@ INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBi
    '44', '0', '0', '123456', '1'),
   ('4@4',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '54', '0', '1', '123456', '2');
+   '55', '0', '1', '123456', '2');
 
 INSERT INTO Reservations (customerID, bikeID) VALUES
   (2, 3);

@@ -4,7 +4,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.stream.Collectors;
 
 @WebFilter(filterName = "LoggerFilter")
 public class LoggerFilter implements Filter {
@@ -18,13 +20,16 @@ public class LoggerFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
 
         Enumeration<String> params = req.getParameterNames();
-        while(params.hasMoreElements()){
-            String name = params.nextElement();
-            String value = request.getParameter(name);
-            this.context.log(req.getRemoteAddr() + "::Request Params::{"+name+"="+value+"}");
+
+        if (params.hasMoreElements()){
+            this.context.log(req.getRemoteAddr() + "::Request Parameter::{\n" +
+                    String.join("\n", Collections.list(params).stream().map((name) -> {
+                        String value = req.getParameter(name);
+                        return "\t" + name + " : " + value;
+                    }).collect(Collectors.toList())) +"\n}" );
         }
 
-        chain.doFilter(request,response);
+        chain.doFilter(request, response);
     }
 
     public void init(FilterConfig config) throws ServletException {
