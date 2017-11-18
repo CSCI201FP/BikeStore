@@ -3,7 +3,6 @@ package reservation_system;
 import database.dao.ReservationDAO;
 import database.dao_impl.ReservationDAOImpl;
 import objects.Reservation;
-import objects.User;
 
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
@@ -44,7 +43,7 @@ public class ReservationCenter implements ServletContextListener,
         //You can initialize servlet context related data here.
 
         //debug test CDI
-/*
+
         new Thread(()->{
             try {
                 Thread.sleep(10000);
@@ -63,7 +62,7 @@ public class ReservationCenter implements ServletContextListener,
                 newReservationEvent.fire(r);
             }
         }).start();
-*/
+
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
