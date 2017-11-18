@@ -13,56 +13,47 @@
 <html>
 <head>
     <title>Add Bike</title>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/common.css" >
+
+    <%@include file="part/common-head-dependency.html"%>
+
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
-        function addBike(){
+
+        function addBike() {
             $.ajax({
                 url: '/addBike',
                 type: 'post',
                 dataType: 'text',
                 data: $('#addBikeForm').serialize(),
-                success: function(response) {
-                    if(response === "success"){
+                success: function (response) {
+                    if (response === "success") {
                         $('#info').html("Successfully added!")
-                    }else if(response === "gender"){
+                    } else if (response === "gender") {
                         showWarn("The gender input is wrong");
-                    }else if(response === "type"){
+                    } else if (response === "type") {
                         showWarn("The type input is wrong");
-                    }else if(response === "seatHeight"){
+                    } else if (response === "seatHeight") {
                         showWarn("The seat height input is wrong");
                     }
                 }
             });
             return false;
         }
-
-        function showWarn(warnMessage) {
-            warn = warnMessage;
-            $('#warn-message-span').text(warn);
-            $('.alert').removeClass("hidden");
-        }
     </script>
 </head>
 <body>
 
+<%@include file="part/alert-bar.html" %>
 
-    <div class="alert hidden">
-        <span class="cross_button" onclick="$('.alert').addClass('hidden');">x</span>
-        <span id="warn-message-span"></span>
-    </div>
-
-
-    <h1>Add Bike</h1>
-    <form id="addBikeForm" onsubmit="return addBike();">
-        Gender <input type = 'text' name="gender"><br>
-        Seat Height <input type = 'text' name="seatHeight"><br>
-        Type <input type = 'text' name="type"><br>
-        Picture <input type = 'text' name="picture"><br>
-        Model <input type="text" name="model"><br>
-        <input type="submit"></form>
-    </form>
-    <div id = "info"></div>
+<h1>Add Bike</h1>
+<form id="addBikeForm" onsubmit="return addBike();">
+    Gender <input type='text' name="gender"><br>
+    Seat Height <input type='text' name="seatHeight"><br>
+    Type <input type='text' name="type"><br>
+    Picture <input type='text' name="picture"><br>
+    Model <input type="text" name="model"><br>
+    <input type="submit"></form>
+</form>
+<div id="info"></div>
 </body>
 </html>

@@ -39,6 +39,11 @@ public class Bike {
         this.model = model;
     }
 
+    public void setCurrentHolderID(int currentHolderID) {
+        this.currentHolderID = currentHolderID;
+    }
+
+
     public String getModel(){
         return model;
     }

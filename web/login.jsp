@@ -14,8 +14,7 @@
 <html>
 <head>
     <title>Login</title>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./css/common.css" >
+    <%@include file="part/common-head-dependency.html"%>
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
 
@@ -30,6 +29,14 @@
             //check email exist
             $("#email-form").submit(function(e) {
                 e.preventDefault();
+
+                var email = $('#email-form input[name|=email]').val();
+
+                if (email===null||email===""){
+                    showWarn("Email Cannot Be Empty");
+                    return;
+                }
+
                 $.ajax({
                     url: '/email-check',
                     type: 'post',
@@ -72,6 +79,7 @@
                 }
 
                 if (name===''||name===null){
+                    showWarn("Name Cannot Be Empty");
                     return;
                 }
 
@@ -105,10 +113,7 @@
 </head>
 <body>
 
-<div class="alert hidden">
-    <span class="cross_button" onclick="$('.alert').addClass('hidden');">x</span>
-    <span id="warn-message-span"></span>
-</div>
+<%@include file="part/alert-bar.html" %>
 
 <div id="main-div">
     <div id="email-div">

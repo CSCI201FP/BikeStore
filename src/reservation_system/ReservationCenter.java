@@ -1,10 +1,12 @@
-package listeners;
+package reservation_system;
 
 import database.dao.ReservationDAO;
 import database.dao_impl.ReservationDAOImpl;
 import objects.Reservation;
 import objects.User;
 
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -23,6 +25,9 @@ public class ReservationCenter implements ServletContextListener,
     private Queue<Reservation> reservations;
     private ExecutorService pool;
 
+    @Inject
+    private Event<Reservation> newReservationEvent;
+
     // Public constructor is required by servlet spec
     public ReservationCenter() {
         reservationDAO = new ReservationDAOImpl();
@@ -38,7 +43,27 @@ public class ReservationCenter implements ServletContextListener,
         //initialized(when the Web application is deployed).
         //You can initialize servlet context related data here.
 
+        //debug test CDI
+/*
+        new Thread(()->{
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+            while (true){
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("fire");
+                Reservation r = new Reservation(1,1);
+                newReservationEvent.fire(r);
+            }
+        }).start();
+*/
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
@@ -55,21 +80,23 @@ public class ReservationCenter implements ServletContextListener,
     public void sessionCreated(HttpSessionEvent se) {
         //Session is created.
 
-                User user = (User) se.getSession().getAttribute("user");
-
+/*
+        User user = (User) se.getSession().getAttribute("user");
         if (user.isManager()) {
 
         }
+*/
     }
 
     public void sessionDestroyed(HttpSessionEvent se) {
         //Session is destroyed.
 
-                User user = (User) se.getSession().getAttribute("user");
-
+/*
+        User user = (User) se.getSession().getAttribute("user");
         if (user.isManager()) {
 
         }
+*/
     }
 
     // -------------------------------------------------------

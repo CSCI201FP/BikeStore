@@ -1,11 +1,10 @@
-package servlets;
+package login_signup;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -29,13 +28,9 @@ public class SignupValidation extends HttpServlet {
             out.print("signup-fail");
         }else {
             out.print("signup-success");
-            userDAO.insertUser(new User(0,name, password, email, phone, false,false,0));
+            userDAO.insertUser(new User(0,name, PasswordHasher.hash(password), email, phone, false,false,0));
             request.getSession().setAttribute("user", userDAO.getUser(email));
         }
-    }
-
-    private boolean doesEmailExist(String email) {
-        return false;
     }
 
 }

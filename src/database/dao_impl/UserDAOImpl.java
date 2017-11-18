@@ -5,15 +5,16 @@ import database.util.ConnectionFactory;
 import objects.User;
 
 import java.sql.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
     private User extractUserFromResultSet(ResultSet rs) throws SQLException {
         int userID = rs.getInt("userID");
         String email = rs.getString("email");
-        String password = rs.getString("password");
+        byte[] password = rs.getBytes("password");
         String name = rs.getString("name");
         boolean isManager = rs.getBoolean("isManager");
         boolean isPending = rs.getBoolean("isPending");
@@ -25,9 +26,9 @@ public class UserDAOImpl implements UserDAO{
 
 
     @Override
-    public boolean emailPasswordMatch(String email, String pw) {
+    public boolean emailPasswordMatch(String email, byte[] pw) {
         User user = getUser(email);
-        return user!=null && user.getPassword().equals(pw);
+        return user != null && Arrays.equals(user.getPassword(), pw);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class UserDAOImpl implements UserDAO{
         Connection connection = ConnectionFactory.getConnection();
         try {
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE email= '" + email +"'");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE email= '" + email + "'");
             if (rs.next()) {
                 return extractUserFromResultSet(rs);
             }
@@ -46,8 +47,8 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
-    public boolean existEmail(String  email) {
-        return getUser(email)!=null;
+    public boolean existEmail(String email) {
+        return getUser(email) != null;
     }
 
     @Override
@@ -94,21 +95,19 @@ public class UserDAOImpl implements UserDAO{
                             "VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
+            ps.setBytes(2, user.getPassword());
             ps.setString(3, user.getName());
             ps.setBoolean(4, user.isManager());
             ps.setBoolean(5, user.isPending());
             ps.setString(6, user.getPhone());
 
-            if (user.getCurrentBikeID() == 0){
+            if (user.getCurrentBikeID() == 0) {
                 ps.setNull(7, Types.INTEGER);
-            }else {
+            } else {
                 ps.setInt(7, user.getCurrentBikeID());
             }
 
-
-            int i = ps.executeUpdate();
-            if (i == 1) {
+            if (ps.executeUpdate() == 1) {
                 return true;
             }
         } catch (SQLException ex) {
@@ -126,12 +125,12 @@ public class UserDAOImpl implements UserDAO{
                             "SET email=?, password=?, name=?, isManager=?, isPending=?, phone=?, currentBikeID=?" +
                             "WHERE userID=?");
             ps.setString(1, user.getEmail());
-            ps.setString(2, user.getPassword());
+            ps.setBytes(2, user.getPassword());
             ps.setString(3, user.getName());
             ps.setBoolean(4, user.isManager());
-            ps.setBoolean(5,user.isPending());
-            ps.setString(6,user.getPhone());
-            ps.setInt(7,user.getCurrentBikeID());
+            ps.setBoolean(5, user.isPending());
+            ps.setString(6, user.getPhone());
+            ps.setInt(7, user.getCurrentBikeID());
 
             int i = ps.executeUpdate();
             if (i == 1) {

@@ -3,23 +3,14 @@ package objects;
 public class User {
     private final int userID;
     private String name;
-    private String password;
+    private byte[] password;
     private String email;
     private String phone;
     private boolean isManager;
     private boolean isPending;
     private int currentBikeID;
 
-    public static User getUserByID(int userID) {
-        return null;
-    }
-
-
-    public User(int userID) {
-        this.userID = userID;
-    }
-
-    public User(int userID, String name, String password, String email, String phone, boolean isManager, boolean isPending, int currentBikeID) {
+    public User(int userID, String name, byte[] password, String email, String phone, boolean isManager, boolean isPending, int currentBikeID) {
         this.userID = userID;
         this.name = name;
         this.password = password;
@@ -28,14 +19,21 @@ public class User {
         this.isManager = isManager;
         this.isPending = isPending;
         this.currentBikeID = currentBikeID;
+    }
 
+    public void setPending(boolean pending) {
+        isPending = pending;
+    }
+
+    public void setCurrentBikeID(int currentBikeID) {
+        this.currentBikeID = currentBikeID;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPassword() {
+    public byte[] getPassword() {
         return password;
     }
 
@@ -62,4 +60,6 @@ public class User {
     public int getCurrentBikeID() {
         return currentBikeID;
     }
+
+
 }
