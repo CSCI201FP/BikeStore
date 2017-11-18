@@ -139,7 +139,7 @@
                     <input type="password" name="password" placeholder="Password"><span id="passwordInfo" ></span><br>
                     <input type="text" placeholder="Name" name="name"><span id="usernameInfo" ></span><br>
                     <input type="number" name="phone" placeholder="Phone number"><span id="phoneInfo"></span><br>
-                    <input type="submit" value="Signup">
+                    <input type="submit" value="Sign up">
                 </form>
             </div>
 
