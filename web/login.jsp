@@ -13,6 +13,7 @@
 
 <html>
 <head>
+    <link rel=icon href=bikeUp.ico>
     <title>Login</title>
     <%@include file="part/common-head-dependency.html"%>
     <link rel="stylesheet" type="text/css" href="css/loginPages.css">
