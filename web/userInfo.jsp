@@ -14,11 +14,11 @@
 </head>
 <body>
     <h1>
-        ${sessionScope.User.getName()}'s Profile
+        ${sessionScope.user.getName()}'s Profile
     </h1>
 
-    Email: <c:out value = "${sessionScope.User.getEmail()}"></c:out><br/>
-    Phone Number: <c:out value="${sessionScope.User.getPhone()}"></c:out>
+    Email: <c:out value = "${sessionScope.user.getEmail()}"></c:out><br/>
+    Phone Number: <c:out value="${sessionScope.user.getPhone()}"></c:out>
 
 </body>
 </html>

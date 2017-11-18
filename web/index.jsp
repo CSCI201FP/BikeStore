@@ -68,19 +68,19 @@
                         </div>
                     </c:forEach>
 
-                    <div class="bike" id="bike1" style="
-                        border-radius: 1em;
-                        background: url(fe57636da257581cff02f5846e845138.jpg), no-repeat;
-                        background-size: 100%;
-                        overflow:hidden;">
-                    </div>
+                    <%--<div class="bike" id="bike1" style="--%>
+                        <%--border-radius: 1em;--%>
+                        <%--background: url(fe57636da257581cff02f5846e845138.jpg), no-repeat;--%>
+                        <%--background-size: 100%;--%>
+                        <%--overflow:hidden;">--%>
+                    <%--</div>--%>
 
-                    <div class="bike" id="bike2" style="
-                        border-radius: 1em;
-                        background: url(https://i.imgur.com/dSCj6Rj.jpg), no-repeat;
-                        background-size: 100%;
-                        overflow:hidden;">
-                    </div>
+                    <%--<div class="bike" id="bike2" style="--%>
+                        <%--border-radius: 1em;--%>
+                        <%--background: url(https://i.imgur.com/dSCj6Rj.jpg), no-repeat;--%>
+                        <%--background-size: 100%;--%>
+                        <%--overflow:hidden;">--%>
+                    <%--</div>--%>
 
                 </div>
 
