@@ -25,10 +25,6 @@
     font-weight: 100;
 
 }
-.topBodyContent:hover {
-    text-decoration: underline;
-}
-
 .bottomBody
 {
     height : 28.8em; width : 100%; background: white;
