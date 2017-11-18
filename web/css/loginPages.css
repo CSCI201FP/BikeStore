@@ -131,11 +131,16 @@ input[type="submit"]
     color: white;
     font-family: 'Dosis', sans-serif;
     font: 1em 'Dosis', sans-serif;
-    font-weight:100;
-    background: #80D0DD;
-    /* background: url(ios7-search-icon.png) no-repeat center; */
-    /* background-size: auto; */
-    background-size: 2em 2em;
+    font-weight:400;
+    /*background: #80D0DD;*/
+    /*background: #80D0DD url('https://i.imgur.com/hQbY7LP.png') no-repeat right; THIS IS THE CYAN ONE*/
+    background: #80D0DD url('https://i.imgur.com/JJOJaCN.png') no-repeat right;
+
+    background-position: 98% 50%;
+    background-size: 6%;
+
+    text-align: right;
+    padding-right:8%;
 }
 
 input[type="submit"]:hover {
