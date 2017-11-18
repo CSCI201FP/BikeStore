@@ -15,6 +15,7 @@
 <head>
     <title>Login</title>
     <%@include file="part/common-head-dependency.html"%>
+    <link rel="stylesheet" type="text/css" href="css/loginPages.css">
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
 
@@ -114,35 +115,44 @@
 <body>
 
 <%@include file="part/alert-bar.html" %>
+<div class="wrapper">
+<div class="topBar">
+    <div id="navLogo" onclick="location.href='index.jsp'"></div>
+    <%--<div id = "profilePicture" style="    float: right; background-size: 100%; overflow:hidden; height: 3em; width: 3em; border-radius: 0.5em; background-image: url("bikeUp.ico"); background-repeat: no-repeat;"></div>--%>
+    <%--<div id = "userName">Manager Mike</div>--%>
+</div>
+<div class="topBody" style="text-align:center">
+    <div class="topBodyContent">
+        <div id="positionDiv">
+            <div id="email-div">
+                <form id="email-form">
+                    <input type="email" name="email" placeholder="you@email.com">
+                    <input type="submit" value="Next">
+                </form>
+            </div>
 
-<div id="main-div">
-    <div id="email-div">
-        <form id="email-form">
-            Email:<input type="email" name="email">
-            <input type="submit" value="Next">
-        </form>
+            <div id="signup-div" class="hidden">
+                Sign up
+                <form id="signup-form">
+                    <input class="email-input-class" type="email" name="email"><span id="emailInfo"></span><br>
+                    <input type="password" name="password" placeholder="Password"><span id="passwordInfo" ></span><br>
+                    <input type="text" placeholder="Name" name="name"><span id="usernameInfo" ></span><br>
+                    <input type="number" name="phone" placeholder="Phone number"><span id="phoneInfo"></span><br>
+                    <input type="submit" value="Signup">
+                </form>
+            </div>
+
+            <div id="login-div" class="hidden">
+                Input Password
+                <form id="login-form" action="/login" method="post">
+                    <input class="email-input-class" type="text" name="email"><br>
+                    <input type="password" name="password" placeholder="Password"><br>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div id="signup-div" class="hidden">
-        Sign Up
-        <form id="signup-form">
-            Email: <input class="email-input-class" type="email" name="email"><span id="emailInfo"></span><br>
-            Password: <input type="password" name="password"><span id="passwordInfo"></span><br>
-            Name: <input type="text" name="name"><span id="usernameInfo"></span><br>
-            Phone: <input type="number" name="phone"><span id="phoneInfo"></span><br>
-            <input type="submit" value="Signup">
-        </form>
-    </div>
-
-    <div id="login-div" class="hidden">
-        Input Password
-        <form id="login-form" action="/login" method="post">
-            Email: <input class="email-input-class" type="text" name="email"><br>
-            Password: <input type="password" name="password"><br>
-            <input type="submit" value="Login">
-        </form>
-    </div>
-
+</div>
 </div>
 </body>
 </html>

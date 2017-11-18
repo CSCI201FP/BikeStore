@@ -1,0 +1,302 @@
+body{
+    margin:0;
+}
+.alert
+{
+    margin-bottom: 0px;
+    background: lightcoral;
+}
+.wrapper
+{
+    display: inline-block; width: 100%;
+}
+.topBar
+{
+    height: 3em; width : 100%; background: #8e88b6;
+}
+.topBody
+{
+    height: 93.8%;width : 100%; background: #8e88b6;
+
+    display: flex;
+    justify-content: center;
+    background-image: url("https://thumbs.gfycat.com/FrankIllinformedBetafish-size_restricted.gif");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.topBodyContent
+{
+    font-family: 'Dosis', sans-serif;
+    padding-top:10em;
+    background: rgba(142, 136, 182, 0.8);
+    /*width: 70%;*/
+    width:100%;
+    color:white;
+    font-size: 1em;
+    font-weight: 100;
+
+}
+
+
+#positionDiv
+{
+    width: 30em;
+    position:absolute;
+    top:30%;
+    left:50%;
+    transform: translateX(-50%) translateY(-30%);
+    text-align: center;
+
+}
+
+
+input[type="email"]
+{
+    width: 100%;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 2em;
+    margin-top: 1em;
+    padding: 1em;
+    color: #8e88b6;
+    font-family: 'Dosis', sans-serif;
+    font: 1em 'Dosis', sans-serif;
+    font-weight:100;
+    padding-left:2em;
+    padding-right:2em;
+
+}
+input[type="password"]
+{
+    width: 100%;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 2em;
+    padding: 1em;
+    margin-top: 1em;
+    color: #8e88b6;
+    font-family: 'Dosis', sans-serif;
+    font: 1em 'Dosis', sans-serif;
+    font-weight:100;
+    padding-left:2em;
+    padding-right:2em;
+
+}
+input[type="text"]
+{
+    width: 100%;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 2em;
+    margin-top: 1em;
+    padding: 1em;
+    color: #8e88b6;
+    font-family: 'Dosis', sans-serif;
+    font: 1em 'Dosis', sans-serif;
+    font-weight:100;
+    padding-left:2em;
+    padding-right:2em;
+
+}
+input[type="number"]
+{
+    width: 100%;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 2em;
+    margin-top: 1em;
+    padding: 1em;
+    color: #8e88b6;
+    font-family: 'Dosis', sans-serif;
+    font: 1em 'Dosis', sans-serif;
+    font-weight:100;
+    padding-left:2em;
+    padding-right:2em;
+
+}
+
+input[type="submit"]
+{
+    width: 100%;
+    border-style: solid;
+    border-color: #80D0DD;
+    border-width: 1px;
+    border-radius: 2em;
+    margin-top: 1em;
+    padding: 1em;
+    color: white;
+    font-family: 'Dosis', sans-serif;
+    font: 1em 'Dosis', sans-serif;
+    font-weight:100;
+    background: #80D0DD;
+    /* background: url(ios7-search-icon.png) no-repeat center; */
+    /* background-size: auto; */
+    background-size: 2em 2em;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+
+
+select {
+    width: 59px;
+    height: 45px;
+    margin: 8px 0;
+    border: 0;
+    border: 1px solid #8e88b6;
+    border-top: 4px solid #80D0DD;
+    background: #80D0DD url('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-128.png') no-repeat;
+    background-size: 20px;
+    background-position:  right 10px center;
+    font-family: 'Dosis', sans-serif;
+    font: 1em 'Dosis', sans-serif;
+    font-weight:800;
+    padding-left: 11px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+/*CHECKBOXES BEGIN*/
+.styled-checkbox {
+    position: absolute;
+    opacity: 0;
+}
+.styled-checkbox + label {
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    color: #8e88b6;
+}
+.styled-checkbox + label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    width: 20px;
+    height: 20px;
+    border: solid 1px #8e88b6;
+    border-radius: 0.5em;
+    margin-top: -0.15em;
+}
+.styled-checkbox:hover + label:before {
+    background: #8e88b6;
+}
+.styled-checkbox:focus + label:before {
+    box-shadow: none;
+}
+.styled-checkbox:checked + label:before {
+    background: #8e88b6;
+}
+.styled-checkbox:disabled + label {
+    color: #b8b8b8;
+    cursor: auto;
+}
+.styled-checkbox:disabled + label:before {
+    box-shadow: none;
+    background: #ddd;
+}
+.styled-checkbox:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 9px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+
+
+
+
+
+.bottomBody
+{
+    height : 28.8em; width : 100%; background: white;
+    display: flex;
+    justify-content: center;
+
+}
+.bottomBodyContent
+{
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    width:96%;
+    color:#141823;
+    font-size: 1em;
+    font-weight: 700;
+    text-align: left;
+    padding-top: 3em;
+
+}
+
+.filterBar
+{
+    height : 3em; width : 100%; background: #80D0DD;
+}
+.loginButton
+{
+    float: right; height: 2em; width: auto;     margin: 0.68em;
+    border-radius: 0.5em;
+    border: solid 1px white;
+    padding: 0.5em;
+    color: white;
+    font-size: 0.75em;
+    margin-right:1em;
+    padding-bottom: 0;
+
+}
+.loginButton:hover {
+    cursor: pointer;
+}
+#userName
+{
+    float: right;
+}
+#navLogo
+{
+    float :right;
+    height: 3em;
+    width: 3em;
+    float: left;
+    border-radius: 0.5em;
+    background-image: url("bikeUp.ico");
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    overflow:hidden;
+    margin-left:1em;
+}
+#navLogo:hover {
+    cursor: pointer;
+}
+
+
+/*CAROUSEL SHIT*/
+.slick-slide {
+    text-align: center;
+    color: #419be0;
+    background: white;
+    height: 28em;
+}
+#newestBikesCarousel
+{
+    text-align: center;
+    /*margin: 0 auto;*/
+    /*padding: 40px;*/
+    padding-top: 1em;
+    width: 100%;
+}
+

@@ -60,6 +60,9 @@
     padding-bottom: 0;
 
 }
+.loginButton:hover {
+    cursor: pointer;
+}
 #userName
 {
     float: right;
@@ -78,7 +81,9 @@
     overflow:hidden;
     margin-left:1em;
 }
-
+#navLogo:hover {
+    cursor: pointer;
+}
 
 
 /*CAROUSEL SHIT*/
