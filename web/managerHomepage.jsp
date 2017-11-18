@@ -64,7 +64,7 @@
                 <c:forEach items = "${reservations}" var = "res">
                     <tr>
                         <td align="center"><img src = "${res.getReservationID()}"></td>
-                        <td align = "center"><c:out value = "${udb.getUser(res.getCustomerID())}"/></td>
+                        <td align = "center"><c:out value = "${userDAO.getUser(res.getCustomerID())}"/></td>
                         <td align="center"><c:out value = "${bikeDAO.getBike(res.getBikeID()).getModel()}"/></td>
                         <td align = "center"><c:out value = "${res.getReservationTime()}"/></td>
                         <td align = "center">Approve </td>
