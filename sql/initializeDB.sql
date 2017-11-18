@@ -73,10 +73,10 @@ INSERT INTO Stores (name, hours, streetAddress) VALUES
   ('Small Store', '10AM-5PM', '2333 E 80th St');
 
 INSERT INTO Bikes (gender, seatHeight, type, picture, availability, currentHolderID) VALUES
-  ('male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL),
   ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
   ('male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
-  ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
+  ('male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL);
+#   ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
 
 
 /* Password: 11111111A */
