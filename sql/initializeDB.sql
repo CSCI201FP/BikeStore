@@ -70,19 +70,18 @@ ALTER TABLE Users
 FOREIGN KEY (currentBikeID) REFERENCES Bikes (bikeID);
 
 INSERT INTO Stores (name, hours, streetAddress) VALUES
-  ('Small Store', '10AM-5PM', '2333 E 80th St');
+  ('Solé Bikes', '10AM-5PM', '821-865 W Jefferson Blvd, Los Angeles, CA 90007'),
+  ('Bike Express', '10AM-5PM', '668 W 28th St, Los Angeles, CA 90007'),
+  ('Ye Olde Bike Shop', '10AM-5PM', '325 W Adams Blvd, Los Angeles, CA 90007');
 
 INSERT INTO Bikes (gender, seatHeight, type, picture, availability, currentHolderID) VALUES
-<<<<<<< HEAD
   ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
   ('male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
   ('male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL);
 #   ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
-=======
-  ('male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL),
-  ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
-  ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
->>>>>>> 673eeffa2cd760d6b62258ca14f45b74d4720626
+#   ('male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL),
+#   ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
+#   ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
 
 /* Password: 11111111A */
 INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES

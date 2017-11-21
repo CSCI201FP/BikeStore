@@ -13,6 +13,11 @@
     justify-content: center;
 
 }
+#map
+{
+    height:100%;
+    margin-top: -2em;
+}
 .topBodyContent
 {
     font-family: 'Dosis', sans-serif;
@@ -30,6 +35,7 @@
     height : 28.8em; width : 100%; background: white;
     display: flex;
     justify-content: center;
+    margin-bottom: 7em;
 
 }
 .bottomBodyContent
@@ -58,6 +64,7 @@
     font-size: 0.75em;
     margin-right:1em;
     padding-bottom: 0;
+
 
 }
 .loginButton:hover {
@@ -100,4 +107,17 @@
     /*padding: 40px;*/
     padding-top: 1em;
     width: 100%;
+}
+
+#selectable
+{
+    padding-left: 0;
+}
+
+#newestBikesTitle
+{
+    text-align: center;
+    font-family: "Dosis", sans-serif;
+    font-size: 1.5em;
+    font-weight: 100;
 }
