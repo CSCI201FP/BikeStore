@@ -53,6 +53,7 @@
 .filterBar
 {
     height : 3em; width : 100%; background: #80D0DD;
+    display: none;
 }
 .loginButton
 {
