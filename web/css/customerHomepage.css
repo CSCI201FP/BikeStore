@@ -70,6 +70,8 @@
 }
 .loginButton:hover {
     cursor: pointer;
+    background: white;
+    color: #8e88b6;
 }
 #userName
 {
@@ -91,6 +93,7 @@
 }
 #navLogo:hover {
     cursor: pointer;
+
 }
 
 

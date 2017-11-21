@@ -146,7 +146,7 @@
                             color:white;
                             font-family: "Dosis", sans-serif;
                             font-weight: 100;
-                            font-size: 2em;
+                            font-size: 1.5em;
                             text-align: center;
 
                         '><div style="text-shadow: 0 0 20px black">

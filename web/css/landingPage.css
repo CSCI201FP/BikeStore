@@ -25,6 +25,10 @@
     font-weight: 100;
 
 }
+.topBodyContent:hover
+{
+    color: #80D0DD;
+}
 .bottomBody
 {
     height : 28.8em; width : 100%; background: white;
@@ -62,6 +66,8 @@
 }
 .loginButton:hover {
     cursor: pointer;
+    background: white;
+    color: #8e88b6;
 }
 #userName
 {
