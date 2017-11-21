@@ -101,3 +101,11 @@
     padding-top: 1em;
     width: 100%;
 }
+
+#newestBikesTitle
+{
+    text-align: center;
+    font-family: "Dosis", sans-serif;
+    font-size: 1.5em;
+    font-weight: 100;
+}
