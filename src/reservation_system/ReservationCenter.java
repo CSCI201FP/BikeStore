@@ -43,6 +43,7 @@ public class ReservationCenter implements ServletContextListener,
 
         //debug test CDI
 
+/*
         new Thread(()->{
             try {
                 Thread.sleep(5000);
@@ -61,6 +62,7 @@ public class ReservationCenter implements ServletContextListener,
                 newReservationEvent.fire(r);
             }
         }).start();
+*/
 
     }
 

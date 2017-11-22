@@ -27,6 +27,27 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <style>
+        .bike-img-clip{
+            clip-path: circle(60px at center);
+            margin: auto;
+            height: 120px;
+            width: 120px;
+        }
+
+        .bike-img-big{
+            margin: auto;
+            height: 300px;
+        }
+
+        td.details-control {
+            cursor: pointer;
+        }
+        tr.shown td.details-control {
+        }
+
+    </style>
     <script>
         $(function () {
             $('#bikes-table').DataTable({
@@ -35,14 +56,79 @@
                     "dataSrc": ""
                 },
                 "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "searchable": false,
+                        "defaultContent": '<i class="fa fa-search-plus" aria-hidden="true"></i>'
+                    },
                     {data: 'picture'},
                     {data: 'model'},
                     {data: 'type'},
+                    {data: 'gender'},
                     {data: 'seatHeight'},
-                    {data: 'bikeID'}
-                ]
+                    {
+                        data: 'bikeID',
+                        searchable: false,
+                        orderable: false
+                    }
+                ],
+                "columnDefs": [
+                    {
+                        targets: 1,
+                        render: function (data, type, row, meta) {
+                            return "<img class='bike-img-clip' src=" + data + ">";
+                        },
+                        searchable: false
+                    },
+                    {
+                        targets: 6,
+                        searchable: false,
+                        render: function (data, type, row, meta) {
+                            return "<button type='button'>Reserve</button>";
+                        }
+                    },
+                    {
+                        targets: '_all',
+                        className: 'dt-center'
+                    }
+                ],
+                "order": []
             });
-        })
+
+            // Add event listener for opening and closing details
+            $('#bikes-table tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = $('#bikes-table').DataTable().row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                    $(this).html('<i class="fa fa-search-plus" aria-hidden="true"></i>');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                    $(this).html('<i class="fa fa-search-minus" aria-hidden="true"></i>');
+                }
+            });
+        });
+
+
+
+        function format(d) {
+            // `d` is the original data object for the row
+            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                        '<tr>' +
+                            '<td>Image:</td>' +
+                            '<td><img class="bike-img-big" src="' + d.picture +'"></td>' +
+                        '</tr>' +
+                    '</table>';
+        }
+
     </script>
 </head>
 <body>
@@ -55,6 +141,7 @@
     <c:out value="${store.streetAddress}"/><br/>
     Hours: <c:out value="${store.hours}"/>
 </div>
+<%--
 <div id="bikesTable">
     <table>
         <tr>
@@ -75,15 +162,18 @@
         </c:forEach>
     </table>
 </div>
+--%>
 
-<table id="bikes-table">
+<table id="bikes-table" class="display">
     <thead>
     <tr>
-        <th align="center">Picture</th>
-        <th align="center">Model</th>
-        <th align="center">Type</th>
-        <th align="center" width="40">Seat Height</th>
-        <th align="center" width="40">Go To Bike</th>
+        <th></th>
+        <th>Picture</th>
+        <th>Model</th>
+        <th>Type</th>
+        <th>Gender</th>
+        <th>Seat Height</th>
+        <th></th>
     </tr>
     </thead>
 </table>
