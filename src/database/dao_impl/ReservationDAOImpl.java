@@ -5,7 +5,8 @@ import database.util.ConnectionFactory;
 import objects.Reservation;
 
 import java.sql.*;
-import java.util.Queue;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ReservationDAOImpl implements ReservationDAO {
 
@@ -35,7 +36,22 @@ public class ReservationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public Queue<Reservation> getAllReservation() {
+    public Set<Reservation> getAllReservation() {
+        Connection connection = ConnectionFactory.getConnection();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Reservations");
+            Set<Reservation> reservations = new HashSet<>();
+
+            while (rs.next()) {
+                Reservation reservation = extractReservationFromResultSet(rs);
+                reservations.add(reservation);
+            }
+
+            return reservations;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return null;
     }
 
@@ -61,12 +77,17 @@ public class ReservationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public boolean updateReservation(Reservation r) {
-        return false;
-    }
-
-    @Override
     public boolean deleteReservation(int id) {
+        Connection connection = ConnectionFactory.getConnection();
+        try {
+            Statement stmt = connection.createStatement();
+            int i = stmt.executeUpdate("DELETE FROM Reservations WHERE reservationID=" + id);
+            if (i == 1) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return false;
     }
 }

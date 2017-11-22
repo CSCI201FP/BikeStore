@@ -4,14 +4,15 @@
 <%@ page import="java.util.Set" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    BikeDAO bdb = new BikeDAOImpl();
+    Set<Bike> bikes = bdb.getAllBikes();
+    pageContext.setAttribute("bikes", bikes);
+%>
+
 <html>
 <head>
-    <%
-        BikeDAO bdb = new BikeDAOImpl();
-        Set<Bike> bikes = bdb.getAllBikes();
-        pageContext.setAttribute("bikes", bikes);
-    %>
-    <link rel=icon href=bikeUp.ico>
+    <link rel=icon href=img/bikeUp.ico>
     <%@include file="part/common-head-dependency.html" %>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300" rel="stylesheet">
@@ -23,7 +24,6 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <%--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>--%>
 
     <script>
         $(function () {

@@ -17,7 +17,7 @@
 
 <html>
 <head>
-    <link rel=icon href=bikeUp.ico>
+    <link rel=icon href=img/bikeUp.ico>
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

@@ -4,8 +4,72 @@
     <title>Chat Client</title>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/notify.min.js"></script>
+    <style>
+        .notifyjs-foo-base {
+            opacity: 0.85;
+            width: 200px;
+            background: #F5F5F5;
+            padding: 5px;
+            border-radius: 10px;
+            vertical-align: baseline;
+        }
+
+        .notifyjs-foo-base .title {
+            width: 100px;
+            float: left;
+            margin: 10px 0 0 10px;
+            text-align: right;
+        }
+
+        .notifyjs-foo-base .buttons {
+            width: 70px;
+            float: right;
+            font-size: 9px;
+            padding: 5px;
+            margin: 2px;
+        }
+
+        .notifyjs-foo-base button {
+            font-size: 9px;
+            padding: 5px;
+            margin: 2px;
+            width: 60px;
+        }
+
+        .clearfix{
+            display: block;
+        }
+    </style>
     <script>
         var socket;
+
+        //add a new style 'foo'
+        $.notify.defaults({ className: "success" });
+
+        $.notify.addStyle('foo', {
+            html:
+            "<div>" +
+            "<div class='clearfix'>" +
+            "<div class='title' data-notify-html='title'/>" +
+            "<div class='buttons'>" +
+            "<button class='no'>Cancel</button>" +
+            "<button class='yes' data-notify-text='button'></button>" +
+            "</div>" +
+            "</div>" +
+            "</div>"
+        });
+
+        //listen for click events from this style
+        $(document).on('click', '.notifyjs-foo-base .no', function() {
+            //programmatically trigger propogating hide event
+            $(this).trigger('notify-hide');
+        });
+        $(document).on('click', '.notifyjs-foo-base .yes', function() {
+            //show button text
+            alert($(this).text() + " clicked!");
+            //hide notification
+            $(this).trigger('notify-hide');
+        });
 
         function connectToServer() {
             socket = new WebSocket("ws://" + window.location.hostname + ":"+window.location.port+"/rs");
@@ -15,8 +79,14 @@
             };
 
             socket.onmessage = function (event) {
-                $.notify(event.data);
-                //document.getElementById("mychat").innerHTML += event.data + "<br />";
+                $.notify({
+                    title: event.data,
+                    button: 'Confirm'
+                }, {
+                    style: 'foo',
+                    autoHide: false,
+                    clickToHide: false
+                });                //document.getElementById("mychat").innerHTML += event.data + "<br />";
             };
 
             socket.onclose = function (event) {

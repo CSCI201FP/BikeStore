@@ -13,7 +13,7 @@ body{
     margin-bottom: 15px;
 }
 
-.cross_button {
+.cross-button {
     margin-left: 15px;
     color: white;
     font-weight: bold;
@@ -24,6 +24,6 @@ body{
     transition: 0.3s;
 }
 
-.cross_button:hover {
+.cross-button:hover {
     color: black;
 }

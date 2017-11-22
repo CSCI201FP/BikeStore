@@ -11,7 +11,7 @@ CREATE TABLE Bikes
   picture         VARCHAR(200),
   availability    ENUM ('pending', 'reserved', 'available') NOT NULL,
   currentHolderID INT,
-  model           VARCHAR(20)
+  model           VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Reservations
@@ -74,10 +74,10 @@ INSERT INTO Stores (name, hours, streetAddress) VALUES
   ('Bike Express', '10AM-5PM', '668 W 28th St, Los Angeles, CA 90007'),
   ('Ye Olde Bike Shop', '10AM-5PM', '325 W Adams Blvd, Los Angeles, CA 90007');
 
-INSERT INTO Bikes (gender, seatHeight, type, picture, availability, currentHolderID) VALUES
-  ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
-  ('male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
-  ('male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL);
+INSERT INTO Bikes (model, gender, seatHeight, type, picture, availability, currentHolderID) VALUES
+  ('Jeffery Miller','male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
+  ('Jeffery Miller','male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
+  ('Jeff Mi','male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'pending', NULL);
 #   ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
 #   ('male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL),
 #   ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
@@ -90,16 +90,16 @@ INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBi
    'admin', 1, 0, '1234567890', NULL),
   ('1@1',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '11', 0, 0, '1111111111', NULL),
+   '11', 0, 1, '1111111111', 3),
   ('2@2',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    '22', 0, 0, '2222222222', NULL),
   ('3@3',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '44', '0', '0', '123456', '1'),
+   '44', '0', 0, '123456', NULL),
   ('4@4',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '55', '0', '1', '123456', '2');
+   '55', '0', 1, '123456', '2');
 
 INSERT INTO Reservations (customerID, bikeID) VALUES
   (2, 3);

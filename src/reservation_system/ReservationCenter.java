@@ -30,7 +30,6 @@ public class ReservationCenter implements ServletContextListener,
     // Public constructor is required by servlet spec
     public ReservationCenter() {
         reservationDAO = new ReservationDAOImpl();
-        reservations = reservationDAO.getAllReservation();
         pool = Executors.newCachedThreadPool();
     }
 
@@ -46,7 +45,7 @@ public class ReservationCenter implements ServletContextListener,
 
         new Thread(()->{
             try {
-                Thread.sleep(10000);
+                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -58,7 +57,7 @@ public class ReservationCenter implements ServletContextListener,
                     e.printStackTrace();
                 }
                 System.out.println("fire");
-                Reservation r = new Reservation(1,1);
+                Reservation r = new Reservation(1,2,3,null);
                 newReservationEvent.fire(r);
             }
         }).start();

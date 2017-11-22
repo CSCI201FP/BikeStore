@@ -76,4 +76,7 @@ public class Bike {
         return type;
     }
 
+    public void setAvailability(Availability availability) {
+        this.availability = availability;
+    }
 }

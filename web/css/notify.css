@@ -1,0 +1,46 @@
+.notifyjs-notification-base {
+    opacity: 0.90;
+    width: 200px;
+    background: #80D0DD;
+    padding: 5px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.notifyjs-notification-base .message {
+    width: 100px;
+    float: left;
+    margin: 10px 0 0 10px;
+    text-align: right;
+}
+
+.notifyjs-notification-base .buttons {
+    width: 70px;
+    float: right;
+    font-size: 9px;
+    padding: 5px;
+    margin: 2px;
+}
+
+.notifyjs-notification-base button {
+    font-size: 9px;
+    padding: 5px;
+    margin: 2px;
+    width: 60px;
+}
+
+.notifyjs-information-base {
+    opacity: 0.50;
+    width: 200px;
+    background: #3aff00;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.notifyjs-warning-base {
+    opacity: 0.50;
+    width: 200px;
+    background: #ff0000;
+    padding: 5px;
+    border-radius: 10px;
+}

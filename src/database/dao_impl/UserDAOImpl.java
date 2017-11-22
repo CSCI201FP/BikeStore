@@ -90,9 +90,7 @@ public class UserDAOImpl implements UserDAO {
         Connection connection = ConnectionFactory.getConnection();
         try {
             PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO Users " +
-                            "(email, password, name, isManager, isPending, phone, currentBikeID) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?)");
+                    .prepareStatement("INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             ps.setString(1, user.getEmail());
             ps.setBytes(2, user.getPassword());
@@ -121,16 +119,20 @@ public class UserDAOImpl implements UserDAO {
         Connection connection = ConnectionFactory.getConnection();
         try {
             PreparedStatement ps = connection
-                    .prepareStatement("UPDATE Users " +
-                            "SET email=?, password=?, name=?, isManager=?, isPending=?, phone=?, currentBikeID=?" +
-                            "WHERE userID=?");
+                    .prepareStatement("UPDATE Users SET email=?, password=?, name=?, isManager=?, isPending=?, phone=?, currentBikeID=? WHERE userID=?");
             ps.setString(1, user.getEmail());
             ps.setBytes(2, user.getPassword());
             ps.setString(3, user.getName());
             ps.setBoolean(4, user.isManager());
             ps.setBoolean(5, user.isPending());
             ps.setString(6, user.getPhone());
-            ps.setInt(7, user.getCurrentBikeID());
+            if (user.getCurrentBikeID() == 0) {
+                ps.setNull(7, Types.INTEGER);
+            } else {
+                ps.setInt(7, user.getCurrentBikeID());
+            }
+
+            ps.setInt(8, user.getUserID());
 
             int i = ps.executeUpdate();
             if (i == 1) {

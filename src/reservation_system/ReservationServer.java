@@ -1,4 +1,5 @@
 package reservation_system;
+import com.google.gson.Gson;
 import objects.Reservation;
 
 import java.io.IOException;
@@ -37,13 +38,15 @@ public class ReservationServer {
     }
 
     public void sendReservation2Manager(@Observes(notifyObserver = Reception.ALWAYS) Reservation reservation) {
+        String reservationJSONStr = new Gson().toJson(
+                new ReservationJSON(reservation.toString(), reservation.getReservationID()));
+
         synchronized (sessions){
             for (Session s : sessions) {
                 new Thread(()->{
                     try {
-                        s.getBasicRemote().sendText(reservation.toString());
+                        s.getBasicRemote().sendText(reservationJSONStr);
                     } catch (IOException e) {
-                        //e.printStackTrace();
                         close(s);
                     }
                 }).start();
@@ -56,3 +59,23 @@ public class ReservationServer {
     }
 }
 
+/*class ServletAwareConfig extends ServerEndpointConfig.Configurator {
+
+    @Override
+    public void modifyHandshake(ServerEndpointConfig config, HandshakeRequest request, HandshakeResponse response) {
+        HttpSession httpSession = (HttpSession) request.getHttpSession();
+        config.getUserProperties().put("httpSession", httpSession);
+    }
+
+}*/
+
+
+class ReservationJSON{
+    private String messageStr;
+    private String reservationID;
+
+    ReservationJSON(String messageStr, int reservationID) {
+        this.messageStr = messageStr;
+        this.reservationID = Integer.toString(reservationID);
+    }
+}

@@ -8,11 +8,9 @@ import java.util.Set;
 public interface ReservationDAO {
     Reservation getReservation(int id);
 
-    Queue<Reservation> getAllReservation();
+    Set<Reservation> getAllReservation();
 
     boolean insertReservation(Reservation r);
-
-    boolean updateReservation(Reservation r);
 
     boolean deleteReservation(int id);
 }

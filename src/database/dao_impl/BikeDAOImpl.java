@@ -84,9 +84,7 @@ public class BikeDAOImpl implements BikeDAO{
         Connection connection = ConnectionFactory.getConnection();
         try {
             PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO Bikes " +
-                            "(gender, seatHeight, type, picture, availability, currentHolderID) " +
-                            "VALUES (?, ?, ?, ?, ?, ?)");
+                    .prepareStatement("INSERT INTO Bikes (gender, seatHeight, type, picture, availability, currentHolderID, model) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
             ps.setString(1, bike.getGender().toString());
             ps.setDouble(2, bike.getSeatHeight());
@@ -99,6 +97,7 @@ public class BikeDAOImpl implements BikeDAO{
             }else {
                 ps.setInt(6, bike.getCurrentHolderID());
             }
+            ps.setString(7, bike.getModel());
 
 
             int i = ps.executeUpdate();
@@ -116,16 +115,19 @@ public class BikeDAOImpl implements BikeDAO{
         Connection connection = ConnectionFactory.getConnection();
         try {
             PreparedStatement ps = connection
-                    .prepareStatement("UPDATE Bikes " +
-                            "SET gender=?, seatHeight=?, type=?, picture=?, availability=?, currentHolderID=?" +
-                            "WHERE bikeID=?");
+                    .prepareStatement("UPDATE Bikes SET gender=?, seatHeight=?, type=?, picture=?, availability=?, currentHolderID=?, model=? WHERE bikeID=?");
             ps.setString(1, bike.getGender().toString());
             ps.setDouble(2, bike.getSeatHeight());
             ps.setString(3, bike.getType().toString());
             ps.setString(4, bike.getPicture());
             ps.setString(5, bike.getAvailability().toString());
-            ps.setInt(6, bike.getCurrentHolderID());
-            ps.setInt(7, bike.getBikeID());
+            if (bike.getCurrentHolderID()==0){
+                ps.setNull(6, Types.INTEGER);
+            }else {
+                ps.setInt(6, bike.getCurrentHolderID());
+            }
+            ps.setString(7,bike.getModel());
+            ps.setInt(8, bike.getBikeID());
 
             int i = ps.executeUpdate();
             if (i == 1) {
