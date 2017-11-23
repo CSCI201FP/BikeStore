@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ReserveBikeServlet", urlPatterns = "/reserve")
+@WebServlet(name = "ReserveBikeServlet", urlPatterns = "/reserve-bike")
 public class ReserveBikeServlet extends HttpServlet {
     @Inject
     private Event<Reservation> newReservationEvent;
@@ -30,7 +30,7 @@ public class ReserveBikeServlet extends HttpServlet {
         ReservationDAO reservationDAO = new ReservationDAOImpl();
 
         int bikeID = Integer.valueOf(request.getParameter("bikeID").trim());
-        int customerID = Integer.valueOf(request.getParameter("customerID").trim());
+        int customerID = ((User)request.getSession().getAttribute("user")).getUserID();
 
         Bike bike = bikeDAO.getBike(bikeID);
         User customer = userDAO.getUser(customerID);
@@ -39,6 +39,7 @@ public class ReserveBikeServlet extends HttpServlet {
         customer.setPending(true);
         customer.setCurrentBikeID(bikeID);
         bike.setCurrentHolderID(customerID);
+        bike.setAvailability(Bike.Availability.pending);
 
         //update the bike and user to db
         bikeDAO.updateBike(bike);

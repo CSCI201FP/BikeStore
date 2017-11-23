@@ -25,18 +25,17 @@
     <title>Store</title>
     <%@include file="part/common-head-dependency.html" %>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/datatables.min.js"></script>
 
     <style>
-        .bike-img-clip{
+        .bike-img-clip {
             clip-path: circle(60px at center);
             margin: auto;
             height: 120px;
             width: 120px;
         }
 
-        .bike-img-big{
+        .bike-img-big {
             margin: auto;
             height: 300px;
         }
@@ -44,26 +43,34 @@
         td.details-control {
             cursor: pointer;
         }
+
         tr.shown td.details-control {
         }
 
     </style>
     <script>
+        var dataTable;
         $(function () {
-            $('#bikes-table').DataTable({
+            dataTable = $('#bikes-table').DataTable({
                 "ajax": {
-                    "url": "/get-available-bikes",
-                    "dataSrc": ""
+                    url: "/get-available-bikes",
+                    dataSrc: ""
                 },
                 "columns": [
                     {
-                        "className": 'details-control',
-                        "orderable": false,
-                        "data": null,
-                        "searchable": false,
-                        "defaultContent": '<i class="fa fa-search-plus" aria-hidden="true"></i>'
+                        data: null,
+                        className: 'details-control',
+                        orderable: false,
+                        searchable: false,
+                        defaultContent: '<i class="fa fa-search-plus" aria-hidden="true"></i>'
                     },
-                    {data: 'picture'},
+                    {
+                        data: 'picture',
+                        render: function (data, type, row, meta) {
+                            return "<img class='bike-img-clip' src=" + data + ">";
+                        },
+                        searchable: false
+                    },
                     {data: 'model'},
                     {data: 'type'},
                     {data: 'gender'},
@@ -71,24 +78,14 @@
                     {
                         data: 'bikeID',
                         searchable: false,
-                        orderable: false
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+                            return "<button type='button' onclick= 'reserveBike(" + data + ")'>Reserve</button>";
+                        }
+
                     }
                 ],
                 "columnDefs": [
-                    {
-                        targets: 1,
-                        render: function (data, type, row, meta) {
-                            return "<img class='bike-img-clip' src=" + data + ">";
-                        },
-                        searchable: false
-                    },
-                    {
-                        targets: 6,
-                        searchable: false,
-                        render: function (data, type, row, meta) {
-                            return "<button type='button'>Reserve</button>";
-                        }
-                    },
                     {
                         targets: '_all',
                         className: 'dt-center'
@@ -100,7 +97,7 @@
             // Add event listener for opening and closing details
             $('#bikes-table tbody').on('click', 'td.details-control', function () {
                 var tr = $(this).closest('tr');
-                var row = $('#bikes-table').DataTable().row(tr);
+                var row = dataTable.row(tr);
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
@@ -115,18 +112,32 @@
                     $(this).html('<i class="fa fa-search-minus" aria-hidden="true"></i>');
                 }
             });
+
         });
 
-
+        function reserveBike(bikeID) {
+            $.ajax({
+                url: '/reserve-bike',
+                method: 'POST',
+                async: false,
+                data: {
+                    bikeID: bikeID
+                },
+                success: function (data) {
+                    alert(data);
+                    dataTable.ajax.reload();
+                }
+            });
+        }
 
         function format(d) {
             // `d` is the original data object for the row
             return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-                        '<tr>' +
-                            '<td>Image:</td>' +
-                            '<td><img class="bike-img-big" src="' + d.picture +'"></td>' +
-                        '</tr>' +
-                    '</table>';
+                '<tr>' +
+                '<td>Image:</td>' +
+                '<td><img class="bike-img-big" src="' + d.picture + '"></td>' +
+                '</tr>' +
+                '</table>';
         }
 
     </script>

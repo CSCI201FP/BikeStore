@@ -60,9 +60,7 @@ public class ReservationDAOImpl implements ReservationDAO {
         Connection connection = ConnectionFactory.getConnection();
         try {
             PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO Reservations " +
-                            "(customerID, bikeID) " +
-                            "VALUES (?, ?)");
+                    .prepareStatement("INSERT INTO Reservations (customerID, bikeID) VALUES (?, ?)");
 
             ps.setInt(1, r.getCustomerID());
             ps.setInt(2, r.getBikeID());

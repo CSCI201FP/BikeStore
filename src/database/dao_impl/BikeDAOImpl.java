@@ -121,6 +121,10 @@ public class BikeDAOImpl implements BikeDAO{
             ps.setString(3, bike.getType().toString());
             ps.setString(4, bike.getPicture());
             ps.setString(5, bike.getAvailability().toString());
+
+            //todo
+            System.out.println(bike.getAvailability().toString());
+
             if (bike.getCurrentHolderID()==0){
                 ps.setNull(6, Types.INTEGER);
             }else {

@@ -34,7 +34,7 @@ CREATE TABLE Users
   /*                    ^ size in bytes     */
   name          VARCHAR(50),
   isManager     BOOLEAN DEFAULT FALSE  NOT NULL,
-  isPending     BOOLEAN,
+  isPending     BOOLEAN NOT NULL,
   phone         VARCHAR(15),
   currentBikeID INT
 );
