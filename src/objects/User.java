@@ -20,6 +20,9 @@ public class User {
         this.isPending = isPending;
         this.currentBikeID = currentBikeID;
     }
+    public void setName(String n){name = n;}
+
+    public void setPhone(String p){phone = p;}
 
     public void setPending(boolean pending) {
         isPending = pending;
