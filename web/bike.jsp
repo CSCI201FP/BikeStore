@@ -3,18 +3,22 @@
 <%@ page import="objects.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+    int bikeId = ((User) session.getAttribute("user")).getCurrentBikeID();
+    BikeDAO bdb = new BikeDAOImpl();
+    pageContext.setAttribute("bike", bdb.getBike(bikeId));
+%>
+
 <html>
 <head>
     <title>Bike</title>
+    <%@include file="part/common-head-dependency.html"%>
 
-    <%
-        int bikeId = ((User) session.getAttribute("user")).getCurrentBikeID();
-        BikeDAO bdb = new BikeDAOImpl();
-        pageContext.setAttribute("bike", bdb.getBike(bikeId));
-    %>
 
 </head>
 <body>
+<%@include file="part/alert-bar.html" %>
 <div id="header">
     <img src="${bike.picture}"><br/>
     <c:out value="${bike.model}"/><br/>

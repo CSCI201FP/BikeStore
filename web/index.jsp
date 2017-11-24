@@ -12,7 +12,6 @@
 
 <html>
 <head>
-    <link rel=icon href=img/bikeUp.ico>
     <%@include file="part/common-head-dependency.html" %>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300" rel="stylesheet">

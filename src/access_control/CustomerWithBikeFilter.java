@@ -30,7 +30,7 @@ public class CustomerWithBikeFilter implements Filter {
             if (user.getCurrentBikeID()==0){
                 req.setAttribute("warn", "You Must Reserve A Bike To Visit This Page !");
                 req.getRequestDispatcher("/customerHomepage.jsp").forward(req,rep);
-            }else{
+            }else {
                 chain.doFilter(request, response);
             }
         }

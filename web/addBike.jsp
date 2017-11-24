@@ -14,7 +14,7 @@
 <head>
     <title>Add Bike</title>
 
-    <%@include file="part/common-head-dependency.html"%>
+    <%@include file="part/common-head-dependency.html" %>
 
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;

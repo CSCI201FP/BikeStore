@@ -17,17 +17,13 @@
 
 <html>
 <head>
-    <link rel=icon href=img/bikeUp.ico>
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+    <title>All Stores</title>
+
+    <%@include file="part/common-head-dependency.html"%>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
 
-    <title>All Stores</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/customerHomepage.css">
-    <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
     <link rel="stylesheet" type="text/css"
@@ -35,12 +31,9 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
-
-    <%@include file="part/common-head-dependency.html"%>
-
 </head>
 <body style = "margin: 0;">
-
+<%@include file="part/alert-bar.html" %>
 
 <div class="wrapper">
     <div class="topBar">

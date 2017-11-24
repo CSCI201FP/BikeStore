@@ -11,9 +11,10 @@
 <html>
 <head>
     <title>User Information</title>
+    <%@include file="part/common-head-dependency.html"%>
 </head>
 <body>
-
+    <%@include file="part/alert-bar.html" %>
     <div class="topBar">
     <div id="navLogo" onclick="location.href='index.jsp'"></div>
     <div id = "profilePicture" onclick="location.href='customerHomepage.jsp'" style="

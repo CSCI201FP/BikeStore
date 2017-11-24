@@ -1,13 +1,7 @@
 <%@ page import="util.StoreBackend" %>
 <%@ page import="database.dao_impl.StoreDAOImpl" %>
 <%@ page import="database.dao_impl.BikeDAOImpl" %>
-<%@ page import="database.dao.StoreDAO" %><%--
-  Created by IntelliJ IDEA.
-  User: jiaruoxi
-  Date: 11/14/17
-  Time: 9:32 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="database.dao.StoreDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -143,6 +137,7 @@
     </script>
 </head>
 <body>
+<%@include file="part/alert-bar.html" %>
 <div class="toolbar">
     <a href="userInfo.jsp"> Profile </a>
     <a href="login.jsp"> Log Out</a>
@@ -152,6 +147,21 @@
     <c:out value="${store.streetAddress}"/><br/>
     Hours: <c:out value="${store.hours}"/>
 </div>
+
+<table id="bikes-table" class="display">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Picture</th>
+        <th>Model</th>
+        <th>Type</th>
+        <th>Gender</th>
+        <th>Seat Height</th>
+        <th></th>
+    </tr>
+    </thead>
+</table>
+
 <%--
 <div id="bikesTable">
     <table>
@@ -174,21 +184,6 @@
     </table>
 </div>
 --%>
-
-<table id="bikes-table" class="display">
-    <thead>
-    <tr>
-        <th></th>
-        <th>Picture</th>
-        <th>Model</th>
-        <th>Type</th>
-        <th>Gender</th>
-        <th>Seat Height</th>
-        <th></th>
-    </tr>
-    </thead>
-</table>
-
 
 </body>
 </html>
