@@ -19,6 +19,8 @@
 
     UserDAO udb = new UserDAOImpl();
     pageContext.setAttribute("userDAO", udb);
+    String warnMessage = (String) request.getAttribute("warn");
+
 %>
 
 <html>
@@ -37,6 +39,15 @@
     <script src="js/managerHomepage-all-bikes-table.js"></script>
     <script src="js/reservation-notify.js"></script>
 
+    <script>
+        var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
+        $(function () {
+            if (warn!==''){
+                $('#warn-message-span').text(warn);
+                $('.alert').removeClass("hidden");
+            }
+        });
+    </script>
 
 </head>
 <body>

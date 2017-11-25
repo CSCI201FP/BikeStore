@@ -1,17 +1,24 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jiaruoxi
-  Date: 11/12/17
-  Time: 6:04 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
+<%
+    String warnMessage = (String) request.getAttribute("warn");
+%>
 
 <html>
 <head>
     <title>User Information</title>
     <%@include file="part/common-head-dependency.html"%>
+
+    <script>
+        var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
+        $(function () {
+            if (warn!==''){
+                $('#warn-message-span').text(warn);
+                $('.alert').removeClass("hidden");
+            }
+        });
+    </script>
 </head>
 <body>
     <%@include file="part/alert-bar.html" %>

@@ -79,7 +79,6 @@ INSERT INTO Bikes (model, gender, seatHeight, type, picture, availability, curre
   ('Jeffery Miller', 'male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
   ('Jeff Mi', 'male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL),
   ('Model X', 'female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL),
-  ('Model X', 'male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL),
   ('Model Y', 'male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
   ('Model S', 'female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
 

@@ -4,6 +4,8 @@
 <%
     StoreDAOImpl st = new StoreDAOImpl();
     pageContext.setAttribute("stores", st.getAllStores());
+    String warnMessage = (String) request.getAttribute("warn");
+
 %>
 
 <html>
@@ -21,6 +23,16 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script>
+        var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
+        $(function () {
+            if (warn!==''){
+                $('#warn-message-span').text(warn);
+                $('.alert').removeClass("hidden");
+            }
+        });
+    </script>
 
 </head>
 <body style = "margin: 0;">

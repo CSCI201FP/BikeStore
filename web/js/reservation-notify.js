@@ -28,6 +28,7 @@ $(function () {
     socket.onopen = function () {
         $.notify("Link Start", {
             style: 'information',
+            globalPosition: 'bottom right',
             showDuration: 400
         });
     };
@@ -47,6 +48,7 @@ $(function () {
     socket.onclose = function () {
         $.notify("The server is not reachable", {
             style: 'warning',
+            globalPosition: 'bottom right',
             autoHide: false
         });
     };

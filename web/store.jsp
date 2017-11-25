@@ -11,6 +11,8 @@
     pageContext.setAttribute("store", stdb.getStore(id));
     BikeDAOImpl bdb = new BikeDAOImpl();
     pageContext.setAttribute("bikes", bdb.getAllBikes());
+
+    String warnMessage = (String) request.getAttribute("warn");
 %>
 
 <html>
@@ -25,7 +27,6 @@
             clip-path: circle(60px at center);
             margin: auto;
             height: 120px;
-            width: 120px;
         }
 
         .bike-img-big {
@@ -133,6 +134,16 @@
                 '</tr>' +
                 '</table>';
         }
+    </script>
+
+    <script>
+        var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
+        $(function () {
+            if (warn!==''){
+                $('#warn-message-span').text(warn);
+                $('.alert').removeClass("hidden");
+            }
+        });
 
     </script>
 </head>

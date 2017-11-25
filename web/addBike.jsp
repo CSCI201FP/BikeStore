@@ -18,6 +18,13 @@
 
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
+        $(function () {
+            if (warn!==''){
+                $('#warn-message-span').text(warn);
+                $('.alert').removeClass("hidden");
+            }
+        });
+
 
         function addBike() {
             $.ajax({

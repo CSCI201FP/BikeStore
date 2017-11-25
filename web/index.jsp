@@ -8,6 +8,7 @@
     BikeDAO bdb = new BikeDAOImpl();
     Set<Bike> bikes = bdb.getAllBikes();
     pageContext.setAttribute("bikes", bikes);
+    String warnMessage = (String) request.getAttribute("warn");
 %>
 
 <html>
@@ -25,6 +26,15 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
     <script>
+        var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
+
+        $(function () {
+            if (warn!==''){
+                $('#warn-message-span').text(warn);
+                $('.alert').removeClass("hidden");
+            }
+        });
+
         $(function () {
             $(".single-item").slick({
                 dots: true

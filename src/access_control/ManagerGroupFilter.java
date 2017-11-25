@@ -23,13 +23,11 @@ public class ManagerGroupFilter implements Filter {
 
         User user = (User) session.getAttribute("user");
 
-        System.out.println(req.getRequestURI());
-
         if (user.isManager()){
             chain.doFilter(request, response);
         } else {
             req.setAttribute("warn", "Do not have the privilege to visit the page");
-            RequestDispatcher dispatcher = context.getRequestDispatcher(req.getHeader("refer"));
+            RequestDispatcher dispatcher = context.getRequestDispatcher("/customerHomepage.jsp");
             dispatcher.forward(request,response);
         }
 
