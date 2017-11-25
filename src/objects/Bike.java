@@ -1,5 +1,8 @@
 package objects;
 
+import database.dao.UserDAO;
+import database.dao_impl.UserDAOImpl;
+
 public class Bike {
 
     public enum Gender {
@@ -23,6 +26,9 @@ public class Bike {
     private Type type;       //mountain, road, etc
     private String picture;     //url to the picture
 
+    private String currentHolderName;
+    private String currentHolderEmail;
+
     public static Bike getBikeByID() {
         return null;
     }
@@ -39,12 +45,26 @@ public class Bike {
         this.model = model;
     }
 
+    public void extendFields() {
+        UserDAO userDAO = new UserDAOImpl();
+
+        User currentHolder = userDAO.getUser(currentHolderID);
+
+        if (currentHolder == null) {
+            currentHolderName = "N/A";
+            currentHolderEmail = "N/A";
+        } else {
+            currentHolderEmail = currentHolder.getEmail();
+            currentHolderName = currentHolder.getName();
+        }
+    }
+
     public void setCurrentHolderID(int currentHolderID) {
         this.currentHolderID = currentHolderID;
     }
 
 
-    public String getModel(){
+    public String getModel() {
         return model;
     }
 

@@ -43,22 +43,6 @@ public class BikeDAOImpl implements BikeDAO{
         return null;
     }
 
-
-    @Override
-    public Bike getBike(int id) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Bikes WHERE bikeID=" + id);
-            if (rs.next()) {
-                return extractBikeFromResultSet(rs);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
     @Override
     public Set getAllBikes() {
         Connection connection = ConnectionFactory.getConnection();
@@ -78,6 +62,24 @@ public class BikeDAOImpl implements BikeDAO{
         }
         return null;
     }
+
+
+    @Override
+    public Bike getBike(int id) {
+        Connection connection = ConnectionFactory.getConnection();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Bikes WHERE bikeID=" + id);
+            if (rs.next()) {
+                return extractBikeFromResultSet(rs);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+
 
     @Override
     public boolean insertBike(Bike bike) {

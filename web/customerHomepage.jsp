@@ -1,13 +1,4 @@
 <%@ page import="database.dao_impl.StoreDAOImpl" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: johndwyer
-  Date: 11/14/17
-  Time: 8:59 PM
-  To change this template use File | Settings | File Templates.
-  GOOGLE MAPS API KEY: AIzaSyBKxXdiAFt2epM7Sjodt0urEEoW4ij1hmA
-  GOOGLE GEOLOCATION KEY: AIzaSyDAjop6lBrt7sE8fPOr9LdE37QSYYF5TaQ
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%

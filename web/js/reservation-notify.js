@@ -1,0 +1,82 @@
+var socket;
+
+$.notify.defaults({ className: "success" });
+
+$.notify.addStyle('notification', {
+    html:   "<div>" +
+    "<div class='hidden reservationID' data-notify-text='reservationID'></div>"+
+    "<div class='message' data-notify-text='messageStr'/>" +
+    "<i class='fa fa-times ignore' aria-hidden='true'></i>"+
+    "<div class='buttons'>" +
+    "<button class='refuse'>Refuse</button>" +
+    "<button class='approve'>Approve</button>" +
+    "</div>" +
+    "</div>"
+});
+
+$.notify.addStyle('information', {
+    html:   "<div><i class=\"fa fa-info\" aria-hidden=\"true\"></i><span data-notify-text/></div>"
+});
+
+$.notify.addStyle('warning', {
+    html:   "<div><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i><span data-notify-text/></div>"
+});
+
+$(function () {
+    socket = new WebSocket("ws://" + window.location.hostname + ":"+window.location.port+"/rs");
+
+    socket.onopen = function () {
+        $.notify("Link Start", {
+            style: 'information',
+            showDuration: 400
+        });
+    };
+
+    socket.onmessage = function (event) {
+        var reservationJSON = JSON.parse(event.data);
+        $.notify({
+            messageStr: reservationJSON.messageStr,
+            reservationID: reservationJSON.reservationID
+        }, {
+            style: 'notification',
+            autoHide: false,
+            clickToHide: false
+        });
+    };
+
+    socket.onclose = function () {
+        $.notify("The server is not reachable", {
+            style: 'warning',
+            autoHide: false
+        });
+    };
+});
+
+$(document).on('click', '.notifyjs-notification-base .refuse', function () {
+    $.ajax({
+        url: "/decide-reservation",
+        method: "POST",
+        data: {
+            reservationID: $(this).parent().siblings('.reservationID').text(),
+            decision: "refuse"
+        }
+    });
+    $(this).trigger('notify-hide');
+
+});
+
+$(document).on('click', '.notifyjs-notification-base .approve', function () {
+    $.ajax({
+        url: "/decide-reservation",
+        method: "POST",
+        data: {
+            reservationID: $(this).parent().siblings('.reservationID').text(),
+            decision: "approve"
+        }
+    });
+    $(this).trigger('notify-hide');
+});
+
+$(document).on('click', '.notifyjs-notification-base .ignore', function () {
+    $(this).trigger('notify-hide');
+});

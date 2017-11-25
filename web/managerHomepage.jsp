@@ -25,94 +25,117 @@
 <head>
     <title>Manager Homepage </title>
     <%@include file="part/common-head-dependency.html" %>
-    <link rel="stylesheet" type="text/css" href="css/notify.css" >
+    <!-- Notify plugin -->
+    <link rel="stylesheet" type="text/css" href="css/notify.css">
     <script src="js/notify.min.js"></script>
+    <!-- DataTable plugin -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+    <script type="text/javascript" src="js/datatables.min.js"></script>
+
+    <script src="js/managerHomepage-reservations-table.js"></script>
     <script src="js/reservation-notify.js"></script>
-
     <script>
-        var socket;
-
-        $.notify.defaults({ className: "success" });
-
-        $.notify.addStyle('notification', {
-            html:   "<div>" +
-            "<div class='hidden reservationID' data-notify-text='reservationID'></div>"+
-            "<div class='message' data-notify-text='messageStr'/>" +
-            "<i class='fa fa-times ignore' aria-hidden='true'></i>"+
-            "<div class='buttons'>" +
-            "<button class='refuse'>Refuse</button>" +
-            "<button class='approve'>Approve</button>" +
-            "</div>" +
-            "</div>"
-        });
-
-        $.notify.addStyle('information', {
-            html:   "<div><i class=\"fa fa-info\" aria-hidden=\"true\"></i><span data-notify-text/></div>"
-        });
-
-        $.notify.addStyle('warning', {
-            html:   "<div><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i><span data-notify-text/></div>"
-        });
-
+        var all_bikes_DataTable;
         $(function () {
-            socket = new WebSocket("ws://" + window.location.hostname + ":"+window.location.port+"/rs");
+            all_bikes_DataTable = $('#all-bikes-table').DataTable({
+                "ajax": {
+                    url: "/get-bikes?range=all",
+                    dataSrc: ""
+                },
+                "columns": [
+                    {
+                        data: null,
+                        className: 'details-control',
+                        orderable: false,
+                        searchable: false,
+                        defaultContent: '<i class="fa fa-search-plus" aria-hidden="true"></i>'
+                    },
+                    {data: 'bikeID'},
+                    {data: 'model'},
+                    {data: 'type'},
+                    {data: 'gender'},
+                    {data: 'seatHeight'},
+                    {data: 'availability'},
+                    {
+                        data: "currentHolderID",
+                        render: function (data, type, row, meta) {
+                            if (data === 0){
+                                return "N/A";
+                            }else {
+                                return data;
+                            }
+                        }
+                    },
+                    {data: 'currentHolderName'},
+                    {data: 'currentHolderEmail'},
+                    {
+                        data: 'bikeID',
+                        searchable: false,
+                        orderable: false,
+                        render: function (data, type, row, meta) {
+                            return "<button type='button' onclick= 'deleteBike(" + data + ")'>Delete</button>";
+                        }
+                    }
+                ],
+                "columnDefs": [
+                    {
+                        targets: '_all',
+                        className: 'dt-center'
+                    }
+                ],
+                "order": []
+            });
 
-            socket.onopen = function () {
-                $.notify("Link Start", {
-                    style: 'information',
-                    showDuration: 400
-                });
-            };
+            // Add event listener for opening and closing details
+            $('#all-bikes-table tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = all_bikes_DataTable.row(tr);
 
-            socket.onmessage = function (event) {
-                var reservationJSON = JSON.parse(event.data);
-                $.notify({
-                    messageStr: reservationJSON.messageStr,
-                    reservationID: reservationJSON.reservationID
-                }, {
-                    style: 'notification',
-                    autoHide: false,
-                    clickToHide: false
-                });
-            };
-
-            socket.onclose = function () {
-                $.notify("The server is not reachable", {
-                    style: 'warning',
-                    autoHide: false
-                });
-            };
-        });
-
-        $(document).on('click', '.notifyjs-notification-base .refuse', function () {
-            $.ajax({
-                url: "/decide-reservation",
-                method: "POST",
-                data: {
-                    reservationID: $(this).parent().siblings('.reservationID').text(),
-                    decision: "refuse"
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                    $(this).html('<i class="fa fa-search-plus" aria-hidden="true"></i>');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                    $(this).html('<i class="fa fa-search-minus" aria-hidden="true"></i>');
                 }
             });
-            $(this).trigger('notify-hide');
 
         });
 
-        $(document).on('click', '.notifyjs-notification-base .approve', function () {
+        //todo under what condition we can safely delete a bike?
+        function deleteBike(bikeID) {
+            //todo do a condition check, like this bike is not reserved now...
             $.ajax({
-                url: "/decide-reservation",
-                method: "POST",
+                url: '/delete-bike',
+                method: 'POST',
+                async: false,
                 data: {
-                    reservationID: $(this).parent().siblings('.reservationID').text(),
-                    decision: "approve"
+                    bikeID: bikeID
+                },
+                success: function (data) {
+                    alert(data);
+                    bikesDataTable.ajax.reload();
                 }
             });
-            $(this).trigger('notify-hide');
-        });
+        }
 
-        $(document).on('click', '.notifyjs-notification-base .ignore', function () {
-            $(this).trigger('notify-hide');
-        });
+        function format(d) {
+            // `d` is the original data object for the row
+            return  '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                        '<tr>' +
+                            '<td>Image:</td>' +
+                            '<td><img class="bike-img-big" src="' + d.picture + '"></td>' +
+                        '</tr>' +
+                    '</table>';
+        }
+
     </script>
+
 
 </head>
 <body>
@@ -123,6 +146,43 @@
     <a href="login.jsp"> Log Out</a>
 </div>
 
+<h2>Bikes List</h2>
+<table id="all-bikes-table" class="display">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Bike ID</th>
+        <th>Model</th>
+        <th>Type</th>
+        <th>Gender</th>
+        <th>Seat Height</th>
+        <th>Availability</th>
+        <th>Current Holder ID</th>
+        <th>Current Holder Name</th>
+        <th>Current Holder Email</th>
+        <th></th>
+    </tr>
+    </thead>
+</table>
+
+<h2>Reservations List</h2>
+<table id="reservations-table" class="display">
+    <thead>
+    <tr>
+        <th>Reservation No.</th>
+        <th>Customer ID</th>
+        <th>Customer Name</th>
+        <th>Customer Email</th>
+        <th>Bike ID</th>
+        <th>Bike Model</th>
+        <th>Time</th>
+        <th></th>
+    </tr>
+    </thead>
+</table>
+
+
+<%--
 <div id="bikesTable">
     Your Bikes: <br>
     <table>
@@ -144,7 +204,9 @@
         </c:forEach>
     </table>
 </div>
-<div id="reservationTable">
+--%>
+
+<%--<div id="reservationTable">
     Reservation Requests: <br>
     <table>
         <tr>
@@ -164,7 +226,7 @@
             </tr>
         </c:forEach>
     </table>
-</div>
+</div>--%>
 
 
 </body>

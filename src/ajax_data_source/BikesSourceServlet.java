@@ -1,0 +1,38 @@
+package ajax_data_source;
+
+import com.google.gson.Gson;
+import database.dao.BikeDAO;
+import database.dao_impl.BikeDAOImpl;
+import objects.Bike;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Set;
+
+@WebServlet(name = "BikesSourceServlet", urlPatterns = "/get-bikes")
+public class BikesSourceServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String range = request.getParameter("range");
+        Gson gson = new Gson();
+        BikeDAO bd = new BikeDAOImpl();
+
+        if (range.equals("available")){
+            Set<Bike> bikes = bd.getAllAvailableBikes();
+            String bikesJSONString = gson.toJson(bikes);
+            response.getWriter().print(bikesJSONString);
+
+        }else if (range.equals("all")){
+            Set<Bike> bikes = bd.getAllBikes();
+
+            bikes.forEach(Bike::extendFields);
+
+            String bikesJSONString = gson.toJson(bikes);
+            response.getWriter().print(bikesJSONString);
+
+        }
+    }
+}

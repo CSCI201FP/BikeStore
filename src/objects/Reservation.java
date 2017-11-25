@@ -1,6 +1,8 @@
 package objects;
 
+import database.dao.BikeDAO;
 import database.dao.UserDAO;
+import database.dao_impl.BikeDAOImpl;
 import database.dao_impl.UserDAOImpl;
 
 import java.sql.Timestamp;
@@ -10,6 +12,11 @@ public class Reservation{
     private int customerID;
     private int bikeID;
     private Timestamp reservationTime;
+
+    private String customerName;
+    private String customerEmail;
+    private String bikeModel;
+
 
     public Reservation(int reservationID, int customerID, int bikeID, Timestamp reservationTime) {
         this.reservationID = reservationID;
@@ -23,6 +30,18 @@ public class Reservation{
         this.customerID = customerID;
         this.bikeID = bikeID;
         this.reservationTime = null;
+    }
+
+    public void extendFields(){
+        UserDAO userDAO = new UserDAOImpl();
+        BikeDAO bikeDAO = new BikeDAOImpl();
+
+        User customer = userDAO.getUser(customerID);
+
+        customerName = customer.getName();
+        customerEmail = customer.getEmail();
+
+        bikeModel = bikeDAO.getBike(bikeID).getModel();
     }
 
     public String toString(){

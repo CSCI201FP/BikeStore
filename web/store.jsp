@@ -40,14 +40,14 @@
 
         tr.shown td.details-control {
         }
-
     </style>
+
     <script>
         var dataTable;
         $(function () {
             dataTable = $('#bikes-table').DataTable({
                 "ajax": {
-                    url: "/get-available-bikes",
+                    url: "/get-bikes?range=available",
                     dataSrc: ""
                 },
                 "columns": [
