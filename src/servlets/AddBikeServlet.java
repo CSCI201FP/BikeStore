@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(name = "AddBikeServlet", urlPatterns = "/addBike")
 public class AddBikeServlet extends HttpServlet {
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String gender = request.getParameter("gender");
         String seatHeight = request.getParameter("seatHeight");
         String type = request.getParameter("type");

@@ -5,11 +5,20 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 public class EmailSenderThread extends Thread {
-    private final String from = "bikeup@gmail.com";
-    private final String password = "bikeup";
+    private final String from = "bikeup.usc@gmail.com";
+    private final String password = "bikeup201";
 
+    private String subject;
+    private String msg;
+    private String to;
 
-    public void send(String to, String subject, String msg) {
+    public EmailSenderThread(String subject, String msg, String to) {
+        this.subject = subject;
+        this.msg = msg;
+        this.to = to;
+    }
+
+    private void send() {
 
         //Get properties object
         Properties props = new Properties();
@@ -43,5 +52,7 @@ public class EmailSenderThread extends Thread {
         }
     }
 
-
+    public void run(){
+        send();
+    }
 }

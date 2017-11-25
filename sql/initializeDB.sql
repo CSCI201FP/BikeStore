@@ -11,7 +11,7 @@ CREATE TABLE Bikes
   picture         VARCHAR(200),
   availability    ENUM ('pending', 'reserved', 'available') NOT NULL,
   currentHolderID INT,
-  model           VARCHAR(20) NOT NULL
+  model           VARCHAR(20)                               NOT NULL
 );
 
 CREATE TABLE Reservations
@@ -30,11 +30,11 @@ CREATE TABLE Users
 (
   userID        INT PRIMARY KEY        NOT NULL AUTO_INCREMENT,
   email         VARCHAR(50)            NOT NULL,
-  password      BINARY(16)            NOT NULL,
+  password      BINARY(16)             NOT NULL,
   /*                    ^ size in bytes     */
   name          VARCHAR(50),
   isManager     BOOLEAN DEFAULT FALSE  NOT NULL,
-  isPending     BOOLEAN NOT NULL,
+  isPending     BOOLEAN                NOT NULL,
   phone         VARCHAR(15),
   currentBikeID INT
 );
@@ -75,32 +75,31 @@ INSERT INTO Stores (name, hours, streetAddress) VALUES
   ('Ye Olde Bike Shop', '10AM-5PM', '325 W Adams Blvd, Los Angeles, CA 90007');
 
 INSERT INTO Bikes (model, gender, seatHeight, type, picture, availability, currentHolderID) VALUES
-  ('Jeffery Miller','male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
-  ('Jeffery Miller','male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
-  ('Jeff Mi','male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'pending', NULL);
-#   ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
-#   ('male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL),
-#   ('male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
-#   ('female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
+  ('Jeffery Miller', 'male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'pending', NULL),
+  ('Jeffery Miller', 'male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
+  ('Jeff Mi', 'male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL),
+  ('Model X', 'female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL),
+  ('Model X', 'male', 1.2, 'road', 'https://i.ytimg.com/vi/EGtno5IguNk/maxresdefault.jpg', 'available', NULL),
+  ('Model Y', 'male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
+  ('Model S', 'female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
 
 /* Password: 11111111A */
 INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES
   ('admin@admin',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    'admin', 1, 0, '1234567890', NULL),
-  ('1@1',
-   0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '11', 0, 1, '1111111111', 3),
   ('2@2',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '22', 0, 0, '2222222222', NULL),
+   '22', 0, 0, '1234567890', NULL),
   ('3@3',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '44', '0', 0, '123456', NULL),
+   '33', 0, 0, '1234567890', NULL),
   ('4@4',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '55', '0', 1, '123456', '2');
+   '44', 0, 0, '1234567890', NULL),
+  ('vicboss@live.cn',
+   0xE3908E5C68A1C7637ABE3DB2B3C91938,
+   '55', 0, 1, '1234567890', 1);
 
 INSERT INTO Reservations (customerID, bikeID) VALUES
-  (2, 3);
-
+  (5, 1);

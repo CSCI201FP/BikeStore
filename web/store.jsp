@@ -1,4 +1,3 @@
-<%@ page import="util.StoreBackend" %>
 <%@ page import="database.dao_impl.StoreDAOImpl" %>
 <%@ page import="database.dao_impl.BikeDAOImpl" %>
 <%@ page import="database.dao.StoreDAO" %>
@@ -18,8 +17,8 @@
 <head>
     <title>Store</title>
     <%@include file="part/common-head-dependency.html" %>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <script type="text/javascript" src="js/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.js"></script>
 
     <style>
         .bike-img-clip {
@@ -85,6 +84,7 @@
                         className: 'dt-center'
                     }
                 ],
+                "dom":"frtp",
                 "order": []
             });
 
@@ -148,7 +148,7 @@
     Hours: <c:out value="${store.hours}"/>
 </div>
 
-<table id="bikes-table" class="display">
+<table id="bikes-table" class="display" width="100%">
     <thead>
     <tr>
         <th></th>

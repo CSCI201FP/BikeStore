@@ -29,112 +29,13 @@
     <link rel="stylesheet" type="text/css" href="css/notify.css">
     <script src="js/notify.min.js"></script>
     <!-- DataTable plugin -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
-    <script type="text/javascript" src="js/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.js"></script>
+
 
     <script src="js/managerHomepage-reservations-table.js"></script>
+    <script src="js/managerHomepage-all-bikes-table.js"></script>
     <script src="js/reservation-notify.js"></script>
-    <script>
-        var all_bikes_DataTable;
-        $(function () {
-            all_bikes_DataTable = $('#all-bikes-table').DataTable({
-                "ajax": {
-                    url: "/get-bikes?range=all",
-                    dataSrc: ""
-                },
-                "columns": [
-                    {
-                        data: null,
-                        className: 'details-control',
-                        orderable: false,
-                        searchable: false,
-                        defaultContent: '<i class="fa fa-search-plus" aria-hidden="true"></i>'
-                    },
-                    {data: 'bikeID'},
-                    {data: 'model'},
-                    {data: 'type'},
-                    {data: 'gender'},
-                    {data: 'seatHeight'},
-                    {data: 'availability'},
-                    {
-                        data: "currentHolderID",
-                        render: function (data, type, row, meta) {
-                            if (data === 0){
-                                return "N/A";
-                            }else {
-                                return data;
-                            }
-                        }
-                    },
-                    {data: 'currentHolderName'},
-                    {data: 'currentHolderEmail'},
-                    {
-                        data: 'bikeID',
-                        searchable: false,
-                        orderable: false,
-                        render: function (data, type, row, meta) {
-                            return "<button type='button' onclick= 'deleteBike(" + data + ")'>Delete</button>";
-                        }
-                    }
-                ],
-                "columnDefs": [
-                    {
-                        targets: '_all',
-                        className: 'dt-center'
-                    }
-                ],
-                "order": []
-            });
-
-            // Add event listener for opening and closing details
-            $('#all-bikes-table tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
-                var row = all_bikes_DataTable.row(tr);
-
-                if (row.child.isShown()) {
-                    // This row is already open - close it
-                    row.child.hide();
-                    tr.removeClass('shown');
-                    $(this).html('<i class="fa fa-search-plus" aria-hidden="true"></i>');
-                }
-                else {
-                    // Open this row
-                    row.child(format(row.data())).show();
-                    tr.addClass('shown');
-                    $(this).html('<i class="fa fa-search-minus" aria-hidden="true"></i>');
-                }
-            });
-
-        });
-
-        //todo under what condition we can safely delete a bike?
-        function deleteBike(bikeID) {
-            //todo do a condition check, like this bike is not reserved now...
-            $.ajax({
-                url: '/delete-bike',
-                method: 'POST',
-                async: false,
-                data: {
-                    bikeID: bikeID
-                },
-                success: function (data) {
-                    alert(data);
-                    bikesDataTable.ajax.reload();
-                }
-            });
-        }
-
-        function format(d) {
-            // `d` is the original data object for the row
-            return  '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-                        '<tr>' +
-                            '<td>Image:</td>' +
-                            '<td><img class="bike-img-big" src="' + d.picture + '"></td>' +
-                        '</tr>' +
-                    '</table>';
-        }
-
-    </script>
 
 
 </head>
@@ -143,14 +44,13 @@
 <div class="toolbar">
     <a href="addBike.jsp"> Add Bike </a>
     <a href="userInfo.jsp"> Profile </a>
-    <a href="login.jsp"> Log Out</a>
+    <a href="/logout"> Log Out</a>
 </div>
 
 <h2>Bikes List</h2>
-<table id="all-bikes-table" class="display">
+<table id="all-bikes-table" class="display" width="100%">
     <thead>
     <tr>
-        <th></th>
         <th>Bike ID</th>
         <th>Model</th>
         <th>Type</th>
@@ -166,7 +66,7 @@
 </table>
 
 <h2>Reservations List</h2>
-<table id="reservations-table" class="display">
+<table id="reservations-table" class="display" width="100%">
     <thead>
     <tr>
         <th>Reservation No.</th>

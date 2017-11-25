@@ -15,6 +15,7 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/logout/*</url-pattern>
         <url-pattern>/bike.jsp/*</url-pattern>
         <url-pattern>/customerHomepage.jsp/*</url-pattern>
         <url-pattern>/managerHomepage.jsp/*</url-pattern>
@@ -39,6 +40,7 @@
         <filter-name>ManagerGroupFilter</filter-name>
         <url-pattern>/managerHomepage.jsp/*</url-pattern>
         <url-pattern>/addBike/*</url-pattern>
+        <url-pattern>/delete-bike/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 

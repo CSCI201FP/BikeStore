@@ -9,6 +9,7 @@ import database.dao_impl.UserDAOImpl;
 import objects.Bike;
 import objects.Reservation;
 import objects.User;
+import reservation_system.email.EmailSenderThread;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,16 +39,22 @@ public class ReservationDecisionServlet extends HttpServlet {
         customer = userDAO.getUser(reservation.getCustomerID());
 
 
-        if (decision.equals("approve")){
+        if (decision.equals("approve")) {
             bike.setAvailability(Bike.Availability.reserved);
             bike.setCurrentHolderID(customer.getUserID());
             customer.setCurrentBikeID(bike.getBikeID());
             customer.setPending(false);
-        }else if (decision.equals("refuse")){
+
+            EmailSenderThread est = new EmailSenderThread("Approve", "Congratulations!", customer.getEmail());
+            est.start();
+        } else if (decision.equals("refuse")) {
             bike.setAvailability(Bike.Availability.available);
             customer.setPending(false);
             customer.setCurrentBikeID(0);
             bike.setCurrentHolderID(0);
+
+            EmailSenderThread est = new EmailSenderThread("Refuse", "Sorry!", customer.getEmail());
+            est.start();
         }
 
         userDAO.updateUser(customer);

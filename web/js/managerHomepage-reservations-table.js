@@ -29,6 +29,7 @@ $(function () {
                 className: 'dt-center'
             }
         ],
+        "dom":"frtp",
         "order": []
     });
 });
