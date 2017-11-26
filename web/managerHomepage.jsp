@@ -55,7 +55,7 @@
 <div class="toolbar">
     <a href="addBike.jsp"> Add Bike </a>
     <a href="userInfo.jsp"> Profile </a>
-    <a href="/logout"> Log Out</a>
+    <a href="logout"> Log Out</a>
 </div>
 
 <h2>Bikes List</h2>

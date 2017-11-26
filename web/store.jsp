@@ -163,7 +163,6 @@
 </head>
 <body style="margin:0;">
 <%@include file="part/alert-bar.html" %>
-
 <div class="wrapper">
     <div class="topBar">
         <div id="navLogo" onclick="location.href='customerHomepage.jsp'"></div>
