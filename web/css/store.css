@@ -1,3 +1,7 @@
+.alert
+{
+    margin-bottom:0;
+}
 .wrapper
 {
     display: inline-block; width: 100%;
@@ -11,26 +15,59 @@
     height : 18em; width : 100%; background: white;
     display: flex;
     justify-content: center;
+    background-size: 100%;
+    background: url("https://i.imgur.com/nnwTSdy.jpg");
+    background-position-y: -434px;
 
-}
-.alert
-{
-    margin-bottom:0;
 }
 #map
 {
     height:100%;
     margin-top: -2em;
 }
+
+.button
+{
+    padding:1em;
+    border-color: rgba(142, 136, 182, 1);
+    border-radius:  0.5em;
+    border-style: solid;
+    border-width: 1px;
+    background:white;
+    color: rgba(142, 136, 182, 1);
+
+}
+.button:hover
+{
+    padding:1em;
+    border-color: rgba(142, 136, 182, 1);
+    border-radius:  0.5em;
+    border-style: solid;
+    border-width: 1px;
+    background: rgba(142, 136, 182, 1);
+    color:white;
+
+    cursor: pointer;
+}
+.fa
+{
+    padding-left: 2em;
+}
+.bike-img-clip {
+    height: 10em;
+}
+
+
 .topBodyContent
 {
     font-family: 'Dosis', sans-serif;
-    padding-top:2em;
-    background: #8e88b6;
+    padding-top:2.6em;
+    background: rgba(142, 136, 182, 0.8);
+    overflow:hidden;
     /*width: 70%;*/
     width:100%;
     color:white;
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 100;
 
 }
@@ -100,7 +137,10 @@
     cursor: pointer;
 
 }
-
+.dataTables_wrapper{
+    margin-bottom:2em;
+    font-weight: 100;
+}
 
 /*CAROUSEL SHIT*/
 .slick-slide {

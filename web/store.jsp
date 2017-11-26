@@ -17,21 +17,33 @@
 
 <html>
 <head>
-    <title>Store</title>
+    <title>${store.name}</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
     <%@include file="part/common-head-dependency.html" %>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/store.css">
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.js"></script>
 
     <style>
         .bike-img-clip {
             clip-path: circle(60px at center);
             margin: auto;
-            height: 120px;
+            height: 10em;
         }
 
         .bike-img-big {
             margin: auto;
-            height: 300px;
+            height: 26em;
         }
 
         td.details-control {
@@ -74,7 +86,7 @@
                         searchable: false,
                         orderable: false,
                         render: function (data, type, row, meta) {
-                            return "<button type='button' onclick= 'reserveBike(" + data + ")'>Reserve</button>";
+                            return "<button type='button' class ='button' onclick= 'reserveBike(" + data + ")'>Reserve</button>";
                         }
 
                     }
@@ -119,8 +131,10 @@
                     bikeID: bikeID
                 },
                 success: function (data) {
-                    alert(data);
+
                     dataTable.ajax.reload();
+                     $('#warn-message-span').text("You've initiated a reservation request!\nPlease stand by while a manager approves your request.");
+                    $('.alert').removeClass("hidden");
                 }
             });
         }
@@ -129,7 +143,7 @@
             // `d` is the original data object for the row
             return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
                 '<tr>' +
-                '<td>Image:</td>' +
+                '<td></td>' +
                 '<td><img class="bike-img-big" src="' + d.picture + '"></td>' +
                 '</tr>' +
                 '</table>';
@@ -147,32 +161,61 @@
 
     </script>
 </head>
-<body>
+<body style="margin:0;">
 <%@include file="part/alert-bar.html" %>
-<div class="toolbar">
-    <a href="userInfo.jsp"> Profile </a>
-    <a href="login.jsp"> Log Out</a>
-</div>
-<div id="store">
-    <c:out value="${store.name}"/><br/>
-    <c:out value="${store.streetAddress}"/><br/>
-    Hours: <c:out value="${store.hours}"/>
-</div>
 
-<table id="bikes-table" class="display" width="100%">
-    <thead>
-    <tr>
-        <th></th>
-        <th>Picture</th>
-        <th>Model</th>
-        <th>Type</th>
-        <th>Gender</th>
-        <th>Seat Height</th>
-        <th></th>
-    </tr>
-    </thead>
-</table>
+<div class="wrapper">
+    <div class="topBar">
+        <div id="navLogo" onclick="location.href='customerHomepage.jsp'"></div>
+        <div id = "profilePicture" onclick="location.href='userInfo.jsp'" style="
+    float: right;
+    background-size: 60%;
+    background-position: center;
+    overflow: hidden;
+    height: 1.85em;
+    width: 1.85em;
+    border-radius: 1.5em;
+    margin-top: 0.5em;
+    border: 1px solid white;
+    background-image: url(https://i.imgur.com/VwKBYI3.png?1);
+    background-repeat: no-repeat; margin-right: 0.68em;">
 
+        </div>
+        <div class="loginButton" onclick="location.href='login.jsp'">Sign Out</div>
+
+        <%--<div id = "userName">Profile</div>--%>
+    </div>
+    <div class="topBody" style="text-align:center">
+        <div class="topBodyContent">
+            <div id="store">
+                <c:out value="${store.name}"/><br/>
+                <c:out value="${store.streetAddress}"/><br/>
+                Hours: <c:out value="${store.hours}"/>
+            </div>
+        </div>
+    </div>
+    <div class="filterBar" style=""></div>
+    <div class="bottomBody" style="text-align:center">
+        <div class="bottomBodyContent">
+            <div id="newestBikesTitle">All stores</div>
+            <table id="bikes-table" class="display compact order-column" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Picture</th>
+                    <th>Model</th>
+                    <th>Type</th>
+                    <th>Gender</th>
+                    <th>Seat Height</th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
+</div>
 <%--
 <div id="bikesTable">
     <table>

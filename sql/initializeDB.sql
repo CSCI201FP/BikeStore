@@ -75,12 +75,11 @@ INSERT INTO Stores (name, hours, streetAddress) VALUES
   ('Ye Olde Bike Shop', '10AM-5PM', '325 W Adams Blvd, Los Angeles, CA 90007');
 
 INSERT INTO Bikes (model, gender, seatHeight, type, picture, availability, currentHolderID) VALUES
-  ('Jeffery Miller', 'male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'pending', NULL),
-  ('Jeffery Miller', 'male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
-  ('Jeff Mi', 'male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL),
-  ('Model X', 'female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL),
-  ('Model Y', 'male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
-  ('Model S', 'female', 1.1, 'other', 'https://i.imgur.com/ivGFUn1.jpg', 'available', NULL);
+  ('Fast Runner', 'male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'pending', NULL),
+  ('Turtle Spinner', 'male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
+  ('Signature Sweetie', 'male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL),
+  ('Scott CR1 Plasma Pro', 'male', 19, 'road', 'https://i.imgur.com/xxcgs6V.jpg', 'available', NULL),
+  ('Marsupial Mike', 'female', 1.1, 'other', 'https://i.imgur.com/beuWLZs.jpg', 'available', NULL);
 
 /* Password: 11111111A */
 INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES
