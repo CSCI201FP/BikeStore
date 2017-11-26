@@ -57,12 +57,12 @@
     Gender
     <input type="radio" name="gender" value="male"> Male
     <input type="radio" name="gender" value="female"> Female<br>
-    Seat Height
-    <input type="radio" name="seatHeight" value="mountain"> Mountain
-    <input type="radio" name="seatHeight" value="road"> Road
-    <input type="radio" name="seatHeight" value="other"> Other<br>
+    Type
+    <input type="radio" name="type" value="mountain"> Mountain
+    <input type="radio" name="type" value="road"> Road
+    <input type="radio" name="type" value="other"> Other<br>
     <%--<input type='text' name="seatHeight"><br>--%>
-    Type <input type='text' name="type"><br>
+    Seat height <input type='text' name="seatHeight"><br>
     Model <input type="text" name="model"><br>
     Picture <input type='file' name="picture" accept="image/*"><br>
     <input type="submit"></form>
