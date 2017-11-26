@@ -54,11 +54,17 @@
 
 <h1>Add Bike</h1>
 <form id="addBikeForm" onsubmit="return addBike();">
-    Gender <input type='text' name="gender"><br>
-    Seat Height <input type='text' name="seatHeight"><br>
+    Gender
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female<br>
+    Seat Height
+    <input type="radio" name="seatHeight" value="mountain"> Mountain
+    <input type="radio" name="seatHeight" value="road"> Road
+    <input type="radio" name="seatHeight" value="other"> Other<br>
+    <%--<input type='text' name="seatHeight"><br>--%>
     Type <input type='text' name="type"><br>
-    Picture <input type='text' name="picture"><br>
     Model <input type="text" name="model"><br>
+    Picture <input type='file' name="picture" accept="image/*"><br>
     <input type="submit"></form>
 </form>
 <div id="info"></div>
