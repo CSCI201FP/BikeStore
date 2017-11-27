@@ -34,6 +34,18 @@ public class ReserveBikeServlet extends HttpServlet {
         Bike bike = bikeDAO.getBike(bikeID);
         User customer = (User)request.getSession().getAttribute("user");
 
+        //check if the customer is eligible
+        if (customer.getCurrentBikeID()!=0&&!customer.isPending()){
+            response.getWriter().print("You Already Have A Bike Associated With You");
+            return;
+        }
+
+        //check if the bike is available
+        if (!(bike.getAvailability()==Bike.Availability.available)){
+            response.getWriter().print("The Bike Is Not Available");
+            return;
+        }
+
         //set the data correspond to reservation
         customer.setPending(true);
         customer.setCurrentBikeID(bikeID);
@@ -44,15 +56,14 @@ public class ReserveBikeServlet extends HttpServlet {
         bikeDAO.updateBike(bike);
         userDAO.updateUser(customer);
 
-        //update the user in the session
-
-
         //insert the reservation to db
         Reservation reservation = new Reservation(customer.getUserID(), bikeID);
         reservationDAO.insertReservation(reservation);
 
         //fire the event
         newReservationEvent.fire(reservation);
+
+        response.getWriter().print("You Have Successfully Reserved The Bike. Please Wait For Email Confirmation.");
     }
 
 }

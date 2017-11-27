@@ -35,8 +35,8 @@
                     bikeID: bikeID
                 },
                 async: false,
-                success: function () {
-                    alert("The Bike Is Returned");
+                success: function (data) {
+                    alert(data);
                     window.location.href="/customerHomepage.jsp";
                 }
             });

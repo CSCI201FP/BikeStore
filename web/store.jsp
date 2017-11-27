@@ -127,8 +127,8 @@
                 data: {
                     bikeID: bikeID
                 },
-                success: function () {
-                    alert("Your Bike Has Been Reserved. Please Wait For The Email Confirmation From Our Manager");
+                success: function (data) {
+                    alert(data);
                     window.location.href = "/bike.jsp";
                 }
             });

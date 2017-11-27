@@ -23,7 +23,16 @@ public class ReturnBikeServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         Bike bike = bikeDAO.getBike(user.getCurrentBikeID());
 
-        bike.setAvailability(Bike.Availability.available);
+        //check if the user owns the bike
+        if (bike.getCurrentHolderID() != user.getUserID() ||
+                user.getCurrentBikeID() != bike.getBikeID() ||
+                user.isPending() ||
+                bike.getAvailability() != Bike.Availability.reserved){
+            response.getWriter().print("You are not eligible to return the bike");
+            return;
+        }
+
+            bike.setAvailability(Bike.Availability.available);
         bike.setCurrentHolderID(0);
 
         user.setCurrentBikeID(0);
@@ -32,7 +41,8 @@ public class ReturnBikeServlet extends HttpServlet {
         userDAO.updateUser(user);
         bikeDAO.updateBike(bike);
 
-        response.sendRedirect("/customerHomepage.jsp");
+        response.getWriter().print("Your Return Has Been Processed");
+
     }
 
 }
