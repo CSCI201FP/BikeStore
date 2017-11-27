@@ -1,4 +1,4 @@
-package reservation_system.email;
+package reservation_system;
 
 import java.util.Properties;
 import javax.mail.*;

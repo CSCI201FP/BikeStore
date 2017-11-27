@@ -41,6 +41,9 @@ public class AddBikeServlet extends HttpServlet {
             return;
         }
 
+        if (picture==null||picture.equals("")){
+            picture = "https://d.pr/i/B9mSGr+";
+        }
 
 
         Bike b = new Bike(0, 0, Bike.Gender.valueOf(gender), Double.parseDouble(seatHeight), Bike.Availability.valueOf("available"),

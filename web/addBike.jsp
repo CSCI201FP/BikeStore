@@ -9,7 +9,7 @@
     <title>Add Bike</title>
 
     <%@include file="part/common-head-dependency.html" %>
-
+    <script src="js/notify.min.js"></script>
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
         $(function () {
@@ -28,7 +28,7 @@
                 data: $('#addBikeForm').serialize(),
                 success: function (response) {
                     if (response === "success") {
-                        $('#info').html("Successfully added!")
+                        $.notify("A Bike Has Been Added", "info")
                     } else if (response === "gender") {
                         showWarn("The gender input is wrong");
                     } else if (response === "type") {
@@ -43,7 +43,6 @@
     </script>
 </head>
 <body>
-
 <%@include file="part/alert-bar.html" %>
 
 <h1>Add Bike</h1>
@@ -56,7 +55,7 @@
     <input type="radio" name="type" value="mountain"> Mountain
     <input type="radio" name="type" value="road"> Road
     <input type="radio" name="type" value="other"> Other<br>
-    Seat height <input type='number' name="seatHeight"><br>
+    Seat height <input type='text' name="seatHeight"><br>
     Model <input type="text" name="model"><br>
     Picture URL <input type='text' name="picture"><br>
     <input type="submit"></form>

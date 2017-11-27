@@ -40,6 +40,7 @@
     <style>
         .bike-img-clip {
             clip-path: circle(60px at center);
+            -webkit-clip-path: circle(60px at center);
             margin: auto;
             height: 10em;
         }

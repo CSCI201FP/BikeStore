@@ -9,7 +9,6 @@ import database.dao_impl.UserDAOImpl;
 import objects.Bike;
 import objects.Reservation;
 import objects.User;
-import reservation_system.email.EmailSenderThread;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
