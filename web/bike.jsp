@@ -35,6 +35,9 @@
                     bikeID: bikeID
                 },
                 async: false,
+                success: function () {
+                    window.location.href="/customerHomepage.jsp";
+                }
             });
         }
     </script>

@@ -1,11 +1,5 @@
 <%@ page import="database.dao.BikeDAO" %>
-<%@ page import="database.dao_impl.BikeDAOImpl" %><%--
-  Created by IntelliJ IDEA.
-  User: jiaruoxi
-  Date: 11/15/17
-  Time: 9:58 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="database.dao_impl.BikeDAOImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String warnMessage = (String) request.getAttribute("warn");
@@ -64,7 +58,7 @@
     <%--<input type='text' name="seatHeight"><br>--%>
     Seat height <input type='text' name="seatHeight"><br>
     Model <input type="text" name="model"><br>
-    Picture <input type='file' name="picture" accept="image/*"><br>
+    Picture URL <input type='text' name="picture"><br>
     <input type="submit"></form>
 </form>
 <div id="info"></div>
