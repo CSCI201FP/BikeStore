@@ -1,13 +1,15 @@
 <%@ page import="database.dao_impl.BikeDAOImpl" %>
 <%@ page import="database.dao.BikeDAO" %>
 <%@ page import="objects.User" %>
+<%@ page import="database.dao.UserDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
-    int bikeId = ((User) session.getAttribute("user")).getCurrentBikeID();
     BikeDAO bdb = new BikeDAOImpl();
-    pageContext.setAttribute("bike", bdb.getBike(bikeId));
+    User user = (User) session.getAttribute("user");
+    int bikeID = user.getCurrentBikeID();
+    pageContext.setAttribute("bike", bdb.getBike(bikeID));
     String warnMessage = (String) request.getAttribute("warn");
 %>
 
@@ -18,7 +20,7 @@
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
         $(function () {
-            if (warn!==''){
+            if (warn !== '') {
                 $('#warn-message-span').text(warn);
                 $('.alert').removeClass("hidden");
             }
@@ -29,7 +31,7 @@
             $.ajax({
                 url: '/return-bike',
                 method: 'POST',
-                data:{
+                data: {
                     bikeID: bikeID
                 },
                 async: false,
@@ -48,6 +50,20 @@
     Gender: <c:out value="${bike.gender}"/><br/>
     Seat Height:<c:out value="${bike.seatHeight}"/><br/>
 </div>
-<button onclick="return_bike(<%= bikeId%>)">Return</button>
+
+<%
+    if (user.isPending()) {
+%>
+<h2>Pending</h2>
+<%
+    } else {
+
+%>
+<button onclick="return_bike(<%= bikeID%>)">Return</button>
+<%
+
+    }
+%>
+
 </body>
 </html>

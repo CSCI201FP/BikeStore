@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import database.dao.BikeDAO;
 import database.dao_impl.BikeDAOImpl;
 import objects.Bike;
+import objects.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,19 +21,23 @@ public class BikesSourceServlet extends HttpServlet {
         Gson gson = new Gson();
         BikeDAO bd = new BikeDAOImpl();
 
-        if (range.equals("available")){
+        if (range.equals("available")) {
             Set<Bike> bikes = bd.getAllAvailableBikes();
             String bikesJSONString = gson.toJson(bikes);
             response.getWriter().print(bikesJSONString);
 
-        }else if (range.equals("all")){
-            Set<Bike> bikes = bd.getAllBikes();
+        } else if (range.equals("all")) {
 
-            bikes.forEach(Bike::extendFields);
-
-            String bikesJSONString = gson.toJson(bikes);
-            response.getWriter().print(bikesJSONString);
+            if (((User) request.getSession().getAttribute("user")).isManager()) {
+                Set<Bike> bikes = bd.getAllBikes();
+                bikes.forEach(Bike::extendFields);
+                String bikesJSONString = gson.toJson(bikes);
+                response.getWriter().print(bikesJSONString);
+            } else {
+                response.getWriter().print("Customer Cannot Access This Link");
+            }
 
         }
     }
 }
+

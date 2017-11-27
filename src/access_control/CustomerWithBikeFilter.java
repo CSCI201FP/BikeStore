@@ -27,7 +27,7 @@ public class CustomerWithBikeFilter implements Filter {
             req.setAttribute("warn", "Manager Cannot Access Customer Homepage !");
             req.getRequestDispatcher("/managerHomepage.jsp").forward(req,rep);
         } else {
-            if (user.getCurrentBikeID()==0){
+            if ( user.getCurrentBikeID()==0 || user.isPending() ){
                 req.setAttribute("warn", "You Must Reserve A Bike To Visit This Page !");
                 req.getRequestDispatcher("/customerHomepage.jsp").forward(req,rep);
             }else {

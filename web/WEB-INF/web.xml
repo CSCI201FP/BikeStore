@@ -16,32 +16,46 @@
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
         <url-pattern>/logout/*</url-pattern>
-        <url-pattern>/bike.jsp/*</url-pattern>
-        <url-pattern>/customerHomepage.jsp/*</url-pattern>
-        <url-pattern>/managerHomepage.jsp/*</url-pattern>
-        <url-pattern>/store.jsp/*</url-pattern>
-        <url-pattern>/userInfo.jsp/*</url-pattern>
+        <url-pattern>/bike.jsp</url-pattern>
+        <url-pattern>/customerHomepage.jsp</url-pattern>
+        <url-pattern>/managerHomepage.jsp</url-pattern>
+        <url-pattern>/store.jsp</url-pattern>
+        <url-pattern>/userInfo.jsp</url-pattern>
         <url-pattern>/addBike/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-    </filter-mapping>
-    <filter-mapping>
-        <filter-name>CustomerWithBikeFilter</filter-name>
-        <url-pattern>/bike.jsp/*</url-pattern>
+        <url-pattern>/update-user/*</url-pattern>
+        <url-pattern>/get-bikes/*</url-pattern>
+        <url-pattern>/delete-bike/*</url-pattern>
+        <url-pattern>/decide-reservation/*</url-pattern>
+        <url-pattern>/get-reservations/*</url-pattern>
+        <url-pattern>/reserve-bike/*</url-pattern>
         <url-pattern>/return-bike/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <filter-mapping>
         <filter-name>CustomerNoBikeFilter</filter-name>
-        <url-pattern>/customerHomepage.jsp/*</url-pattern>
-        <url-pattern>/reserve/*</url-pattern>
-        <url-pattern>/store.jsp/*</url-pattern>
+        <url-pattern>/customerHomepage.jsp</url-pattern>
+        <url-pattern>/reserve-bike/*</url-pattern>
+        <url-pattern>/store.jsp</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerPendingOrHoldingBikeFilter</filter-name>
+        <url-pattern>/bike.jsp</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>CustomerWithBikeFilter</filter-name>
+        <url-pattern>/return-bike/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
     <filter-mapping>
         <filter-name>ManagerGroupFilter</filter-name>
-        <url-pattern>/managerHomepage.jsp/*</url-pattern>
+        <url-pattern>/managerHomepage.jsp</url-pattern>
         <url-pattern>/addBike/*</url-pattern>
         <url-pattern>/delete-bike/*</url-pattern>
+        <url-pattern>/addBike/*</url-pattern>
+        <url-pattern>/decide-reservation/*</url-pattern>
+        <url-pattern>/get-reservations/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 

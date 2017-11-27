@@ -18,7 +18,13 @@
 <html>
 <head>
     <title>${store.name}</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
+    <%@include file="part/common-head-dependency.html" %>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/store.css">
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300" rel="stylesheet">
 
@@ -28,11 +34,8 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
-    <%@include file="part/common-head-dependency.html" %>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/store.css">
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/b-1.4.2/b-colvis-1.4.2/r-2.2.0/datatables.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
     <style>
         .bike-img-clip {
@@ -44,13 +47,6 @@
         .bike-img-big {
             margin: auto;
             height: 26em;
-        }
-
-        td.details-control {
-            cursor: pointer;
-        }
-
-        tr.shown td.details-control {
         }
     </style>
 
@@ -97,7 +93,7 @@
                         className: 'dt-center'
                     }
                 ],
-                "dom":"frtp",
+                "dom": "frtp",
                 "order": []
             });
 
@@ -130,11 +126,8 @@
                 data: {
                     bikeID: bikeID
                 },
-                success: function (data) {
-
-                    dataTable.ajax.reload();
-                     $('#warn-message-span').text("You've initiated a reservation request!\nPlease stand by while a manager approves your request.");
-                    $('.alert').removeClass("hidden");
+                success: function () {
+                    window.location.href = "/bike.jsp";
                 }
             });
         }
@@ -153,12 +146,11 @@
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
         $(function () {
-            if (warn!==''){
+            if (warn !== '') {
                 $('#warn-message-span').text(warn);
                 $('.alert').removeClass("hidden");
             }
         });
-
     </script>
 </head>
 <body style="margin:0;">
@@ -166,7 +158,7 @@
 <div class="wrapper">
     <div class="topBar">
         <div id="navLogo" onclick="location.href='customerHomepage.jsp'"></div>
-        <div id = "profilePicture" onclick="location.href='userInfo.jsp'" style="
+        <div id="profilePicture" onclick="location.href='userInfo.jsp'" style="
     float: right;
     background-size: 60%;
     background-position: center;
@@ -215,28 +207,5 @@
 
 
 </div>
-<%--
-<div id="bikesTable">
-    <table>
-        <tr>
-            <th align="center">Picture</th>
-            <th align="center">Model</th>
-            <th align="center">Type</th>
-            <th align="center" width="40">Seat Height</th>
-            <th align="center" width="40">Go To Bike</th>
-        </tr>
-        <c:forEach items="${bikes}" var="bike">
-            <tr onclick="location.reload(); locaiton.href = '/bike.jsp?id=${bike.getBikeID()}'">
-                <td align="center"><img src="${bike.getPicture()}"></td>
-                <td align="center"><c:out value="${bike.getModel()}"/></td>
-                <td align="center"><c:out value="${bike.getType()}"/></td>
-                <td align="center"><c:out value="${bike.getSeatHeight()}"/></td>
-                <td align="center"><a href="/bike.jsp?id=${bike.getBikeID()}">Go</a></td>
-            </tr>
-        </c:forEach>
-    </table>
-</div>
---%>
-
 </body>
 </html>

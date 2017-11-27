@@ -19,29 +19,32 @@ public class AddBikeServlet extends HttpServlet {
         String type = request.getParameter("type");
         String picture = request.getParameter("picture");
         String model = request.getParameter("model");
-        try{
-            Double shDouble = Double.parseDouble(seatHeight);
-        }catch(NumberFormatException nfe){
-            response.getWriter().print("seatHeight");
-            return;
-        }
 
-        try{
+        try {
             Bike.Gender.valueOf(gender);
-        }catch(IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             response.getWriter().print("gender");
             return;
         }
 
         try {
+            Double.parseDouble(seatHeight);
+        } catch (NumberFormatException nfe) {
+            response.getWriter().print("seatHeight");
+            return;
+        }
+
+        try {
             Bike.Type.valueOf(type);
-        }catch(IllegalArgumentException iae){
+        } catch (IllegalArgumentException iae) {
             response.getWriter().print("type");
             return;
         }
 
-        Bike b = new Bike(0,0,Bike.Gender.valueOf(gender), Double.parseDouble(seatHeight), Bike.Availability.valueOf("available"),
-                Bike.Type.valueOf(type),picture,model);
+
+
+        Bike b = new Bike(0, 0, Bike.Gender.valueOf(gender), Double.parseDouble(seatHeight), Bike.Availability.valueOf("available"),
+                Bike.Type.valueOf(type), picture, model);
         BikeDAO bikeDAO = new BikeDAOImpl();
         bikeDAO.insertBike(b);
         response.getWriter().print("success");

@@ -30,30 +30,29 @@ public class ReserveBikeServlet extends HttpServlet {
         ReservationDAO reservationDAO = new ReservationDAOImpl();
 
         int bikeID = Integer.valueOf(request.getParameter("bikeID").trim());
-        int customerID = ((User)request.getSession().getAttribute("user")).getUserID();
 
         Bike bike = bikeDAO.getBike(bikeID);
-        User customer = userDAO.getUser(customerID);
+        User customer = (User)request.getSession().getAttribute("user");
 
         //set the data correspond to reservation
         customer.setPending(true);
         customer.setCurrentBikeID(bikeID);
-        bike.setCurrentHolderID(customerID);
+        bike.setCurrentHolderID(customer.getUserID());
         bike.setAvailability(Bike.Availability.pending);
 
         //update the bike and user to db
         bikeDAO.updateBike(bike);
         userDAO.updateUser(customer);
 
+        //update the user in the session
+
+
         //insert the reservation to db
-        Reservation reservation = new Reservation(customerID, bikeID);
+        Reservation reservation = new Reservation(customer.getUserID(), bikeID);
         reservationDAO.insertReservation(reservation);
 
         //fire the event
         newReservationEvent.fire(reservation);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

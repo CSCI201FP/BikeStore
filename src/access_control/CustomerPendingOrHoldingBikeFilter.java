@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "CustomerNoBikeFilter")
-public class CustomerNoBikeFilter implements Filter {
+@WebFilter(filterName = "CustomerPendingOrHoldingBikeFilter")
+public class CustomerPendingOrHoldingBikeFilter implements Filter {
     public void destroy() {
     }
 
@@ -22,9 +22,9 @@ public class CustomerNoBikeFilter implements Filter {
             req.setAttribute("warn", "Manager Cannot Access Customer Pages!");
             req.getRequestDispatcher("/managerHomepage.jsp").forward(req,rep);
         } else {
-            if (user.getCurrentBikeID()!=0 || user.isPending()){
-                req.setAttribute("warn", "You Can Only Reserve One Bike!");
-                req.getRequestDispatcher("/bike.jsp").forward(req,rep);
+            if (user.getCurrentBikeID()==0){
+                req.setAttribute("warn", "You Must Have A Bike Associated With You To Visit This Page!");
+                req.getRequestDispatcher("/customerHomepage.jsp").forward(req,rep);
             }else{
                 chain.doFilter(request, response);
             }
