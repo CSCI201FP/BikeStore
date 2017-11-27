@@ -46,6 +46,7 @@ $(function () {
         "dom": "Bfrtp",
         "buttons": ['colvis'],
         "select": true,
+        "autoWidth": true,
         "order": []
     });
 

@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>${sessionScope.user.getName()}</title>
-    <link rel="stylesheet" type="text/css" href="css/userInfo.css">
+
 
     <%@include file="part/common-head-dependency.html" %>
 
@@ -21,6 +21,7 @@
             }
         });
     </script>
+    <link rel="stylesheet" type="text/css" href="css/userInfo.css">
 </head>
 <body style="margin:0;">
 <%@include file="part/alert-bar.html" %>

@@ -1,7 +1,3 @@
-.alert
-{
-    margin-bottom:0;
-}
 .wrapper
 {
     display: inline-block; width: 100%;
@@ -12,62 +8,32 @@
 }
 .topBody
 {
-    height : 18em; width : 100%; background: white;
+    height : auto; width : 100%; background: white;
     display: flex;
     justify-content: center;
-    background-size: 100%;
-    background: url("https://i.imgur.com/nnwTSdy.jpg");
-    background-position-y: -434px;
+    background: #8e88b6;
+    padding-bottom: 3em;
 
+}
+.alert
+{
+    margin-bottom:0;
 }
 #map
 {
     height:100%;
     margin-top: -2em;
 }
-
-.button
-{
-    padding:1em;
-    border-color: rgba(142, 136, 182, 1);
-    border-radius:  0.5em;
-    border-style: solid;
-    border-width: 1px;
-    background:white;
-    color: rgba(142, 136, 182, 1);
-
-}
-.button:hover
-{
-    padding:1em;
-    border-color: rgba(142, 136, 182, 1);
-    border-radius:  0.5em;
-    border-style: solid;
-    border-width: 1px;
-    background: rgba(142, 136, 182, 1);
-    color:white;
-
-    cursor: pointer;
-}
-.fa
-{
-    padding-left: 2em;
-}
-.bike-img-clip {
-    height: 10em;
-}
-
-
 .topBodyContent
 {
     font-family: 'Dosis', sans-serif;
-    padding-top:2.6em;
-    background: rgba(142, 136, 182, 0.8);
-    overflow:hidden;
+    padding-top:2em;
     /*width: 70%;*/
+    margin-left: 1em;
+    margin-right: 1em;
     width:100%;
     color:white;
-    font-size: 2em;
+    font-size: 0.75em;
     font-weight: 100;
 
 }
@@ -137,10 +103,7 @@
     cursor: pointer;
 
 }
-.dataTables_wrapper{
-    margin-bottom:2em;
-    font-weight: 100;
-}
+
 
 /*CAROUSEL SHIT*/
 .slick-slide {
@@ -171,17 +134,21 @@
     font-weight: 100;
 }
 
-thead{
-    font-family: "Dosis", sans-serif;
-    color: #8e88b6;
-    margin-top: 1em;
+thead {
+    color: white;
 }
 
-td{
-    font-family: sans-serif;
-    font-weight: 100;
+inspector-stylesheet:1
+td {
     color: #8e88b6;
 }
-table{
-    margin-bottom: 1em;
+
+button{
+    padding: 1em;
+    border: 1px solid #8e88b6;
+    color: #8e88b6;
+    font-family: "Dosis", sans-serif;
+    font-weight:100;
+    margin-bottom: 0.25em;
+    margin-top: 0.25em;
 }

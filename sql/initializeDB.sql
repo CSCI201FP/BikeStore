@@ -8,7 +8,7 @@ CREATE TABLE Bikes
   gender          ENUM ('male', 'female', 'neutral')        NOT NULL,
   seatHeight      DOUBLE,
   type            ENUM ('mountain', 'road', 'other')        NOT NULL,
-  picture         VARCHAR(200) DEFAULT 'https://d.pr/i/B9mSGr+',
+  picture         VARCHAR(200) DEFAULT 'https://i.imgur.com/xxcgs6V.jpg',
   availability    ENUM ('pending', 'reserved', 'available') NOT NULL,
   currentHolderID INT,
   model           VARCHAR(20)                               NOT NULL

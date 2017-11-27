@@ -29,6 +29,7 @@ $(function () {
                 className: 'dt-center'
             }
         ],
+        "autoWidth": true,
         "dom":"frtp",
         "order": []
     });

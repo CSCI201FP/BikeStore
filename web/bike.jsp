@@ -42,12 +42,15 @@
             });
         }
     </script>
+    <link rel="stylesheet" type="text/css" href="css/bike.css">
 </head>
-<body>
+<body style="margin: 0;">
 <%@include file="part/alert-bar.html" %>
-<div class="topBar">
-    <div id="navLogo" onclick="location.href='customerHomepage.jsp'"></div>
-    <div id = "profilePicture" onclick="location.href='userInfo.jsp'" style="
+
+<div class="wrapper">
+    <div class="topBar">
+        <div id="navLogo" onclick="location.href='customerHomepage.jsp'"></div>
+        <div id = "profilePicture" onclick="location.href='userInfo.jsp'" style="
     float: right;
     background-size: 60%;
     background-position: center;
@@ -60,32 +63,42 @@
     background-image: url(https://i.imgur.com/VwKBYI3.png?1);
     background-repeat: no-repeat; margin-right: 0.68em;">
 
+        </div>
+        <div class="loginButton" onclick="location.href='login.jsp'">Sign Out</div>
+
+        <%--<div id = "userName">Profile</div>--%>
     </div>
-    <div class="loginButton" onclick="location.href='login.jsp'">Sign Out</div>
+    <div class="topBody" style="text-align:center; background-image: url('${bike.picture}');">
+        <div class="topBodyContent" style="background:rgba(142, 136, 182, 0.8);">
+            <c:out value="${bike.model}"/>
+        </div>
+    </div>
+
+    <div class="bottomBody" style="text-align:center">
+        <div class="bottomBodyContent" id="newestBikesTitle">
+                Type: <c:out value="${bike.type}"/><br/>
+                Gender: <c:out value="${bike.gender}"/><br/>
+                Seat Height:<c:out value="${bike.seatHeight}"/><br/>
+
+
+            <%
+                if (user.isPending()) {
+            %>
+            <div style="color: #8e88b6;"><br>Pending</div>
+            <%
+            } else {
+
+            %>
+            <br><button onclick="return_bike(<%= bikeID%>)">Return</button>
+            <%
+
+                }
+            %>
+
+
+        </div>
+    </div>
+
 </div>
-<div id="header">
-    <img src="${bike.picture}"><br/>
-    <c:out value="${bike.model}"/><br/>
-</div>
-<div id="bikeInfo">
-    Type: <c:out value="${bike.type}"/><br/>
-    Gender: <c:out value="${bike.gender}"/><br/>
-    Seat Height:<c:out value="${bike.seatHeight}"/><br/>
-</div>
-
-<%
-    if (user.isPending()) {
-%>
-<h2>Pending</h2>
-<%
-    } else {
-
-%>
-<button onclick="return_bike(<%= bikeID%>)">Return</button>
-<%
-
-    }
-%>
-
 </body>
 </html>
