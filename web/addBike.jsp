@@ -13,7 +13,7 @@
     <script>
         var warn = <%= warnMessage != null ? "'" + warnMessage + "'" : "''"%>;
         $(function () {
-            if (warn!==''){
+            if (warn !== '') {
                 $('#warn-message-span').text(warn);
                 $('.alert').removeClass("hidden");
             }
@@ -50,13 +50,13 @@
 <form id="addBikeForm" onsubmit="return addBike();">
     Gender
     <input type="radio" name="gender" value="male"> Male
-    <input type="radio" name="gender" value="female"> Female<br>
+    <input type="radio" name="gender" value="female"> Female
+    <input type="radio" name="gender" value="neutral"> Neutral<br>
     Type
     <input type="radio" name="type" value="mountain"> Mountain
     <input type="radio" name="type" value="road"> Road
     <input type="radio" name="type" value="other"> Other<br>
-    <%--<input type='text' name="seatHeight"><br>--%>
-    Seat height <input type='text' name="seatHeight"><br>
+    Seat height <input type='number' name="seatHeight"><br>
     Model <input type="text" name="model"><br>
     Picture URL <input type='text' name="picture"><br>
     <input type="submit"></form>

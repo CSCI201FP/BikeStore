@@ -36,6 +36,7 @@
                 },
                 async: false,
                 success: function () {
+                    alert("The Bike Is Returned");
                     window.location.href="/customerHomepage.jsp";
                 }
             });

@@ -99,5 +99,7 @@ INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBi
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    '55', 0, 1, '1234567890', 1);
 
+UPDATE Bikes SET currentHolderID = 5 WHERE bikeID=1;
+
 INSERT INTO Reservations (customerID, bikeID) VALUES
   (5, 1);
