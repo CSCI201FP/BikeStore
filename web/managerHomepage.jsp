@@ -68,6 +68,13 @@
         });
     </script>
 
+    <style>
+        .bike-img-big {
+            margin: auto;
+            height: 26em;
+        }
+    </style>
+
 </head>
 <body style = "margin: 0;">
     <%@include file="part/alert-bar.html" %>
@@ -88,15 +95,15 @@
     background-repeat: no-repeat; margin-right: 0.68em;">
 
             </div>
-            <div class="loginButton" onclick="location.href='addBike.jsp'">+ Add bike</div>
-            <div class="loginButton" onclick="location.href='login.jsp'">Sign out</div>
+            <div class="loginButton" onclick="location.href='addBike.jsp'">+<i class="fa fa-bicycle" aria-hidden="true"></i></div>
+            <div class="loginButton" onclick="location.href='login.jsp'"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign out</div>
 
 
             <%--<div id = "userName">Profile</div>--%>
         </div>
         <div class="topBody" style="text-align:center">
             <div class="topBodyContent">
-                <div id="newestBikesTitle">Bikes List</div>
+                <div class="newestBikesTitle">Bikes List</div>
                 <table id="all-bikes-table" class="display" width="100%">
                     <thead>
                     <tr>
@@ -114,7 +121,7 @@
                     </thead>
                 </table>
 
-                <div id="newestBikesTitle">Reservations List</div>
+                <div class="newestBikesTitle">Reservations List</div>
                 <table id="reservations-table" class="display" width="100%">
                     <thead>
                     <tr>

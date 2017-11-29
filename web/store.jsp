@@ -37,6 +37,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <style>
         .bike-img-clip {
             clip-path: circle(60px at center);
@@ -61,16 +63,9 @@
                 },
                 "columns": [
                     {
-                        data: null,
-                        className: 'details-control',
-                        orderable: false,
-                        searchable: false,
-                        defaultContent: '<i class="fa fa-search-plus" aria-hidden="true"></i>'
-                    },
-                    {
                         data: 'picture',
                         render: function (data, type, row, meta) {
-                            return "<img class='bike-img-clip' src=" + data + ">";
+                            return "<img onclick='onClick(this)' alt='" +row.model + "' class='bike-img-clip w3-hover-opacity' src=" + data + ">";
                         },
                         searchable: false
                     },
@@ -98,25 +93,6 @@
                 "order": []
             });
 
-            // Add event listener for opening and closing details
-            $('#bikes-table tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
-                var row = dataTable.row(tr);
-
-                if (row.child.isShown()) {
-                    // This row is already open - close it
-                    row.child.hide();
-                    tr.removeClass('shown');
-                    $(this).html('<i class="fa fa-search-plus" aria-hidden="true"></i>');
-                }
-                else {
-                    // Open this row
-                    row.child(format(row.data())).show();
-                    tr.addClass('shown');
-                    $(this).html('<i class="fa fa-search-minus" aria-hidden="true"></i>');
-                }
-            });
-
         });
 
         function reserveBike(bikeID) {
@@ -134,15 +110,6 @@
             });
         }
 
-        function format(d) {
-            // `d` is the original data object for the row
-            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-                '<tr>' +
-                '<td></td>' +
-                '<td><img class="bike-img-big" src="' + d.picture + '"></td>' +
-                '</tr>' +
-                '</table>';
-        }
     </script>
 
     <script>
@@ -153,6 +120,15 @@
                 $('.alert').removeClass("hidden");
             }
         });
+
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
     </script>
 </head>
 <body style="margin:0;">
@@ -171,10 +147,8 @@
     margin-top: 0.5em;
     border: 1px solid white;
     background-image: url(https://i.imgur.com/VwKBYI3.png?1);
-    background-repeat: no-repeat; margin-right: 0.68em;">
-
-        </div>
-        <div class="loginButton" onclick="location.href='login.jsp'">Sign Out</div>
+    background-repeat: no-repeat; margin-right: 0.68em;"></div>
+        <div class="loginButton" onclick="location.href='login.jsp'"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</div>
 
         <%--<div id = "userName">Profile</div>--%>
     </div>
@@ -194,7 +168,6 @@
             <table id="bikes-table" class="display compact order-column" cellspacing="0" width="100%">
                 <thead>
                 <tr>
-                    <th></th>
                     <th>Picture</th>
                     <th>Model</th>
                     <th>Type</th>
@@ -206,6 +179,17 @@
             </table>
         </div>
     </div>
+
+    <!-- Modal for full size images on click-->
+    <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+        <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
+        <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+            <img id="img01" class="w3-image">
+            <p id="caption" class="w3-opacity w3-large"></p>
+        </div>
+    </div>
+
+
 
 
 </div>

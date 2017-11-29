@@ -14,8 +14,8 @@
           <element id="file-copy" path="$PROJECT_DIR$/lib/mysql-connector-java-5.1.44-bin.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/javaee-api-7.0.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/weld-servlet-2.4.5.Final.jar" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/javax.mail-api-1.6.0-rc2.jar" />
           <element id="file-copy" path="$PROJECT_DIR$/lib/javax.mail-1.6.0-rc2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/commons-io-2.6.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="BikeStore/web/Web" />

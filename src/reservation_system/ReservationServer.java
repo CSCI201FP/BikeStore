@@ -1,4 +1,5 @@
 package reservation_system;
+
 import com.google.gson.Gson;
 import objects.Reservation;
 
@@ -6,6 +7,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.Reception;
@@ -18,6 +21,9 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/rs")
 public class ReservationServer {
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
+    private static final BlockingQueue<Reservation> reservatioinQueue = new ArrayBlockingQueue<>(20);
+
+
 
     @OnOpen
     public void open(Session session) {
@@ -41,9 +47,9 @@ public class ReservationServer {
         String reservationJSONStr = new Gson().toJson(
                 new ReservationJSON(reservation.toString(), reservation.getReservationID()));
 
-        synchronized (sessions){
+        synchronized (sessions) {
             for (Session s : sessions) {
-                new Thread(()->{
+                new Thread(() -> {
                     try {
                         s.getBasicRemote().sendText(reservationJSONStr);
                     } catch (IOException e) {
@@ -54,8 +60,8 @@ public class ReservationServer {
         }
     }
 
-    public void logger(@Observes(notifyObserver = Reception.ALWAYS) Reservation reservation){
-        System.out.println("Reservation Event: "+reservation.toString());
+    public void logger(@Observes(notifyObserver = Reception.ALWAYS) Reservation reservation) {
+        System.out.println("Reservation Event: " + reservation.toString());
     }
 }
 
@@ -70,7 +76,7 @@ public class ReservationServer {
 }*/
 
 
-class ReservationJSON{
+class ReservationJSON {
     private String messageStr;
     private String reservationID;
 
@@ -79,3 +85,4 @@ class ReservationJSON{
         this.reservationID = Integer.toString(reservationID);
     }
 }
+

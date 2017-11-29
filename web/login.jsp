@@ -96,7 +96,7 @@
                     },
                     success: function (response) {
                         if (response==='signup-success'){
-                            window.location.href = "/bike.jsp";
+                            window.location.href = "/customerHomepage.jsp";
                         } else {
                             showWarn("Email Exist");
                         }
@@ -121,7 +121,7 @@
         <div id="positionDiv">
             <div id="email-div">
                 <form id="email-form">
-                    <input type="email" name="email" placeholder="you@email.com">
+                    <input type="email" name="email" placeholder="&#xf0e0; you@email.com">
                     <input type="submit" value="Next">
                 </form>
             </div>
@@ -130,9 +130,9 @@
                 Sign up
                 <form id="signup-form">
                     <input class="email-input-class" type="email" name="email"><span id="emailInfo"></span><br>
-                    <input type="password" name="password" placeholder="Password"><span id="passwordInfo" ></span><br>
-                    <input type="text" placeholder="Name" name="name"><span id="usernameInfo" ></span><br>
-                    <input type="number" name="phone" placeholder="Phone number"><span id="phoneInfo"></span><br>
+                    <input type="password" name="password" placeholder="&#xf084; Password"><span id="passwordInfo" ></span><br>
+                    <input type="text" placeholder="&#xf007; Name" name="name"><span id="usernameInfo" ></span><br>
+                    <input type="number" name="phone" placeholder="&#xf10b; Phone number"><span id="phoneInfo"></span><br>
                     <input type="submit" value="Sign up">
                 </form>
             </div>
@@ -141,7 +141,7 @@
                 Input Password
                 <form id="login-form" action="/login" method="post">
                     <input class="email-input-class" type="text" name="email"><br>
-                    <input type="password" name="password" placeholder="Password"><br>
+                    <input type="password" name="password" placeholder="&#xf084; Password"><br>
                     <input type="submit" value="Login">
                 </form>
             </div>

@@ -53,7 +53,7 @@
 <div class="wrapper">
     <div class="topBar">
         <div id="navLogo" onclick="location.href='index.jsp'"></div>
-        <div class="loginButton" onclick="location.href='login.jsp'">Sign in</div>
+        <div class="loginButton" onclick="location.href='login.jsp'"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</div>
         <%--<div id = "profilePicture" style="    float: right; background-size: 100%; overflow:hidden; height: 3em; width: 3em; border-radius: 0.5em; background-image: url("bikeUp.ico"); background-repeat: no-repeat;"></div>--%>
         <%--<div id = "userName">Manager Mike</div>--%>
     </div>

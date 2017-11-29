@@ -23,8 +23,7 @@ public class StoreDAOImpl implements StoreDAO {
 
     @Override
     public Store getStore(int id) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM Stores WHERE storeID=?");
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
@@ -39,8 +38,7 @@ public class StoreDAOImpl implements StoreDAO {
 
     @Override
     public Set getAllStores() {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Stores");
             Set<Store> stores = new HashSet<>();

@@ -6,16 +6,21 @@ import database.dao.UserDAO;
 import database.dao_impl.BikeDAOImpl;
 import database.dao_impl.ReservationDAOImpl;
 import database.dao_impl.UserDAOImpl;
+import email.EmailTools;
+import email.ReservationDecisionEmailSenderThread;
 import objects.Bike;
 import objects.Reservation;
 import objects.User;
+import org.apache.commons.io.IOUtils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @WebServlet(name = "ReservationDecisionServlet", urlPatterns = "/decide-reservation")
 public class ReservationDecisionServlet extends HttpServlet {
@@ -28,6 +33,7 @@ public class ReservationDecisionServlet extends HttpServlet {
         UserDAO userDAO = new UserDAOImpl();
         BikeDAO bikeDAO = new BikeDAOImpl();
         ReservationDAO reservationDAO = new ReservationDAOImpl();
+        ServletContext context = getServletContext();
 
 
         reservationID = Integer.parseInt(request.getParameter("reservationID"));
@@ -44,16 +50,18 @@ public class ReservationDecisionServlet extends HttpServlet {
             customer.setCurrentBikeID(bike.getBikeID());
             customer.setPending(false);
 
-            EmailSenderThread est = new EmailSenderThread("Approve", "Congratulations!", customer.getEmail());
-            est.start();
+            new ReservationDecisionEmailSenderThread(customer,
+                    ReservationDecisionEmailSenderThread.Decision.approve,
+                    context).start();
         } else if (decision.equals("refuse")) {
             bike.setAvailability(Bike.Availability.available);
             customer.setPending(false);
             customer.setCurrentBikeID(0);
             bike.setCurrentHolderID(0);
 
-            EmailSenderThread est = new EmailSenderThread("Refuse", "Sorry!", customer.getEmail());
-            est.start();
+            new ReservationDecisionEmailSenderThread(customer,
+                    ReservationDecisionEmailSenderThread.Decision.refuse,
+                    context).start();
         }
 
         userDAO.updateUser(customer);

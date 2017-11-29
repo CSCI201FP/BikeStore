@@ -64,7 +64,7 @@
     background-repeat: no-repeat; margin-right: 0.68em;">
 
         </div>
-        <div class="loginButton" onclick="location.href='login.jsp'">Sign Out</div>
+        <div class="loginButton" onclick="location.href='login.jsp'"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</div>
 
         <%--<div id = "userName">Profile</div>--%>
     </div>

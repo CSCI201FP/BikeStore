@@ -141,7 +141,7 @@
         }
 
         a {
-            color: #3498db;
+            color: #8e88b6;
             text-decoration: underline;
         }
 
@@ -169,10 +169,10 @@
 
         .btn a {
             background-color: #ffffff;
-            border: solid 1px #3498db;
+            border: solid 1px #8e88b6;
             border-radius: 5px;
             box-sizing: border-box;
-            color: #3498db;
+            color: #8e88b6;
             cursor: pointer;
             display: inline-block;
             font-size: 14px;
@@ -184,12 +184,12 @@
         }
 
         .btn-primary table td {
-            background-color: #3498db;
+            background-color: #8e88b6;
         }
 
         .btn-primary a {
-            background-color: #3498db;
-            border-color: #3498db;
+            background-color: #8e88b6;
+            border-color: #8e88b6;
             color: #ffffff;
         }
 
@@ -349,7 +349,7 @@
             <div class="content">
 
                 <!-- START CENTERED WHITE CONTAINER -->
-                <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+                <span class="preheader">Congratulations! Your Bike Reservation Has Been Approved.</span>
                 <table class="main">
 
                     <!-- START MAIN CONTENT AREA -->
@@ -358,9 +358,34 @@
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p>Hi there,</p>
-                                        <p>Sometimes you just want to send a simple HTML email with a simple design and
-                                            clear call to action. This is it.</p>
+                                        <p>Dear ${CUSTOMER_NAME},</p>
+                                        <p>
+                                            After careful review of your application for the bike, we sincerely regret to
+                                            inform you that we are unable to offer you the bike for spring 2018.
+                                            Let me assure you that we understand and share your disappointment.
+                                        </p>
+                                        <P>
+                                            BikeUP continues to receive more applications for bikes than we can
+                                            accommodate in our repository. For spring 2018, we received more than
+                                            47,000 applications for 4,625 available bikes.
+                                        </P>
+                                        <p>
+                                            Each application is unique, and each applicant presents wonderful attributes
+                                            and potential. Our work is extraordinarily difficult: BikeUP officers
+                                            thoroughly review each application and carefully balance grades, coursework,
+                                            test scores, honors, awards, community service, leadership, work experience
+                                            and the wallet. BikeUP officers also consider the opportunities and
+                                            challenges applicants face while achieving so much in their schools and
+                                            communities. Ultimately, no single attribute or achievement guarantees
+                                            the bike. There are simply too many well-qualified, accomplished, and
+                                            capable applicants for the number of bikes available at BikeUP.
+                                        </p>
+                                        <P>
+                                            Undoubtedly, your accomplishments assure you a place at another outstanding
+                                            online bike store. Although I realize our decision might be disappointing
+                                            for you, we are sure you will have many opportunities to
+                                            achieve your bikes.
+                                        </P>
                                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                                             <tbody>
                                             <tr>
@@ -368,8 +393,7 @@
                                                     <table border="0" cellpadding="0" cellspacing="0">
                                                         <tbody>
                                                         <tr>
-                                                            <td><a href="http://htmlemail.io" target="_blank">Call To
-                                                                Action</a></td>
+                                                            <td><a href="${BUTTON_LINK}" target="_blank">Try Another Bike</a></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -377,9 +401,8 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <p>This is a really simple email template. Its sole purpose is to get the
-                                            recipient to click the button with no distractions.</p>
-                                        <p>Good luck! Hope it works.</p>
+                                        <p>Again, I wish you every success in achieving your bikes.</p>
+                                        <p>Thank you.</p>
                                     </td>
                                 </tr>
                             </table>
@@ -394,13 +417,8 @@
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
                             <td class="content-block">
-                                <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span>
-                                <br> Don't like these emails? <a href="http://i.imgur.com/CScmqnj.gif">Unsubscribe</a>.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="content-block powered-by">
-                                Powered by <a href="http://htmlemail.io">HTMLemail</a>.
+                                <span class="apple-link">BikeUP Team, CSCI 201 FP</span>
+                                <br> To <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Unsubscribe</a>.
                             </td>
                         </tr>
                     </table>

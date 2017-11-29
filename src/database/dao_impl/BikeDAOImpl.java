@@ -25,8 +25,7 @@ public class BikeDAOImpl implements BikeDAO{
 
     @Override
     public Set getAllAvailableBikes() {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Bikes WHERE availability = 'available'");
             Set<Bike> bikes = new HashSet<>();
@@ -45,8 +44,7 @@ public class BikeDAOImpl implements BikeDAO{
 
     @Override
     public Set getAllBikes() {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Bikes");
             Set<Bike> bikes = new HashSet<>();
@@ -66,8 +64,7 @@ public class BikeDAOImpl implements BikeDAO{
 
     @Override
     public Bike getBike(int id) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Bikes WHERE bikeID=" + id);
             if (rs.next()) {
@@ -83,8 +80,7 @@ public class BikeDAOImpl implements BikeDAO{
 
     @Override
     public boolean insertBike(Bike bike) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement ps = connection
                     .prepareStatement("INSERT INTO Bikes (gender, seatHeight, type, picture, availability, currentHolderID, model) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
@@ -114,8 +110,7 @@ public class BikeDAOImpl implements BikeDAO{
 
     @Override
     public boolean updateBike(Bike bike) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement ps = connection
                     .prepareStatement("UPDATE Bikes SET gender=?, seatHeight=?, type=?, picture=?, availability=?, currentHolderID=?, model=? WHERE bikeID=?");
             ps.setString(1, bike.getGender().toString());
@@ -148,8 +143,7 @@ public class BikeDAOImpl implements BikeDAO{
 
     @Override
     public boolean deleteBike(int id) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             int i = stmt.executeUpdate("DELETE FROM Bikes WHERE bikeID=" + id);
             if (i == 1) {

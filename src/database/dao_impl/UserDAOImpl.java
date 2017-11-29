@@ -33,8 +33,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUser(String email) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE email= '" + email + "'");
             if (rs.next()) {
@@ -53,8 +52,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUser(int id) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Users WHERE userID=" + id);
             if (rs.next()) {
@@ -69,8 +67,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public Set getAllUsers() {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Users");
             Set<User> users = new HashSet<>();
@@ -87,8 +84,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean insertUser(User user) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement ps = connection
                     .prepareStatement("INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
@@ -116,8 +112,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean updateUser(User user) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement ps = connection
                     .prepareStatement("UPDATE Users SET email=?, password=?, name=?, isManager=?, isPending=?, phone=?, currentBikeID=? WHERE userID=?");
             ps.setString(1, user.getEmail());
@@ -146,8 +141,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean deleteUser(int id) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             int i = stmt.executeUpdate("DELETE FROM Users WHERE userID=" + id);
             if (i == 1) {

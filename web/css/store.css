@@ -49,10 +49,6 @@
 
     cursor: pointer;
 }
-.fa
-{
-    padding-left: 2em;
-}
 .bike-img-clip {
     height: 10em;
 }
@@ -113,6 +109,10 @@
     cursor: pointer;
     background: white;
     color: #8e88b6;
+}
+
+.loginButton, .loginButton:before, loginButton:after{
+    box-sizing: content-box;
 }
 
 #userName
@@ -185,3 +185,5 @@ td{
 table{
     margin-bottom: 1em;
 }
+
+

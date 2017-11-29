@@ -21,8 +21,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public Reservation getReservation(int id) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM Reservations WHERE reservationID=?");
             ps.setInt(1,id);
             ResultSet rs = ps.executeQuery();
@@ -37,8 +36,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public Set<Reservation> getAllReservation() {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM Reservations");
             Set<Reservation> reservations = new HashSet<>();
@@ -57,8 +55,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public boolean insertReservation(Reservation r) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement ps = connection
                     .prepareStatement("INSERT INTO Reservations (customerID, bikeID) VALUES (?, ?)");
 
@@ -76,8 +73,7 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public boolean deleteReservation(int id) {
-        Connection connection = ConnectionFactory.getConnection();
-        try {
+        try (Connection connection = ConnectionFactory.getConnection()) {
             Statement stmt = connection.createStatement();
             int i = stmt.executeUpdate("DELETE FROM Reservations WHERE reservationID=" + id);
             if (i == 1) {
