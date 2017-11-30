@@ -50,7 +50,7 @@
 
 <div class="wrapper">
     <div class="topBar">
-        <div id="navLogo" onclick="location.href='customerHomepage.jsp'"></div>
+        <div id="navLogo" onclick="location.href='managerHomepage.jsp'"></div>
         <div id="profilePicture" onclick="location.href='userInfo.jsp'" style="
     float: right;
     background-size: 60%;

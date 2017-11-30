@@ -75,7 +75,7 @@ INSERT INTO Stores (name, hours, streetAddress) VALUES
   ('Ye Olde Bike Shop', '10AM-5PM', '325 W Adams Blvd, Los Angeles, CA 90007');
 
 INSERT INTO Bikes (model, gender, seatHeight, type, picture, availability, currentHolderID) VALUES
-  ('Fast Runner', 'male', 1.5, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
+  ('Fast Runner', 'male', 1.5, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'pending', NULL),
   ('Turtle Spinner', 'male', 2.0, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
   ('Signature Sweetie', 'male', 1.6, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL),
   ('Scott CR1 Plasma Pro', 'male', 1.7, 'road', 'https://i.imgur.com/xxcgs6V.jpg', 'available', NULL),
@@ -91,7 +91,7 @@ INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBi
    'admin2', 1, 0, '1234567890', NULL),
   ('johndwye@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   'john', 0, 0, '1234567890', NULL),
+   'john', 0, 0, '1234567890', 1),
   ('pashints@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    'pash', 0, 0, '1234567890', NULL),
@@ -101,3 +101,8 @@ INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBi
   ('5@5',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    '55', 0, 0, '1234567890', NULL);
+
+UPDATE Bikes SET currentHolderID = 3 WHERE bikeID=1;
+
+INSERT INTO Reservations (customerID, bikeID) VALUES
+  (3, 1);
