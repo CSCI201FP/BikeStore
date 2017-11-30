@@ -44,6 +44,7 @@ function decideReservation(decision, reservationID) {
             decision: decision
         },
         success:function () {
+            all_bikes_DataTable.ajax.reload();
             reservationsDataTable.ajax.reload();
         }
     });

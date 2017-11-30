@@ -67,7 +67,7 @@
                                 overflow: hidden;
                                 margin-bottom:1em;
                                "><br>
-                Phone Number <input type="number" name="phone" value="${sessionScope.user.getPhone()}"
+                Phone Number <input type="text" name="phone" value="${sessionScope.user.getPhone()}"
                                     style="
                                 padding: 1em;
                                 border: 1px solid white;

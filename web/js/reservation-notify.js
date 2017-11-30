@@ -42,6 +42,8 @@ $(function () {
             autoHide: false,
             clickToHide: true
         });
+        all_bikes_DataTable.ajax.reload();
+        reservationsDataTable.ajax.reload();
     };
 
     socket.onclose = function () {
@@ -62,6 +64,8 @@ $(function () {
             }
         });
         $(this).trigger('notify-hide');
+        all_bikes_DataTable.ajax.reload();
+        reservationsDataTable.ajax.reload();
 
     });
 
@@ -75,6 +79,8 @@ $(function () {
             }
         });
         $(this).trigger('notify-hide');
+        all_bikes_DataTable.ajax.reload();
+        reservationsDataTable.ajax.reload();
     });
 
     $(document).on('click', '.notifyjs-notification-base .ignore', function () {

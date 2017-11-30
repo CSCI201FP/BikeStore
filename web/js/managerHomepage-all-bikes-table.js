@@ -85,6 +85,7 @@ $(function () {
                 success: function (data) {
                     alert(data);
                     all_bikes_DataTable.ajax.reload();
+                    reservationsDataTable.ajax.reload();
                 }
             });
 
