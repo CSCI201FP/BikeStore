@@ -69,12 +69,12 @@
                 <div class='single-item'>
 
                     <c:forEach items="${bikes}" var="bike">
-                        <a href="guestHomepage.jsp"><div class="bike" style="
+                        <div class="bike" style="
                                 border-radius: 1em;
                                 background: url(<c:out value="${bike.picture}"/>), no-repeat;
                                 background-size: 100%;
                                 overflow:hidden;">
-                        </div></a>
+                        </div>
                     </c:forEach>
 
                     <%--<div class="bike" id="bike1" style="--%>
