@@ -7,7 +7,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.Reception;
@@ -20,44 +21,9 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/rs")
 public class ReservationServer {
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
-    private static final BlockingQueue<Reservation> reservationQueue =new ArrayBlockingQueue<>(30);
-    private static final ExecutorService consumerPool = Executors.newCachedThreadPool();
-
-    class Consumer extends Thread {
-        @Override
-        public void run() {
-            try {
-                Reservation reservation = reservationQueue.take();
-
-                String reservationJSONStr = new Gson().toJson(
-                        new ReservationJSON(reservation.toString(), reservation.getReservationID()));
-
-                synchronized (sessions) {
-                    for (Session s : sessions) {
-                        new Thread(() -> {
-                            try {
-                                s.getBasicRemote().sendText(reservationJSONStr);
-                            } catch (IOException e) {
-                                close(s);
-                            }
-                        }).start();
-                    }
-
-                }
+    private static final BlockingQueue<Reservation> reservatioinQueue = new ArrayBlockingQueue<>(20);
 
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-
-    public ReservationServer() {
-        System.out.println("I was Called");
-        consumerPool.execute(new Consumer());
-    }
 
     @OnOpen
     public void open(Session session) {
@@ -77,15 +43,26 @@ public class ReservationServer {
         System.err.println("Error: " + error.getMessage());
     }
 
-    public static void sendReservation2Manager(@Observes(notifyObserver = Reception.ALWAYS) Reservation reservation) {
-        reservationQueue.add(reservation);
+    public void sendReservation2Manager(@Observes(notifyObserver = Reception.ALWAYS) Reservation reservation) {
+        String reservationJSONStr = new Gson().toJson(
+                new ReservationJSON(reservation.toString(), reservation.getReservationID()));
+
+        synchronized (sessions) {
+            for (Session s : sessions) {
+                new Thread(() -> {
+                    try {
+                        s.getBasicRemote().sendText(reservationJSONStr);
+                    } catch (IOException e) {
+                        close(s);
+                    }
+                }).start();
+            }
+        }
     }
 
-    public static void logger(@Observes(notifyObserver = Reception.ALWAYS) Reservation reservation) {
+    public void logger(@Observes(notifyObserver = Reception.ALWAYS) Reservation reservation) {
         System.out.println("Reservation Event: " + reservation.toString());
     }
-
-
 }
 
 /*class ServletAwareConfig extends ServerEndpointConfig.Configurator {

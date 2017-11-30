@@ -58,7 +58,9 @@ public class ReserveBikeServlet extends HttpServlet {
 
         //insert the reservation to db
         Reservation reservation = new Reservation(customer.getUserID(), bikeID);
-        reservationDAO.insertReservation(reservation);
+        int reservationID = reservationDAO.insertReservation(reservation);
+
+        reservation = reservationDAO.getReservation(reservationID);
 
         //fire the event
         newReservationEvent.fire(reservation);

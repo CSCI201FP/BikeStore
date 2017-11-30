@@ -10,7 +10,7 @@ public interface ReservationDAO {
 
     Set<Reservation> getAllReservation();
 
-    boolean insertReservation(Reservation r);
+    int insertReservation(Reservation r);
 
     boolean deleteReservation(int id);
 }

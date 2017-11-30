@@ -75,11 +75,11 @@ INSERT INTO Stores (name, hours, streetAddress) VALUES
   ('Ye Olde Bike Shop', '10AM-5PM', '325 W Adams Blvd, Los Angeles, CA 90007');
 
 INSERT INTO Bikes (model, gender, seatHeight, type, picture, availability, currentHolderID) VALUES
-  ('Fast Runner', 'male', 19, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'pending', NULL),
-  ('Turtle Spinner', 'male', 20, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
-  ('Signature Sweetie', 'male', 1.2, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL),
-  ('Scott CR1 Plasma Pro', 'male', 19, 'road', 'https://i.imgur.com/xxcgs6V.jpg', 'available', NULL),
-  ('Marsupial Mike', 'female', 1.1, 'other', 'https://i.imgur.com/beuWLZs.jpg', 'available', NULL);
+  ('Fast Runner', 'male', 1.5, 'road', 'https://i.imgur.com/j9Z6QBY.jpg', 'available', NULL),
+  ('Turtle Spinner', 'male', 2.0, 'road', 'https://i.imgur.com/dSCj6Rj.jpg', 'available', NULL),
+  ('Signature Sweetie', 'male', 1.6, 'road', 'https://i.imgur.com/xjNjByG.jpg?1', 'available', NULL),
+  ('Scott CR1 Plasma Pro', 'male', 1.7, 'road', 'https://i.imgur.com/xxcgs6V.jpg', 'available', NULL),
+  ('Marsupial Mike', 'female', 1.7, 'other', 'https://i.imgur.com/beuWLZs.jpg', 'available', NULL);
 
 /* Password: 11111111A */
 INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBikeID) VALUES
@@ -88,24 +88,16 @@ INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBi
    'admin', 1, 0, '1234567890', NULL),
   ('admin2@admin',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   'admin', 1, 0, '1234567890', NULL),
+   'admin2', 1, 0, '1234567890', NULL),
   ('johndwye@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '22', 0, 0, '1234567890', NULL),
+   'john', 0, 0, '1234567890', NULL),
   ('pashints@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '33', 0, 0, '1234567890', NULL),
-  ('yang765@usc.edu',
-   0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '44', 0, 1, '1234567890', 1),
+   'pash', 0, 0, '1234567890', NULL),
   ('ruoxijia@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '55', 0, 0, '1234567890', NULL),
+   'ruoxi', 0, 0, '1234567890', NULL),
   ('5@5',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    '55', 0, 0, '1234567890', NULL);
-
-UPDATE Bikes SET currentHolderID = 5 WHERE bikeID=1;
-
-INSERT INTO Reservations (customerID, bikeID) VALUES
-  (5, 1);

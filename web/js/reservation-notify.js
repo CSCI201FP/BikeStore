@@ -51,33 +51,33 @@ $(function () {
             autoHide: false
         });
     };
-});
 
-$(document).on('click', '.notifyjs-notification-base .refuse', function () {
-    $.ajax({
-        url: "/decide-reservation",
-        method: "POST",
-        data: {
-            reservationID: $(this).parent().siblings('.reservationID').text(),
-            decision: "refuse"
-        }
+    $(document).on('click', '.notifyjs-notification-base .refuse', function () {
+        $.ajax({
+            url: "/decide-reservation",
+            method: "POST",
+            data: {
+                reservationID: $(this).parent().siblings('.reservationID').text(),
+                decision: "refuse"
+            }
+        });
+        $(this).trigger('notify-hide');
+
     });
-    $(this).trigger('notify-hide');
 
-});
-
-$(document).on('click', '.notifyjs-notification-base .approve', function () {
-    $.ajax({
-        url: "/decide-reservation",
-        method: "POST",
-        data: {
-            reservationID: $(this).parent().siblings('.reservationID').text(),
-            decision: "approve"
-        }
+    $(document).on('click', '.notifyjs-notification-base .approve', function () {
+        $.ajax({
+            url: "/decide-reservation",
+            method: "POST",
+            data: {
+                reservationID: $(this).parent().siblings('.reservationID').text(),
+                decision: "approve"
+            }
+        });
+        $(this).trigger('notify-hide');
     });
-    $(this).trigger('notify-hide');
-});
 
-$(document).on('click', '.notifyjs-notification-base .ignore', function () {
-    $(this).trigger('notify-hide');
+    $(document).on('click', '.notifyjs-notification-base .ignore', function () {
+        $(this).trigger('notify-hide');
+    });
 });

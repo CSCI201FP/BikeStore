@@ -42,7 +42,7 @@
         });
 
         $(function () {
-            $(".single-item").on("click",function () {
+            $(".bike").on("click",function () {
                 window.location.href='guestHomepage.jsp';
             })
         });

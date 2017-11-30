@@ -54,21 +54,30 @@ public class ReservationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public boolean insertReservation(Reservation r) {
+    public int insertReservation(Reservation r) {
+        int reservationID = 0;
         try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO Reservations (customerID, bikeID) VALUES (?, ?)");
+                    .prepareStatement("INSERT INTO Reservations (customerID, bikeID) VALUES (?, ?)",  Statement.RETURN_GENERATED_KEYS);
 
             ps.setInt(1, r.getCustomerID());
             ps.setInt(2, r.getBikeID());
 
             if (ps.executeUpdate() == 1) {
-                return true;
+                try (ResultSet rs = ps.getGeneratedKeys()){
+                    if (rs.next()){
+                        reservationID = rs.getInt(1);
+                    }else {
+                        System.err.println("Cannot get reservation ID");
+                    }
+                }
+            }else {
+                System.err.println("Cannot Execute insertReservation");
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return reservationID;
     }
 
     @Override
