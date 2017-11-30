@@ -34,7 +34,6 @@
         <url-pattern>/userInfo.jsp</url-pattern>
         <url-pattern>/addBike/*</url-pattern>
         <url-pattern>/update-user/*</url-pattern>
-        <url-pattern>/get-bikes/*</url-pattern>
         <url-pattern>/delete-bike/*</url-pattern>
         <url-pattern>/decide-reservation/*</url-pattern>
         <url-pattern>/get-reservations/*</url-pattern>
