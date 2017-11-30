@@ -86,18 +86,24 @@ INSERT INTO Users (email, password, name, isManager, isPending, phone, currentBi
   ('admin@admin',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    'admin', 1, 0, '1234567890', NULL),
-  ('2@2',
+  ('admin2@admin',
+   0xE3908E5C68A1C7637ABE3DB2B3C91938,
+   'admin', 1, 0, '1234567890', NULL),
+  ('johndwye@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    '22', 0, 0, '1234567890', NULL),
-  ('3@3',
+  ('pashints@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
    '33', 0, 0, '1234567890', NULL),
-  ('4@4',
+  ('yang765@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '44', 0, 0, '1234567890', NULL),
-  ('vicboss@live.cn',
+   '44', 0, 1, '1234567890', 1),
+  ('ruoxijia@usc.edu',
    0xE3908E5C68A1C7637ABE3DB2B3C91938,
-   '55', 0, 1, '1234567890', 1);
+   '55', 0, 0, '1234567890', NULL),
+  ('5@5',
+   0xE3908E5C68A1C7637ABE3DB2B3C91938,
+   '55', 0, 0, '1234567890', NULL);
 
 UPDATE Bikes SET currentHolderID = 5 WHERE bikeID=1;
 

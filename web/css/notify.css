@@ -1,10 +1,47 @@
-.notifyjs-notification-base {
-    opacity: 0.90;
-    width: 500px;
+/*.notifyjs-notification-base {
+    width: 300px;
     background: #80D0DD;
     padding: 5px;
     border-radius: 50px;
     overflow: hidden;
+    display: inline-block;
+}
+
+.notifyjs-notification-base .ignore-cross{
+    width: 50px;
+    float: right;
+    height: inherit;
+    display: block;
+}
+
+.notifyjs-notification-base .message {
+    width: 200px;
+    float: left;
+    margin: 10px 0 0 10px;
+    text-align: right;
+}
+
+.notifyjs-notification-base .buttons {
+    width: 50px;
+    float: right;
+    font-size: 9px;
+    padding: 5px;
+    margin: 2px;
+}
+
+.notifyjs-notification-base button {
+    font-size: 9px;
+    padding: 5px;
+    margin: 2px;
+    width: 60px;
+}*/
+.notifyjs-notification-base {
+    width: 200px;
+    background: #80D0DD;
+    padding: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: inline-block;
 }
 
 .notifyjs-notification-base .message {
@@ -31,7 +68,7 @@
 
 .notifyjs-information-base {
     opacity: 0.50;
-    width: 200px;
+    width: 100px;
     background: #3aff00;
     padding: 5px;
     border-radius: 10px;
@@ -39,7 +76,7 @@
 
 .notifyjs-warning-base {
     opacity: 0.50;
-    width: 200px;
+    width: 100px;
     background: #ff0000;
     padding: 5px;
     border-radius: 10px;

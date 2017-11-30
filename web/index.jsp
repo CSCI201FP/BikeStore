@@ -40,6 +40,12 @@
                 dots: true
             });
         });
+
+        $(function () {
+            $(".single-item").on("click",function () {
+                window.location.href='guestHomepage.jsp';
+            })
+        });
     </script>
 
     <title>BikeUp</title>

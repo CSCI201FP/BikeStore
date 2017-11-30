@@ -20,7 +20,7 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/rs")
 public class ReservationServer {
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());
-    private static final BlockingQueue<Reservation> reservationQueue =new ArrayBlockingQueue<>(20);
+    private static final BlockingQueue<Reservation> reservationQueue =new ArrayBlockingQueue<>(30);
     private static final ExecutorService consumerPool = Executors.newCachedThreadPool();
 
     class Consumer extends Thread {
@@ -42,6 +42,7 @@ public class ReservationServer {
                             }
                         }).start();
                     }
+
                 }
 
 

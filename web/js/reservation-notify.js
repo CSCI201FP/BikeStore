@@ -4,31 +4,30 @@ $.notify.defaults({ className: "success" });
 
 $.notify.addStyle('notification', {
     html:   "<div>" +
-    "<div class='hidden reservationID' data-notify-text='reservationID'></div>"+
-    "<div class='message' data-notify-text='messageStr'/>" +
-    "<i class='fa fa-times ignore' aria-hidden='true'></i>"+
-    "<div class='buttons'>" +
-    "<button class='refuse'>Refuse</button>" +
-    "<button class='approve'>Approve</button>" +
-    "</div>" +
-    "</div>"
+                "<div class='hidden reservationID' data-notify-text='reservationID'></div>"+
+                "<div class='message' data-notify-text='messageStr'/>" +
+                "<div class='buttons'>" +
+                    "<button class='refuse'>Refuse</button>" +
+                    "<button class='approve'>Approve</button>" +
+                "</div>" +
+            "</div>"
 });
 
 $.notify.addStyle('information', {
-    html:   "<div><i class=\"fa fa-info\" aria-hidden=\"true\"></i><span data-notify-text/></div>"
+    html:   "<div><i class=\"fa fa-info\" aria-hidden=\"true\"></i>  <span data-notify-text/></div>"
 });
 
 $.notify.addStyle('warning', {
-    html:   "<div><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i><span data-notify-text/></div>"
+    html:   "<div><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i>  <span data-notify-text/></div>"
 });
 
 $(function () {
     socket = new WebSocket("ws://" + window.location.hostname + ":"+window.location.port+"/rs");
 
     socket.onopen = function () {
-        $.notify("Link Start", {
+        $.notify("Connected", {
             style: 'information',
-            globalPosition: 'bottom right',
+            globalPosition: 'bottom center',
             showDuration: 400
         });
     };
@@ -41,14 +40,14 @@ $(function () {
         }, {
             style: 'notification',
             autoHide: false,
-            clickToHide: false
+            clickToHide: true
         });
     };
 
     socket.onclose = function () {
-        $.notify("The server is not reachable", {
+        $.notify("Cannot Reach Server", {
             style: 'warning',
-            globalPosition: 'bottom right',
+            globalPosition: 'bottom center',
             autoHide: false
         });
     };
